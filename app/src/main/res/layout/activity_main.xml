@@ -18,7 +18,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="@dimen/LogoLoginHeight"
-            android:id="@+id/imageView"
+            android:id="@+id/logoImage"
             android:src="@drawable/logo_foody" />
 
         <LinearLayout
@@ -31,7 +31,7 @@
                 android:layout_width="@dimen/login_page"
                 android:layout_height="wrap_content"
                 android:text="สมัครสมาชิก"
-                android:id="@+id/button2"
+                android:id="@+id/signUpButton"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="13dp" />
 
@@ -39,7 +39,7 @@
                 android:layout_width="@dimen/login_page"
                 android:layout_height="wrap_content"
                 android:text="เข้าสู่ระบบ"
-                android:id="@+id/button"
+                android:id="@+id/loginButton"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="13dp" />
 
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="ข้าม"
-                android:id="@+id/textView"
+                android:id="@+id/skipText"
                 android:layout_gravity="center_horizontal"
                 android:clickable="true"
                 android:layout_marginTop="13dp" />

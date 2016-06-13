@@ -18,7 +18,7 @@
         <EditText
             android:layout_width="@dimen/login_page"
             android:layout_height="@dimen/textFieldHeight"
-            android:id="@+id/editText"
+            android:id="@+id/usernameTextField"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="200dp"
             android:background="#71fafff8"
@@ -27,7 +27,7 @@
         <EditText
             android:layout_width="@dimen/login_page"
             android:layout_height="@dimen/textFieldHeight"
-            android:id="@+id/editText2"
+            android:id="@+id/passwordTextField"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="13dp"
             android:background="#71fafff8"
@@ -37,7 +37,7 @@
             android:layout_width="@dimen/login_page"
             android:layout_height="wrap_content"
             android:text="เข้าสู่ระบบ"
-            android:id="@+id/button3"
+            android:id="@+id/loginButton"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="25dp"
             android:background="#747676" />

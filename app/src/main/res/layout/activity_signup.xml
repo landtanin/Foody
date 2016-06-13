@@ -18,7 +18,7 @@
         <ImageButton
             android:layout_width="160dp"
             android:layout_height="160dp"
-            android:id="@+id/imageButton"
+            android:id="@+id/addImageButton"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/addPictureSignUp"
             android:layout_marginTop="20dp" />
@@ -26,7 +26,7 @@
         <EditText
             android:layout_width="@dimen/textFieldWidthSignUp"
             android:layout_height="@dimen/textFieldHeightSignUp"
-            android:id="@+id/editText3"
+            android:id="@+id/usernameTextField"
             android:layout_gravity="center_horizontal"
             android:background="#41303030"
             android:autoText="true"
@@ -36,7 +36,7 @@
         <EditText
             android:layout_width="@dimen/textFieldWidthSignUp"
             android:layout_height="@dimen/textFieldHeightSignUp"
-            android:id="@+id/editText4"
+            android:id="@+id/emailTextField"
             android:layout_gravity="center_horizontal"
             android:background="#41303030"
             android:autoText="true"
@@ -46,7 +46,7 @@
         <EditText
             android:layout_width="@dimen/textFieldWidthSignUp"
             android:layout_height="@dimen/textFieldHeightSignUp"
-            android:id="@+id/editText5"
+            android:id="@+id/passwordTextField"
             android:layout_gravity="center_horizontal"
             android:background="#41303030"
             android:autoText="true"
@@ -56,7 +56,7 @@
         <EditText
             android:layout_width="@dimen/textFieldWidthSignUp"
             android:layout_height="@dimen/textFieldHeightSignUp"
-            android:id="@+id/editText6"
+            android:id="@+id/verifyPassTextField"
             android:layout_gravity="center_horizontal"
             android:background="#41303030"
             android:autoText="true"
@@ -75,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/textFieldHeightSignUp"
                 android:text="ยกเลิก"
-                android:id="@+id/button4"
+                android:id="@+id/cancelButton"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:background="#747676"
@@ -85,7 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/textFieldHeightSignUp"
                 android:text="ตกลง"
-                android:id="@+id/button5"
+                android:id="@+id/okButton"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:background="#f7751e"
