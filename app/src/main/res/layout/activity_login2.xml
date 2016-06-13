@@ -21,7 +21,7 @@
             android:id="@+id/editText"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="200dp"
-            android:background="#41fafff8"
+            android:background="#71fafff8"
             android:hint="ชื่อผู้ใช้" />
 
         <EditText
@@ -30,7 +30,7 @@
             android:id="@+id/editText2"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="13dp"
-            android:background="#41fafff8"
+            android:background="#71fafff8"
             android:hint="รหัสผ่าน" />
 
         <Button

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.appdever.foody.signupActivity"
+    android:background="#ffffff">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:id="@+id/imageButton"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/addPictureSignUp"
+            android:layout_marginTop="10dp" />
+
+        <EditText
+            android:layout_width="@dimen/textFieldWidthSignUp"
+            android:layout_height="@dimen/textFieldHeightSignUp"
+            android:id="@+id/editText3"
+            android:layout_gravity="center_horizontal"
+            android:background="#41303030"
+            android:autoText="true"
+            android:layout_marginTop="40dp"
+            android:hint="ชื่อผู้ใช้" />
+
+        <EditText
+            android:layout_width="@dimen/textFieldWidthSignUp"
+            android:layout_height="@dimen/textFieldHeightSignUp"
+            android:id="@+id/editText4"
+            android:layout_gravity="center_horizontal"
+            android:background="#41303030"
+            android:autoText="true"
+            android:layout_marginTop="25dp"
+            android:hint="อีเมล" />
+
+        <EditText
+            android:layout_width="@dimen/textFieldWidthSignUp"
+            android:layout_height="@dimen/textFieldHeightSignUp"
+            android:id="@+id/editText5"
+            android:layout_gravity="center_horizontal"
+            android:background="#41303030"
+            android:autoText="true"
+            android:layout_marginTop="25dp"
+            android:hint="รหัสผ่าน" />
+
+        <EditText
+            android:layout_width="@dimen/textFieldWidthSignUp"
+            android:layout_height="@dimen/textFieldHeightSignUp"
+            android:id="@+id/editText6"
+            android:layout_gravity="center_horizontal"
+            android:background="#41303030"
+            android:autoText="true"
+            android:layout_marginTop="25dp"
+            android:hint="ยืนยันรหัสผ่าน" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:padding="10dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/textFieldHeightSignUp"
+                android:text="ยกเลิก"
+                android:id="@+id/button4"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:background="#747676"
+                android:layout_marginRight="10dp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/textFieldHeightSignUp"
+                android:text="ตกลง"
+                android:id="@+id/button5"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:background="#f7751e"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

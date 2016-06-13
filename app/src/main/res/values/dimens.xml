@@ -5,4 +5,6 @@
     <dimen name="login_page">250dp</dimen>
     <dimen name="LogoLoginHeight">300dp</dimen>
     <dimen name="textFieldHeight">43dp</dimen>
+    <dimen name="textFieldHeightSignUp">35dp</dimen>
+    <dimen name="textFieldWidthSignUp">280dp</dimen>
 </resources>
