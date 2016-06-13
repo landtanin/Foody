@@ -35,72 +35,121 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageButton
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:id="@+id/addImageButton"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/addpicturesignup"
-            android:layout_marginTop="24dp" />
+        <Space
+            android:layout_width="20px"
+            android:layout_height="0dp"
+            android:layout_weight="10" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="40">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="20px"
+                android:layout_weight="19" />
+
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/addImageButton"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/addpicturesignup"
+                android:layout_weight="30" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="20px"
+                android:layout_weight="19" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="20px"
+            android:layout_height="0dp"
+            android:layout_weight="10" />
 
         <EditText
             android:layout_width="@dimen/textFieldWidthSignUp"
-            android:layout_height="@dimen/textFieldHeightSignUp"
+            android:layout_height="0dp"
             android:id="@+id/oldPassTextField"
             android:layout_gravity="center_horizontal"
             android:background="#41303030"
             android:autoText="true"
-            android:layout_marginTop="52dp"
-            android:hint="รหัสผ่านเก่า" />
+            android:hint="รหัสผ่านเก่า"
+            android:layout_weight="9" />
+
+        <Space
+            android:layout_width="20px"
+            android:layout_height="0dp"
+            android:layout_weight="10" />
 
         <EditText
             android:layout_width="@dimen/textFieldWidthSignUp"
-            android:layout_height="@dimen/textFieldHeightSignUp"
+            android:layout_height="0dp"
             android:id="@+id/newPassTextField"
             android:layout_gravity="center_horizontal"
             android:background="#41303030"
             android:autoText="true"
-            android:layout_marginTop="37dp"
-            android:hint="รหัสผ่านใหม่" />
+            android:hint="รหัสผ่านใหม่"
+            android:layout_weight="9" />
+
+        <Space
+            android:layout_width="20px"
+            android:layout_height="0dp"
+            android:layout_weight="10" />
 
         <EditText
             android:layout_width="@dimen/textFieldWidthSignUp"
-            android:layout_height="@dimen/textFieldHeightSignUp"
+            android:layout_height="0dp"
             android:id="@+id/verifyNewPassTextField"
             android:layout_gravity="center_horizontal"
             android:background="#41303030"
             android:autoText="true"
-            android:layout_marginTop="37dp"
-            android:hint="ยืนยันรหัสใหม่" />
+            android:hint="ยืนยันรหัสใหม่"
+            android:layout_weight="9" />
+
+        <Space
+            android:layout_width="20px"
+            android:layout_height="0dp"
+            android:layout_weight="15" />
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="300dp"
-            android:layout_height="match_parent"
+            android:layout_width="280dp"
+            android:layout_height="0dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
-            android:padding="10dp">
+            android:layout_weight="10">
 
             <Button
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="@dimen/textFieldHeightSignUp"
                 android:text="ยกเลิก"
                 android:id="@+id/cancelButton"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="1"
-                android:background="#747676"
-                android:layout_marginRight="10dp" />
+                android:layout_weight="50"
+                android:background="#747676" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="20px"
+                android:layout_weight="7" />
 
             <Button
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="@dimen/textFieldHeightSignUp"
                 android:text="ตกลง"
                 android:id="@+id/okButton"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="1"
-                android:background="#f7751e"
-                android:layout_marginLeft="10dp" />
+                android:layout_weight="50"
+                android:background="#f7751e" />
         </LinearLayout>
+
+        <Space
+            android:layout_width="20px"
+            android:layout_height="0dp"
+            android:layout_weight="10" />
     </LinearLayout>
 </RelativeLayout>
 </LinearLayout>
