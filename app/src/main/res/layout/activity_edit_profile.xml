@@ -20,7 +20,7 @@
             android:layout_height="160dp"
             android:id="@+id/addImageButton"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/addPictureSignUp"
+            android:src="@drawable/addpicturesignup"
             android:layout_marginTop="24dp" />
 
         <EditText
