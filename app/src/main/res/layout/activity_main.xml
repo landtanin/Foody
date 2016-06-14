@@ -4,33 +4,21 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.appdever.foody.MainActivity"
-    android:background="#f7571e">
+    tools:context="com.appdever.foody.MainActivity">
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3.5">
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="20px"
-            android:layout_weight="3" />
+        android:layout_weight="4">
 
         <ImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/logoImage"
-            android:src="@drawable/logo_foody_white"
-            android:layout_weight="10"
-            android:layout_gravity="center_horizontal" />
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="20px"
-            android:layout_weight="3" />
-    </LinearLayout>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/banner_02" />
+    </FrameLayout>
 
     <LinearLayout
         android:orientation="vertical"
