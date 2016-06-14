@@ -58,6 +58,7 @@
                 android:id="@+id/addImageButton"
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/addpicturesignup"
+                android:background="@android:color/transparent"
                 android:layout_weight="30" />
 
             <Space
