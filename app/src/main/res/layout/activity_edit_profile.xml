@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/addImageButton"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/addpicturesignup"
+                android:src="@drawable/addpicture2"
                 android:layout_weight="30" />
 
             <Space
@@ -77,7 +77,7 @@
             android:layout_gravity="center_horizontal"
             android:background="#41303030"
             android:autoText="true"
-            android:hint="รหัสผ่านเก่า"
+            android:hint=" รหัสผ่านเก่า"
             android:layout_weight="9" />
 
         <Space
@@ -92,7 +92,7 @@
             android:layout_gravity="center_horizontal"
             android:background="#41303030"
             android:autoText="true"
-            android:hint="รหัสผ่านใหม่"
+            android:hint=" รหัสผ่านใหม่"
             android:layout_weight="9" />
 
         <Space
@@ -107,7 +107,7 @@
             android:layout_gravity="center_horizontal"
             android:background="#41303030"
             android:autoText="true"
-            android:hint="ยืนยันรหัสใหม่"
+            android:hint=" ยืนยันรหัสใหม่"
             android:layout_weight="9" />
 
         <Space

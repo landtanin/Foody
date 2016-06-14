@@ -35,7 +35,7 @@
             android:id="@+id/usernameTextField"
             android:layout_gravity="center_horizontal"
             android:background="#71fafff8"
-            android:hint="ชื่อผู้ใช้"
+            android:hint=" ชื่อผู้ใช้"
             android:layout_weight="7" />
 
         <Space
@@ -49,7 +49,7 @@
             android:id="@+id/passwordTextField"
             android:layout_gravity="center_horizontal"
             android:background="#71fafff8"
-            android:hint="รหัสผ่าน"
+            android:hint=" รหัสผ่าน"
             android:layout_weight="7" />
 
         <Space

@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/addImageButton"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/addpicturesignup"
+                android:src="@drawable/addpicture2"
                 android:background="@android:color/transparent"
                 android:layout_weight="30" />
 
@@ -79,7 +79,7 @@
             android:layout_gravity="center_horizontal"
             android:background="#41303030"
             android:autoText="true"
-            android:hint="ชื่อผู้ใช้"
+            android:hint=" ชื่อผู้ใช้"
             android:layout_weight="10" />
 
         <Space
@@ -94,7 +94,7 @@
             android:layout_gravity="center_horizontal"
             android:background="#41303030"
             android:autoText="true"
-            android:hint="อีเมล"
+            android:hint=" อีเมล"
             android:layout_weight="10" />
 
         <Space
@@ -109,7 +109,7 @@
             android:layout_gravity="center_horizontal"
             android:background="#41303030"
             android:autoText="true"
-            android:hint="รหัสผ่าน"
+            android:hint=" รหัสผ่าน"
             android:layout_weight="10" />
 
         <Space
@@ -124,7 +124,7 @@
             android:layout_gravity="center_horizontal"
             android:background="#41303030"
             android:autoText="true"
-            android:hint="ยืนยันรหัสผ่าน"
+            android:hint=" ยืนยันรหัสผ่าน"
             android:layout_weight="10" />
 
         <Space
