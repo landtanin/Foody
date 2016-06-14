@@ -3,43 +3,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.appdever.foody.Login2Activity"
-    android:background="#f7751e">
+    tools:context="com.appdever.foody.Login2Activity">
+
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/gradientbg">
+
+        <Space
+            android:layout_width="20px"
+            android:layout_height="0dp"
+            android:layout_weight="20" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/imageView2"
+            android:src="@drawable/logo_foody_white"
+            android:layout_weight="30" />
+
+        <Space
+            android:layout_width="20px"
+            android:layout_height="0dp"
+            android:layout_weight="15" />
 
         <EditText
             android:layout_width="@dimen/login_page"
-            android:layout_height="@dimen/textFieldHeight"
+            android:layout_height="0dp"
             android:id="@+id/usernameTextField"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="200dp"
             android:background="#71fafff8"
-            android:hint="ชื่อผู้ใช้" />
+            android:hint="ชื่อผู้ใช้"
+            android:layout_weight="7" />
+
+        <Space
+            android:layout_width="20px"
+            android:layout_height="0dp"
+            android:layout_weight="3" />
 
         <EditText
             android:layout_width="@dimen/login_page"
-            android:layout_height="@dimen/textFieldHeight"
+            android:layout_height="0dp"
             android:id="@+id/passwordTextField"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="13dp"
             android:background="#71fafff8"
-            android:hint="รหัสผ่าน" />
+            android:hint="รหัสผ่าน"
+            android:layout_weight="7" />
+
+        <Space
+            android:layout_width="20px"
+            android:layout_height="0dp"
+            android:layout_weight="5" />
 
         <Button
             android:layout_width="@dimen/login_page"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:text="เข้าสู่ระบบ"
             android:id="@+id/loginButton"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="25dp"
-            android:background="#747676" />
+            android:background="#747676"
+            android:layout_weight="7" />
+
+        <Space
+            android:layout_width="20px"
+            android:layout_height="0dp"
+            android:layout_weight="20" />
     </LinearLayout>
+
 </RelativeLayout>

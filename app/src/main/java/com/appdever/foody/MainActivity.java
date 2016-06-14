@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent objIntent = new Intent(MainActivity.this, signupActivity.class);
 //                objIntent.putExtra("user", pilotName);
                 startActivity(objIntent);
-                finish();
 
             }
         });
@@ -42,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent objIntent = new Intent(MainActivity.this, Login2Activity.class);
 //                objIntent.putExtra("user", pilotName);
                 startActivity(objIntent);
-                finish();
 
             }
         });
