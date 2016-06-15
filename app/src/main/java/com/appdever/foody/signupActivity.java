@@ -86,9 +86,10 @@ public class signupActivity extends AppCompatActivity {
 
                 if (strUsername.equals("") || strEmail.equals("") || strPassword.equals("") || strVerifyPass.equals("")) {
 
-                    Toast.makeText(signupActivity.this, "กรุณากรอกข้อมูลให้ครบถ้วน", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(signupActivity.this, "กรุณากรอกข้อมูลให้ครบถ้วน 555", Toast.LENGTH_SHORT).show();
 
                 }
+
 
             }
         });
