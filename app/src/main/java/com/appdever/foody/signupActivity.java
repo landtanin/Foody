@@ -179,7 +179,12 @@ public class signupActivity extends AppCompatActivity {
                     {
                         alertPass.setText("รหัสผ่านต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น");
                     }
-                    else if(strUsername.length() > 15 && strUsername.length() < 6)
+
+                    else if(strUsername.length() < 6)
+                    {
+                        alertPass.setText("รหัสผ่านต้องมีความยาวระหว่าง 6 - 15 ตัวอักษร");
+                    }
+                    else if(strUsername.length() > 15)
                     {
                         alertPass.setText("รหัสผ่านต้องมีความยาวระหว่าง 6 - 15 ตัวอักษร");
                     }
