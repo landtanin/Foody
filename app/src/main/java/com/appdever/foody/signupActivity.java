@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -20,11 +22,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class signupActivity extends AppCompatActivity {
 
     private Button cancelButton, okButton;
     private EditText username, email, password, verifyPass;
     private ImageButton addImageButton;
+    private TextView alertUser, alertEmail, alertPass, alertRepass;
 
 //    private ImageView test;
 
@@ -83,14 +89,125 @@ public class signupActivity extends AppCompatActivity {
                 String strEmail = email.getText().toString().trim();
                 String strPassword = password.getText().toString().trim();
                 String strVerifyPass = verifyPass.getText().toString().trim();
+                TextView alertUser = (TextView)findViewById(R.id.alertUser);
+                alertUser.setTextColor(Color.RED);
+                TextView alertEmail = (TextView)findViewById(R.id.alertEmail);
+                alertEmail.setTextColor(Color.RED);
+                TextView alertPass = (TextView)findViewById(R.id.alertPass);
+                alertPass.setTextColor(Color.RED);
+                TextView alertRepass = (TextView)findViewById(R.id.alertRepass);
+                alertRepass.setTextColor(Color.RED);
 
-                if (strUsername.equals("") || strEmail.equals("") || strPassword.equals("") || strVerifyPass.equals("")) {
+                /*if (strUsername.equals("") || strEmail.equals("") || strPassword.equals("") || strVerifyPass.equals("")) {
 
-                    Toast.makeText(signupActivity.this, "กรุณากรอกข้อมูลให้ครบถ้วน 555", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(signupActivity.this, "กรุณากรอกข้อมูลให้ครบถ้วน", Toast.LENGTH_SHORT).show();
+
+                }*/
+                if(strUsername.equals (""))
+                {
+                    alertUser.setText("กรุณากรอกชื่อผู้ใช้");
+                }
+                else
+                {
+                    Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+                    Matcher m = p.matcher(strUsername);
+                    boolean b = m.find();
+
+                    if (b)
+                    {
+                        alertUser.setText("ชื่อผู้ใช้ต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น");
+                    }
+                        /*System.out.println("There is a special character in my string");*/
+                   /* if(strUsername.isLetter() )
+                    {
+                        alertUser.setText("ชื่อผู้ใช้ต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น");
+                    }*/
+                    else if(strUsername.length() > 15)
+                    {
+                        alertUser.setText("ชื่อผู้ใช้ต้องไม่เกิน 15 ตัวอักษร");
+                    }
+                    else
+                    {
+                        alertUser.setText("");
+                    }
+
+                    //check username from database
 
                 }
+                if(strEmail.equals ("")) {
+                    alertEmail.setText("กรุณากรอกอีเมล");
+                }
+                else if(!(strEmail.equals ("")))
+                {
+                    try {
+                        String mydomain = strEmail;
+                        String emailregex = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+                        Boolean b = mydomain.matches(emailregex);
 
+                        if (b == false) {
+                            alertEmail.setText("อีเมลไม่ถูกต้อง");
+                        }else if(b == true){
+                            alertEmail.setText("");
+                        }
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println(e.getMessage());
+                    }
+                }
+                /*{
+                        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+                        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+                        java.util.regex.Matcher m = p.matcher(strEmail);
+                        alertEmail.setText("อีเมลไม่ถูกต้อง");
+                }*/
+                else
+                {
+                    alertEmail.setText("");
+                        //check email
+                }
+                if(strPassword.equals ("")) {
+                    alertPass.setText("กรุณากรอกรหัสผ่าน");
+                }
+                else
+                {
+                    Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+                    Matcher m = p.matcher(strUsername);
+                    boolean b = m.find();
 
+                    if (b)
+                    {
+                        alertPass.setText("รหัสผ่านต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น");
+                    }
+                    else if(strUsername.length() > 15 && strUsername.length() < 6)
+                    {
+                        alertPass.setText("รหัสผ่านต้องมีความยาวระหว่าง 6 - 15 ตัวอักษร");
+                    }
+                    else
+                    {
+                        alertPass.setText("");
+                    }
+
+                }
+                /*if(strVerifyPass.equals ("")) {
+                    alertRepass.setText ("กรุณายืนยันรหัสผ่าน");
+                }
+                else {
+                    if(confirmPassword.text!.rangeOfCharacterFromSet(characterSet.invertedSet) != nil) {
+                        alertRepass.setText  ("รหัสผ่านต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น");
+                    } else if(NSString(string: confirmPassword.text!).length > 15) {
+                        self.confirmPassword_lbl.text = "รหัสผ่านต้องไม่เกิน 15 ตัวอักษร"
+                    }
+                }*/
+
+                if (!(strPassword.equals (strVerifyPass)))
+                {
+                    alertRepass.setText ("รหัสผ่านไม่ตรงกัน");
+                }
+                else
+                {
+                    alertRepass.setText ("");
+                }
             }
         });
     }

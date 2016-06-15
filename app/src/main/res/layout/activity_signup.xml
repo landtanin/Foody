@@ -80,13 +80,23 @@
             android:layout_gravity="center_horizontal"
             android:background="#41303030"
             android:autoText="true"
-            android:hint=" ชื่อผู้ใช้"
+            android:hint=" ชื่อผู้ใช้ (a-Z,0-1 ความยาวไม่เกิน 15)"
             android:layout_weight="10" />
 
-        <Space
+
+
+      <!--  <Space
             android:layout_width="20px"
             android:layout_height="0dp"
-            android:layout_weight="6" />
+            android:layout_weight="6" />-->
+
+        <TextView
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/alertUser"
+            />
 
         <EditText
             android:layout_width="@dimen/textFieldWidthSignUp"
@@ -98,10 +108,25 @@
             android:hint=" อีเมล"
             android:layout_weight="10" />
 
-        <Space
+        <!--<Space
             android:layout_width="20px"
             android:layout_height="0dp"
-            android:layout_weight="6" />
+            android:layout_weight="6" />-->
+
+        <TextView
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_gravity="center_horizontal"
+            android:text="Small Text"
+            android:id="@+id/alertEmail" />
+
+        <!--<TextView
+            android:layout_width="378dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/textView3" />-->
 
         <EditText
             android:layout_width="@dimen/textFieldWidthSignUp"
@@ -110,13 +135,22 @@
             android:layout_gravity="center_horizontal"
             android:background="#41303030"
             android:autoText="true"
-            android:hint=" รหัสผ่าน"
-            android:layout_weight="10" />
+            android:hint=" รหัสผ่าน (a-Z,0-1 ความยาว 6-15)"
+            android:layout_weight="10"
+            android:password="true" />
 
-        <Space
+       <!-- <Space
             android:layout_width="20px"
             android:layout_height="0dp"
-            android:layout_weight="6" />
+            android:layout_weight="6" />-->
+
+        <TextView
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_gravity="center_horizontal"
+            android:text="Small Text"
+            android:id="@+id/alertPass" />
 
         <EditText
             android:layout_width="@dimen/textFieldWidthSignUp"
@@ -126,12 +160,21 @@
             android:background="#41303030"
             android:autoText="true"
             android:hint=" ยืนยันรหัสผ่าน"
-            android:layout_weight="10" />
+            android:layout_weight="10"
+            android:password="true" />
 
-        <Space
+       <!-- <Space
             android:layout_width="20px"
             android:layout_height="0dp"
-            android:layout_weight="10" />
+            android:layout_weight="10" />-->
+
+        <TextView
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_gravity="center_horizontal"
+            android:text="Small Text"
+            android:id="@+id/alertRepass" />
 
         <LinearLayout
             android:orientation="horizontal"
