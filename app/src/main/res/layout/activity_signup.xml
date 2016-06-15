@@ -59,6 +59,7 @@
                 android:layout_gravity="center_horizontal"
                 android:src="@drawable/addpicture2"
                 android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
                 android:layout_weight="30" />
 
             <Space
