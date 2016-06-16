@@ -1,6 +1,7 @@
 package com.appdever.foody;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -10,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,20 +19,44 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.StatusLine;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.os.StrictMode;
+import android.annotation.SuppressLint;
+import android.view.Menu;
+
+
 public class signupActivity extends AppCompatActivity {
 
+
     private Button cancelButton, okButton;
-    private EditText username, email, password, verifyPass;
     private ImageButton addImageButton;
-    private TextView alertUser, alertEmail, alertPass, alertRepass;
+    /*private EditText username, email, password, verifyPass;*/
+
+    /*private TextView alertUser, alertEmail, alertPass, alertRepass;*/
 
 //    private ImageView test;
 
@@ -44,6 +70,11 @@ public class signupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
         bindWidget();
 
@@ -84,7 +115,11 @@ public class signupActivity extends AppCompatActivity {
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(SaveData())
+                {
+                    // When Save Complete
+                }
+/*
                 String strUsername = username.getText().toString().trim();
                 String strEmail = email.getText().toString().trim();
                 String strPassword = password.getText().toString().trim();
@@ -98,11 +133,11 @@ public class signupActivity extends AppCompatActivity {
                 TextView alertRepass = (TextView)findViewById(R.id.alertRepass);
                 alertRepass.setTextColor(Color.RED);
 
-                /*if (strUsername.equals("") || strEmail.equals("") || strPassword.equals("") || strVerifyPass.equals("")) {
+                *//*if (strUsername.equals("") || strEmail.equals("") || strPassword.equals("") || strVerifyPass.equals("")) {
 
                     Toast.makeText(signupActivity.this, "กรุณากรอกข้อมูลให้ครบถ้วน", Toast.LENGTH_SHORT).show();
 
-                }*/
+                }*//*
                 if(strUsername.equals (""))
                 {
                     alertUser.setText("กรุณากรอกชื่อผู้ใช้");
@@ -185,6 +220,7 @@ public class signupActivity extends AppCompatActivity {
                 {
                     alertRepass.setText ("");
                 }
+            }*/
             }
         });
     }
@@ -322,12 +358,147 @@ public class signupActivity extends AppCompatActivity {
         cancelButton = (Button) findViewById(R.id.cancelButton);
         okButton = (Button) findViewById(R.id.okButton);
 
-        username = (EditText) findViewById(R.id.usernameTextField);
+       /* username = (EditText) findViewById(R.id.usernameTextField);
         email = (EditText) findViewById(R.id.emailTextField);
         password = (EditText) findViewById(R.id.passwordTextField);
-        verifyPass = (EditText) findViewById(R.id.verifyPassTextField);
+        verifyPass = (EditText) findViewById(R.id.verifyPassTextField);*/
 
         addImageButton = (ImageButton) findViewById(R.id.addImageButton);
 
+    }
+
+    public boolean SaveData()
+    {
+
+        final EditText username = (EditText) findViewById(R.id.usernameTextField);
+        final EditText email = (EditText) findViewById(R.id.emailTextField);
+        final EditText password = (EditText) findViewById(R.id.passwordTextField);
+        final EditText verifyPass = (EditText) findViewById(R.id.verifyPassTextField);
+
+
+        // Dialog
+        final AlertDialog.Builder ad = new AlertDialog.Builder(this);
+
+        ad.setTitle("Error! ");
+        ad.setIcon(android.R.drawable.btn_star_big_on);
+        ad.setPositiveButton("Close", null);
+
+        // Check Username
+        if(username.getText().length() == 0)
+        {
+            ad.setMessage("Please input [Username] ");
+            ad.show();
+            username.requestFocus();
+            return false;
+        }
+        // Check Password
+        if(password.getText().length() == 0 || verifyPass.getText().length() == 0 )
+        {
+            ad.setMessage("Please input [Password/Confirm Password] ");
+            ad.show();
+            password.requestFocus();
+            return false;
+        }
+        // Check Password and Confirm Password (Match)
+        if(!password.getText().toString().equals(verifyPass.getText().toString()))
+        {
+            ad.setMessage("Password and Confirm Password Not Match! ");
+            ad.show();
+            verifyPass.requestFocus();
+            return false;
+        }
+        if(email.getText().length() == 0)
+        {
+            ad.setMessage("Please input [Email] ");
+            ad.show();
+            email.requestFocus();
+            return false;
+        }
+
+
+        String url = "http://foodyth.azurewebsites.net/foody/saveADDData.php";
+
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("sUsername", username.getText().toString()));
+        params.add(new BasicNameValuePair("sPassword", password.getText().toString()));
+        params.add(new BasicNameValuePair("sEmail", email.getText().toString()));
+
+        /** Get result from Server (Return the JSON Code)
+         * StatusID = ? [0=Failed,1=Complete]
+         * Error	= ?	[On case error return custom error message]
+         *
+         * Eg Save Failed = {"StatusID":"0","Error":"Email Exists!"}
+         * Eg Save Complete = {"StatusID":"1","Error":""}
+         */
+
+        String resultServer  = getHttpPost(url,params);
+
+        /*** Default Value ***/
+        String strStatusID = "0";
+        String strError = "Unknow Status!";
+
+        JSONObject c;
+        try {
+            c = new JSONObject(resultServer);
+            strStatusID = c.getString("StatusID");
+            strError = c.getString("Error");
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        // Prepare Save Data
+        if(strStatusID.equals("0"))
+        {
+            ad.setMessage(strError);
+            ad.show();
+        }
+        else
+        {
+            Toast.makeText(signupActivity.this, "Save Data Successfully", Toast.LENGTH_SHORT).show();
+            username.setText("");
+            password.setText("");
+            verifyPass.setText("");
+            email.setText("");
+        }
+
+
+        return true;
+    }
+
+
+    public String getHttpPost(String url,List<NameValuePair> params) {
+        StringBuilder str = new StringBuilder();
+        HttpClient client = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(url);
+
+        try {
+            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            HttpResponse response = client.execute(httpPost);
+            StatusLine statusLine = response.getStatusLine();
+            int statusCode = statusLine.getStatusCode();
+            if (statusCode == 200) { // Status OK
+                HttpEntity entity = response.getEntity();
+                InputStream content = entity.getContent();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    str.append(line);
+                }
+            } else {
+                Log.e("Log", "Failed to download result..");
+            }
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return str.toString();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_main, menu);
+        return true;
     }
 }
