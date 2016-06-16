@@ -117,11 +117,6 @@ public class signupActivity extends AppCompatActivity {
                     {
                         alertUser.setText("ชื่อผู้ใช้ต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น");
                     }
-                        /*System.out.println("There is a special character in my string");*/
-                   /* if(strUsername.isLetter() )
-                    {
-                        alertUser.setText("ชื่อผู้ใช้ต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น");
-                    }*/
                     else if(strUsername.length() > 15)
                     {
                         alertUser.setText("ชื่อผู้ใช้ต้องไม่เกิน 15 ตัวอักษร");
@@ -130,8 +125,6 @@ public class signupActivity extends AppCompatActivity {
                     {
                         alertUser.setText("");
                     }
-
-                    //check username from database
 
                 }
                 if(strEmail.equals ("")) {
@@ -155,55 +148,34 @@ public class signupActivity extends AppCompatActivity {
                         System.out.println(e.getMessage());
                     }
                 }
-                /*{
-                        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-                        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
-                        java.util.regex.Matcher m = p.matcher(strEmail);
-                        alertEmail.setText("อีเมลไม่ถูกต้อง");
-                }*/
                 else
                 {
                     alertEmail.setText("");
-                        //check email
+                    //check email
                 }
-                if(strPassword.equals ("")) {
+                if(strPassword.equals (""))
+                {
                     alertPass.setText("กรุณากรอกรหัสผ่าน");
                 }
-                else
-                {
+                else {
                     Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
                     Matcher m = p.matcher(strUsername);
                     boolean b = m.find();
 
-                    if (b)
-                    {
+                    if (b) {
                         alertPass.setText("รหัสผ่านต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น");
                     }
-
-                    else if(strUsername.length() < 6)
-                    {
+                    else if (strPassword.length() > 15) {
                         alertPass.setText("รหัสผ่านต้องมีความยาวระหว่าง 6 - 15 ตัวอักษร");
                     }
-                    else if(strUsername.length() > 15)
-                    {
+                    else if (strPassword.length() < 6) {
                         alertPass.setText("รหัสผ่านต้องมีความยาวระหว่าง 6 - 15 ตัวอักษร");
                     }
                     else
                     {
                         alertPass.setText("");
                     }
-
                 }
-                /*if(strVerifyPass.equals ("")) {
-                    alertRepass.setText ("กรุณายืนยันรหัสผ่าน");
-                }
-                else {
-                    if(confirmPassword.text!.rangeOfCharacterFromSet(characterSet.invertedSet) != nil) {
-                        alertRepass.setText  ("รหัสผ่านต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น");
-                    } else if(NSString(string: confirmPassword.text!).length > 15) {
-                        self.confirmPassword_lbl.text = "รหัสผ่านต้องไม่เกิน 15 ตัวอักษร"
-                    }
-                }*/
 
                 if (!(strPassword.equals (strVerifyPass)))
                 {
