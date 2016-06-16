@@ -61,6 +61,7 @@ public class signupActivity extends AppCompatActivity {
 
     private ByteArrayOutputStream mByteArrayOutputStream = new ByteArrayOutputStream();
     private Bitmap bitmap;
+    private String encoded;
 
     private File mCurrentPhoto;
 
@@ -113,6 +114,13 @@ public class signupActivity extends AppCompatActivity {
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, mByteArrayOutputStream);
+                byte[] byteArray = mByteArrayOutputStream.toByteArray();
+                encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+
+                Log.e("base64", encoded);
+
                 if(SaveData())
                 {
                     // When Save Complete
@@ -251,8 +259,13 @@ public class signupActivity extends AppCompatActivity {
 
                 Uri imageUri = data.getData();
                 try {
+
                     bitmap = getThumbnail(imageUri);
                     addImageButton.setImageBitmap(bitmap);
+
+
+
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -373,10 +386,8 @@ public class signupActivity extends AppCompatActivity {
         final EditText password = (EditText) findViewById(R.id.passwordTextField);
         final EditText verifyPass = (EditText) findViewById(R.id.verifyPassTextField);
 
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, mByteArrayOutputStream);
-        byte[] byteArray = mByteArrayOutputStream .toByteArray();
-        String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
+//        Log.e("base64", encoded);
 
         // Dialog
         final AlertDialog.Builder ad = new AlertDialog.Builder(this);
@@ -424,7 +435,7 @@ public class signupActivity extends AppCompatActivity {
         params.add(new BasicNameValuePair("sUsername", username.getText().toString()));
         params.add(new BasicNameValuePair("sPassword", password.getText().toString()));
         params.add(new BasicNameValuePair("sEmail", email.getText().toString()));
-        params.add(new BasicNameValuePair("sPicture", encoded));
+//        params.add(new BasicNameValuePair("sPicture", encoded));
 
         /** Get result from Server (Return the JSON Code)
          * StatusID = ? [0=Failed,1=Complete]
@@ -458,7 +469,7 @@ public class signupActivity extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(signupActivity.this, "Save Data Successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(signupActivity.this, "Saved successfully", Toast.LENGTH_SHORT).show();
             username.setText("");
             password.setText("");
             verifyPass.setText("");
