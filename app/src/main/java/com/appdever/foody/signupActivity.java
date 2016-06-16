@@ -6,30 +6,19 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -44,9 +33,15 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.os.StrictMode;
-import android.annotation.SuppressLint;
-import android.view.Menu;
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class signupActivity extends AppCompatActivity {
@@ -63,6 +58,9 @@ public class signupActivity extends AppCompatActivity {
     //    private static final int SELECT_PICTURE = 1;
     private static final int REQUEST_IMAGE_SELECTOR = 1;
 //    private String selectedImagePath;
+
+    private ByteArrayOutputStream mByteArrayOutputStream = new ByteArrayOutputStream();
+    private Bitmap bitmap;
 
     private File mCurrentPhoto;
 
@@ -253,7 +251,7 @@ public class signupActivity extends AppCompatActivity {
 
                 Uri imageUri = data.getData();
                 try {
-                    Bitmap bitmap = getThumbnail(imageUri);
+                    bitmap = getThumbnail(imageUri);
                     addImageButton.setImageBitmap(bitmap);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -375,6 +373,10 @@ public class signupActivity extends AppCompatActivity {
         final EditText password = (EditText) findViewById(R.id.passwordTextField);
         final EditText verifyPass = (EditText) findViewById(R.id.verifyPassTextField);
 
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, mByteArrayOutputStream);
+        byte[] byteArray = mByteArrayOutputStream .toByteArray();
+        String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+
 
         // Dialog
         final AlertDialog.Builder ad = new AlertDialog.Builder(this);
@@ -422,6 +424,7 @@ public class signupActivity extends AppCompatActivity {
         params.add(new BasicNameValuePair("sUsername", username.getText().toString()));
         params.add(new BasicNameValuePair("sPassword", password.getText().toString()));
         params.add(new BasicNameValuePair("sEmail", email.getText().toString()));
+        params.add(new BasicNameValuePair("sPicture", encoded));
 
         /** Get result from Server (Return the JSON Code)
          * StatusID = ? [0=Failed,1=Complete]
