@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -131,39 +132,54 @@ public class signupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                loadingPage();
-//                spinner.setVisibility(View.VISIBLE);
-
                 if (checkEmptyField()) {
 
-                    if (bitmap==null) {
+                loadingPage();
+//                spinner.setVisibility(View.VISIBLE);
+                final Handler handler = new Handler();
+                Thread t = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
 
-                        Toast.makeText(signupActivity.this, "Please select picture", Toast.LENGTH_SHORT).show();
+
+                            if (bitmap == null) {
+
+                                Toast.makeText(signupActivity.this, "Please select picture", Toast.LENGTH_SHORT).show();
 //                    Log.v("base64", encoded);
 
-                    } else {
+                            } else {
 
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, mByteArrayOutputStream);
-                        byte[] byteArray = mByteArrayOutputStream.toByteArray();
-                        encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                                bitmap.compress(Bitmap.CompressFormat.PNG, 100, mByteArrayOutputStream);
+                                byte[] byteArray = mByteArrayOutputStream.toByteArray();
+                                encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
-                        if (SaveData()) {
-                            // When Save Complete
+
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (SaveData()) {
+                                            progress.dismiss();
+
+                                            Toast.makeText(signupActivity.this, "Saved successfully", Toast.LENGTH_SHORT).show();
+
+                                            Intent objIntent = new Intent(signupActivity.this, editProfileActivity.class);
+                                            objIntent.putExtra("userIntent", myUsername);
+                                            startActivity(objIntent);
+                                        }
+                                    }
+                                });
+                                // When Save Complete
 //                    spinner.setVisibility(View.GONE);
-                            progress.dismiss();
 
-                            Toast.makeText(signupActivity.this, "Saved successfully", Toast.LENGTH_SHORT).show();
 
-                            Intent objIntent = new Intent(signupActivity.this, editProfileActivity.class);
-                            objIntent.putExtra("userIntent", myUsername);
-                            startActivity(objIntent);
+                            }
 
-                        }
+
+
 
                     }
-
-
-                }
+                });
+                t.start();
 
 /*
                 String strUsername = username.getText().toString().trim();
@@ -268,6 +284,7 @@ public class signupActivity extends AppCompatActivity {
                 }
             }*/
             }
+        }
         });
     }
 
