@@ -65,10 +65,14 @@ public class signupActivity extends AppCompatActivity {
 
     private File mCurrentPhoto;
 
+//    private ProgressBar spinner;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
 
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -76,6 +80,8 @@ public class signupActivity extends AppCompatActivity {
         }
 
         bindWidget();
+
+//        spinner.setVisibility(View.GONE);
 
 //        test = (ImageView) findViewById(R.id.imageView3);
 
@@ -115,6 +121,9 @@ public class signupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
+//                spinner.setVisibility(View.VISIBLE);
+
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, mByteArrayOutputStream);
                 byte[] byteArray = mByteArrayOutputStream.toByteArray();
                 encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
@@ -124,6 +133,11 @@ public class signupActivity extends AppCompatActivity {
                 if(SaveData())
                 {
                     // When Save Complete
+//                    spinner.setVisibility(View.GONE);
+
+                    Toast.makeText(signupActivity.this, "Saved successfully", Toast.LENGTH_SHORT).show();
+
+
                 }
 /*
                 String strUsername = username.getText().toString().trim();
@@ -263,9 +277,6 @@ public class signupActivity extends AppCompatActivity {
                     bitmap = getThumbnail(imageUri);
                     addImageButton.setImageBitmap(bitmap);
 
-
-
-
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -376,6 +387,9 @@ public class signupActivity extends AppCompatActivity {
 
         addImageButton = (ImageButton) findViewById(R.id.addImageButton);
 
+//        spinner = (ProgressBar)findViewById(R.id.progressBar1);
+
+
     }
 
     public boolean SaveData()
@@ -469,7 +483,6 @@ public class signupActivity extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(signupActivity.this, "Saved successfully", Toast.LENGTH_SHORT).show();
             username.setText("");
             password.setText("");
             verifyPass.setText("");

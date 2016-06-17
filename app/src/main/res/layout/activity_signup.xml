@@ -98,6 +98,7 @@
             android:id="@+id/alertUser"
             />
 
+
         <EditText
             android:layout_width="@dimen/textFieldWidthSignUp"
             android:layout_height="0dp"
