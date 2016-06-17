@@ -2,6 +2,7 @@ package com.appdever.foody;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -73,6 +74,8 @@ public class signupActivity extends AppCompatActivity {
 
     private AlertDialog.Builder ad = null;
 
+    private ProgressDialog progress = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,10 +127,11 @@ public class signupActivity extends AppCompatActivity {
         });
 
         okButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 
-
+                loadingPage();
 //                spinner.setVisibility(View.VISIBLE);
 
                 if (checkEmptyField()) {
@@ -146,6 +150,7 @@ public class signupActivity extends AppCompatActivity {
                         if (SaveData()) {
                             // When Save Complete
 //                    spinner.setVisibility(View.GONE);
+                            progress.dismiss();
 
                             Toast.makeText(signupActivity.this, "Saved successfully", Toast.LENGTH_SHORT).show();
 
@@ -265,6 +270,16 @@ public class signupActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void loadingPage() {
+
+        progress = new ProgressDialog(this);
+        progress.setTitle("Loading");
+        progress.setMessage("Wait while loading...");
+        progress.show();
+
+    }
+
 
     private boolean checkEmptyField() {
 
@@ -467,6 +482,8 @@ public class signupActivity extends AppCompatActivity {
     {
 
 //        Log.e("base64", encoded);
+
+
 
         myUsername = username.getText().toString();
 
