@@ -435,7 +435,7 @@ public class signupActivity extends AppCompatActivity {
         params.add(new BasicNameValuePair("sUsername", username.getText().toString()));
         params.add(new BasicNameValuePair("sPassword", password.getText().toString()));
         params.add(new BasicNameValuePair("sEmail", email.getText().toString()));
-//        params.add(new BasicNameValuePair("sPicture", encoded));
+        params.add(new BasicNameValuePair("sPicture", encoded));
 
         /** Get result from Server (Return the JSON Code)
          * StatusID = ? [0=Failed,1=Complete]
