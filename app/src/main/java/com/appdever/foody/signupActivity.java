@@ -65,7 +65,13 @@ public class signupActivity extends AppCompatActivity {
 
     private File mCurrentPhoto;
 
+    public static String myUsername = null;
+
 //    private ProgressBar spinner;
+
+    private EditText username, email, password, verifyPass;
+
+    private AlertDialog.Builder ad = null;
 
 
     @Override
@@ -124,21 +130,36 @@ public class signupActivity extends AppCompatActivity {
 
 //                spinner.setVisibility(View.VISIBLE);
 
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, mByteArrayOutputStream);
-                byte[] byteArray = mByteArrayOutputStream.toByteArray();
-                encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                if (checkEmptyField()) {
 
-                Log.e("base64", encoded);
+                    if (bitmap==null) {
 
-                if(SaveData())
-                {
-                    // When Save Complete
+                        Toast.makeText(signupActivity.this, "Please select picture", Toast.LENGTH_SHORT).show();
+//                    Log.v("base64", encoded);
+
+                    } else {
+
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, mByteArrayOutputStream);
+                        byte[] byteArray = mByteArrayOutputStream.toByteArray();
+                        encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+
+                        if (SaveData()) {
+                            // When Save Complete
 //                    spinner.setVisibility(View.GONE);
 
-                    Toast.makeText(signupActivity.this, "Saved successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(signupActivity.this, "Saved successfully", Toast.LENGTH_SHORT).show();
+
+                            Intent objIntent = new Intent(signupActivity.this, editProfileActivity.class);
+                            objIntent.putExtra("userIntent", myUsername);
+                            startActivity(objIntent);
+
+                        }
+
+                    }
 
 
                 }
+
 /*
                 String strUsername = username.getText().toString().trim();
                 String strEmail = email.getText().toString().trim();
@@ -243,6 +264,52 @@ public class signupActivity extends AppCompatActivity {
             }*/
             }
         });
+    }
+
+    private boolean checkEmptyField() {
+
+        // Dialog
+        ad = new AlertDialog.Builder(this);
+
+        ad.setTitle("Error! ");
+        ad.setIcon(android.R.drawable.btn_star_big_on);
+        ad.setPositiveButton("Close", null);
+
+
+        // Check Username
+        if(username.getText().length() == 0)
+        {
+            ad.setMessage("Please input [Username] ");
+            ad.show();
+            username.requestFocus();
+            return false;
+        }
+        if(email.getText().length() == 0)
+        {
+            ad.setMessage("Please input [Email] ");
+            ad.show();
+            email.requestFocus();
+            return false;
+        }
+        // Check Password
+        if(password.getText().length() == 0 || verifyPass.getText().length() == 0 )
+        {
+            ad.setMessage("Please input [Password/Confirm Password] ");
+            ad.show();
+            password.requestFocus();
+            return false;
+        }
+        // Check Password and Confirm Password (Match)
+        if(!password.getText().toString().equals(verifyPass.getText().toString()))
+        {
+            ad.setMessage("Unmatched Password ");
+            ad.show();
+            verifyPass.requestFocus();
+            return false;
+        }
+
+
+        return true;
     }
 
     private void dispatchPhotoSelectionIntent() {
@@ -388,6 +455,10 @@ public class signupActivity extends AppCompatActivity {
         addImageButton = (ImageButton) findViewById(R.id.addImageButton);
 
 //        spinner = (ProgressBar)findViewById(R.id.progressBar1);
+        username = (EditText) findViewById(R.id.usernameTextField);
+        email = (EditText) findViewById(R.id.emailTextField);
+        password = (EditText) findViewById(R.id.passwordTextField);
+        verifyPass = (EditText) findViewById(R.id.verifyPassTextField);
 
 
     }
@@ -395,53 +466,9 @@ public class signupActivity extends AppCompatActivity {
     public boolean SaveData()
     {
 
-        final EditText username = (EditText) findViewById(R.id.usernameTextField);
-        final EditText email = (EditText) findViewById(R.id.emailTextField);
-        final EditText password = (EditText) findViewById(R.id.passwordTextField);
-        final EditText verifyPass = (EditText) findViewById(R.id.verifyPassTextField);
-
-
 //        Log.e("base64", encoded);
 
-        // Dialog
-        final AlertDialog.Builder ad = new AlertDialog.Builder(this);
-
-        ad.setTitle("Error! ");
-        ad.setIcon(android.R.drawable.btn_star_big_on);
-        ad.setPositiveButton("Close", null);
-
-        // Check Username
-        if(username.getText().length() == 0)
-        {
-            ad.setMessage("Please input [Username] ");
-            ad.show();
-            username.requestFocus();
-            return false;
-        }
-        // Check Password
-        if(password.getText().length() == 0 || verifyPass.getText().length() == 0 )
-        {
-            ad.setMessage("Please input [Password/Confirm Password] ");
-            ad.show();
-            password.requestFocus();
-            return false;
-        }
-        // Check Password and Confirm Password (Match)
-        if(!password.getText().toString().equals(verifyPass.getText().toString()))
-        {
-            ad.setMessage("Password and Confirm Password Not Match! ");
-            ad.show();
-            verifyPass.requestFocus();
-            return false;
-        }
-        if(email.getText().length() == 0)
-        {
-            ad.setMessage("Please input [Email] ");
-            ad.show();
-            email.requestFocus();
-            return false;
-        }
-
+        myUsername = username.getText().toString();
 
         String url = "http://foodyth.azurewebsites.net/foody/saveADDData.php";
 

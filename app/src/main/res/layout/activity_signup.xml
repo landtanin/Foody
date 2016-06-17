@@ -109,6 +109,8 @@
             android:hint=" อีเมล"
             android:layout_weight="10" />
 
+
+
         <!--<Space
             android:layout_width="20px"
             android:layout_height="0dp"
