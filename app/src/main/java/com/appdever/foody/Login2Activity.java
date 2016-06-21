@@ -1,19 +1,13 @@
 package com.appdever.foody;
 
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import android.app.AlertDialog;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -28,16 +22,12 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.os.StrictMode;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Intent;
-import android.util.Log;
-import android.view.View;
-import android.view.Menu;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Login2Activity extends AppCompatActivity {
 
@@ -48,11 +38,6 @@ public class Login2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
-
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
 
         bindWidget();
 
@@ -66,94 +51,117 @@ public class Login2Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-              /*  String strUsername = username.getText().toString().trim();
+                String strUsername = username.getText().toString().trim();
                 String strPassword = password.getText().toString().trim();
 
                 if (strUsername.equals("") || strPassword.equals("")) {
 
                     Toast.makeText(Login2Activity.this,"กรุณากรอกข้อมูลให้ครบถ้วน", Toast.LENGTH_SHORT).show();
 
-                }*/
+                }else {
+                    if (SaveData()) {
 
-                if (LoginData())
-                {
-                    //success
+//                        Toast.makeText(Login2Activity.this, "Saved successfully", Toast.LENGTH_SHORT).show();
+
+                    }
+
                 }
 
             }
+
         });
 
     }
 
-    private void bindWidget() {
-
-      /*  username = (EditText) findViewById(R.id.usernameTextField);
-        password = (EditText) findViewById(R.id.passwordTextField);*/
-        loginButton = (Button) findViewById(R.id.loginButton);
-
-    }
-
-    public boolean LoginData()
+    public boolean SaveData()
     {
-        final EditText username = (EditText)findViewById(R.id.usernameTextField);
-        final EditText password = (EditText)findViewById(R.id.passwordTextField);
 
+//        final EditText username = (EditText) findViewById(R.id.usernameTextField);
+//        final EditText email = (EditText) findViewById(R.id.emailTextField);
+//        final EditText password = (EditText) findViewById(R.id.passwordTextField);
+//        final EditText verifyPass = (EditText) findViewById(R.id.verifyPassTextField);
+
+//        final EditText newPass= (EditText) findViewById(R.id.newPassTextField);
+//        final EditText verifyNewPass= (EditText) findViewById(R.id.verifyNewPassTextField);
+
+
+//        Log.e("base64", encoded);
+
+        // Dialog
         final AlertDialog.Builder ad = new AlertDialog.Builder(this);
 
-                String url = "http://foodyth.azurewebsites.net/foody/checkLogin.php";
-                List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("strUser", username.getText().toString()));
-                params.add(new BasicNameValuePair("strPass", password.getText().toString()));
+        ad.setTitle("Error! ");
+        ad.setIcon(android.R.drawable.btn_star_big_on);
+        ad.setPositiveButton("Close", null);
 
-                /** Get result from Server (Return the JSON Code)
-                 * StatusID = ? [0=Failed,1=Complete]
-                 * MemberID = ? [Eg : 1]
-                 * Error	= ?	[On case error return custom error message]
-                 *
-                 * Eg Login Failed = {"StatusID":"0","MemberID":"0","Error":"Incorrect Username and Password"}
-                 * Eg Login Complete = {"StatusID":"1","MemberID":"2","Error":""}
-                 */
+        // Check Old Password
+//        if(oldPass.getText().length() == 0 || verifyPass.getText().length() == 0 )
+//        {
+//            ad.setMessage("Please input [Password/Confirm Password] ");
+//            ad.show();
+//            password.requestFocus();
+//            return false;
+//        }
+        // Check Password and Confirm Password (Match)
 
-                String resultServer  = getHttpPost(url,params);
+//        if(!newPass.getText().toString().equals(verifyNewPass.getText().toString()))
+//        {
+//            ad.setMessage("Unmatched password!");
+//            ad.show();
+//            verifyNewPass.requestFocus();
+//            return false;
+//        }
 
-                /*** Default Value ***/
-                String strStatusID = "0";
-                String strMemberID = "0";
-                String strError = "Unknow Status!";
 
-                JSONObject c;
-                try {
-                    c = new JSONObject(resultServer);
-                    strStatusID = c.getString("StatusID");
-                    strMemberID = c.getString("MemberID");
-                    strError = c.getString("Error");
+        String url = "http://foodyth.azurewebsites.net/foody/saveADDData.php";
 
-                } catch (JSONException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("sUsername", username.getText().toString()));
+        params.add(new BasicNameValuePair("sPassword", password.getText().toString()));
+//        params.add(new BasicNameValuePair("sEmail", email.getText().toString()));
+//        params.add(new BasicNameValuePair("sPicture", encoded));
 
 
 
-                // Prepare Login
-                if(strStatusID.equals("0"))
-                {
-                    // Dialog
-                    ad.setTitle("Error! ");
-                    ad.setIcon(android.R.drawable.btn_star_big_on);
-                    ad.setPositiveButton("Close", null);
-                    ad.setMessage(strError);
-                    ad.show();
-                    username.setText("");
-                    password.setText("");
-                }
-                else
-                {
-                    Toast.makeText(Login2Activity.this, "Login OK", Toast.LENGTH_SHORT).show();
-                    Intent newActivity = new Intent(Login2Activity.this,MainActivity.class);
-                    newActivity.putExtra("MemberID","");
-                    startActivity(newActivity);
-                }
+        /** Get result from Server (Return the JSON Code)
+         * StatusID = ? [0=Failed,1=Complete]
+         * Error	= ?	[On case error return custom error message]
+         *
+         * Eg Save Failed = {"StatusID":"0","Error":"Email Exists!"}
+         * Eg Save Complete = {"StatusID":"1","Error":""}
+         */
+
+        String resultServer  = getHttpPost(url,params);
+
+        /*** Default Value ***/
+        String strStatusID = "0";
+        String strError = "Unknown Status!";
+
+        JSONObject c;
+        try {
+            c = new JSONObject(resultServer);
+            strStatusID = c.getString("StatusID");
+            strError = c.getString("Error");
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        // Prepare Save Data
+        if(strStatusID.equals("0"))
+        {
+            ad.setMessage(strError);
+            ad.show();
+        }
+        else
+        {
+            username.setText("");
+            password.setText("");
+//            verifyPass.setText("");
+//            email.setText("");
+        }
+
+
         return true;
     }
 
@@ -188,10 +196,12 @@ public class Login2Activity extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
-    }
+    private void bindWidget() {
 
+        username = (EditText) findViewById(R.id.usernameTextField);
+        password = (EditText) findViewById(R.id.passwordTextField);
+
+        loginButton = (Button) findViewById(R.id.loginButton);
+
+    }
 }
