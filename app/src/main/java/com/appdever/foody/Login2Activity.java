@@ -1,19 +1,16 @@
 package com.appdever.foody;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import android.app.AlertDialog;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -28,16 +25,12 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.os.StrictMode;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Intent;
-import android.util.Log;
-import android.view.View;
-import android.view.Menu;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Login2Activity extends AppCompatActivity {
 
@@ -75,28 +68,59 @@ public class Login2Activity extends AppCompatActivity {
 
                 }*/
 
-                if (LoginData())
-                {
-                    //success
+                if (checkEmpty()) {
+
+                    LoginData();
+
                 }
+
 
             }
         });
 
     }
 
+    private boolean checkEmpty() {
+
+//        String strUsername = username.getText().toString().trim();
+//        String strPassword = password.getText().toString().trim();
+
+        if (password.getText().length() == 0 && username.getText().length() == 0){
+
+            Toast.makeText(Login2Activity.this,"กรุณากรอกชื้อผู้ใช้และรหัสผ่าน", Toast.LENGTH_SHORT).show();
+
+            return false;
+
+        }else if (password.getText().length() == 0) {
+
+            Toast.makeText(Login2Activity.this,"กรุณากรอกรหัสผ่าน", Toast.LENGTH_SHORT).show();
+
+            return false;
+
+        }else if (username.getText().length() == 0) {
+
+            Toast.makeText(Login2Activity.this,"กรุณากรอกชื่อผู้ใช้", Toast.LENGTH_SHORT).show();
+
+            return false;
+
+        }
+
+        return true;
+
+    }
+
     private void bindWidget() {
 
-      /*  username = (EditText) findViewById(R.id.usernameTextField);
-        password = (EditText) findViewById(R.id.passwordTextField);*/
+        username = (EditText) findViewById(R.id.usernameTextField);
+        password = (EditText) findViewById(R.id.passwordTextField);
         loginButton = (Button) findViewById(R.id.loginButton);
 
     }
 
     public boolean LoginData()
     {
-        final EditText username = (EditText)findViewById(R.id.usernameTextField);
-        final EditText password = (EditText)findViewById(R.id.passwordTextField);
+//        username = (EditText)findViewById(R.id.usernameTextField);
+//        password = (EditText)findViewById(R.id.passwordTextField);
 
         final AlertDialog.Builder ad = new AlertDialog.Builder(this);
 
@@ -140,7 +164,7 @@ public class Login2Activity extends AppCompatActivity {
         {
             // Dialog
             ad.setTitle("Error! ");
-            ad.setIcon(android.R.drawable.btn_star_big_on);
+      //      ad.setIcon(android.R.drawable.btn_star_big_on);
             ad.setPositiveButton("Close", null);
             ad.setMessage(strError);
             ad.show();
