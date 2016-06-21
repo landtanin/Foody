@@ -36,7 +36,9 @@
             android:layout_gravity="center_horizontal"
             android:background="#71fafff8"
             android:hint=" ชื่อผู้ใช้"
-            android:layout_weight="7" />
+            android:layout_weight="7"
+            android:imeOptions="actionNext"
+            android:singleLine="true"/>
 
         <Space
             android:layout_width="20px"
@@ -50,7 +52,9 @@
             android:layout_gravity="center_horizontal"
             android:background="#71fafff8"
             android:hint=" รหัสผ่าน"
-            android:layout_weight="7" />
+            android:layout_weight="7"
+            android:imeOptions="actionDone"
+            android:singleLine="true"/>
 
         <Space
             android:layout_width="20px"
