@@ -7,4 +7,18 @@
     <dimen name="textFieldHeight">43dp</dimen>
     <dimen name="textFieldHeightSignUp">35dp</dimen>
     <dimen name="textFieldWidthSignUp">280dp</dimen>
+
+    <dimen name="space_x1">4dp</dimen>
+    <dimen name="space_x2">8dp</dimen>
+    <dimen name="space_x3">12dp</dimen>
+    <dimen name="space_x4">16dp</dimen>
+
+    <dimen name="tabbar_height">56dp</dimen>
+    <dimen name="tabbar_height_x2">40dp</dimen>
+    <dimen name="button_size_small">32dp</dimen>
+    <dimen name="button_padding">8dp</dimen>
+
+    <dimen name="text_small">12sp</dimen>
+    <dimen name="text_medium">16sp</dimen>
+    <dimen name="text_big">20sp</dimen>
 </resources>

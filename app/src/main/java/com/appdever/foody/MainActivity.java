@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button signUpButton, loginButton;
+    TextView skipText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +47,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        skipText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent objIntent = new Intent(MainActivity.this, HomeActivity.class);
+//                objIntent.putExtra("user", pilotName);
+                startActivity(objIntent);
+
+            }
+        });
+
     }
 
     private void bindWidget() {
 
         signUpButton = (Button) findViewById(R.id.signUpButton);
         loginButton = (Button) findViewById(R.id.loginButton);
+        skipText=(TextView) findViewById(R.id.skipText);
 
     }
 }
