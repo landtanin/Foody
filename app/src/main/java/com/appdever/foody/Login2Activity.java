@@ -130,12 +130,12 @@ public class Login2Activity extends AppCompatActivity {
         params.add(new BasicNameValuePair("strPass", password.getText().toString()));
 
         /** Get result from Server (Return the JSON Code)
-         * StatusID = ? [0=Failed,1=Complete]
-         * MemberID = ? [Eg : 1]
+         * StatusID = ? [0=Failed,m1=Complete]
+         * MemberID = ? [Eg : m1]
          * Error	= ?	[On case error return custom error message]
          *
          * Eg Login Failed = {"StatusID":"0","MemberID":"0","Error":"Incorrect Username and Password"}
-         * Eg Login Complete = {"StatusID":"1","MemberID":"2","Error":""}
+         * Eg Login Complete = {"StatusID":"m1","MemberID":"2","Error":""}
          */
 
         String resultServer  = getHttpPost(url,params);

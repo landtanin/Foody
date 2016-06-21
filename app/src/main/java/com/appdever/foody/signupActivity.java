@@ -57,7 +57,7 @@ public class signupActivity extends AppCompatActivity {
 
 //    private ImageView test;
 
-    //    private static final int SELECT_PICTURE = 1;
+    //    private static final int SELECT_PICTURE = m1;
     private static final int REQUEST_IMAGE_SELECTOR = 1;
 //    private String selectedImagePath;
 
@@ -513,11 +513,11 @@ public class signupActivity extends AppCompatActivity {
         params.add(new BasicNameValuePair("sPicture", encoded));
 
         /** Get result from Server (Return the JSON Code)
-         * StatusID = ? [0=Failed,1=Complete]
+         * StatusID = ? [0=Failed,m1=Complete]
          * Error	= ?	[On case error return custom error message]
          *
          * Eg Save Failed = {"StatusID":"0","Error":"Email Exists!"}
-         * Eg Save Complete = {"StatusID":"1","Error":""}
+         * Eg Save Complete = {"StatusID":"m1","Error":""}
          */
 
         String resultServer  = getHttpPost(url,params);

@@ -265,11 +265,11 @@ public class editProfileActivity extends AppCompatActivity {
 
 
         /** Get result from Server (Return the JSON Code)
-         * StatusID = ? [0=Failed,1=Complete]
+         * StatusID = ? [0=Failed,m1=Complete]
          * Error	= ?	[On case error return custom error message]
          *
          * Eg Save Failed = {"StatusID":"0","Error":"Email Exists!"}
-         * Eg Save Complete = {"StatusID":"1","Error":""}
+         * Eg Save Complete = {"StatusID":"m1","Error":""}
          */
 
         String resultServer  = getHttpPost(url,params);
