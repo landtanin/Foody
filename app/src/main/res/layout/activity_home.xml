@@ -11,10 +11,24 @@ android:background="#ffffff"
 android:focusableInTouchMode="true">
 
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_marginTop="?actionBarSize"
+        android:background="#dadada"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+
+
+
 
 <RelativeLayout
     android:id="@+id/rl_tabbar"
@@ -22,6 +36,21 @@ android:focusableInTouchMode="true">
     android:layout_height="@dimen/tabbar_height"
     android:background="@color/colorPrimary"
     android:layout_alignParentBottom="true">
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tabbar_height"
+        android:background="#ffffff"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/colorPrimary"
+        app:tabIndicatorHeight="2dp"
+        app:tabMode="fixed"
+        app:tabPaddingEnd="-1dp"
+        app:tabPaddingStart="-1dp"
+        app:tabSelectedTextColor="@color/colorPrimary"
+        app:tabTextColor="@color/colorPrimaryDark"
+        android:fillViewport="false" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,18 +69,12 @@ android:focusableInTouchMode="true">
             android:layout_centerInParent="true"
             android:orientation="vertical">
             <ImageView
-                android:layout_width="@dimen/button_size_small"
-                android:layout_height="@dimen/button_size_small"
-                android:src="@drawable/banner_02"
+                android:layout_width="@dimen/button_size_large"
+                android:layout_height="@dimen/button_size_large"
+                android:src="@drawable/home"
                 android:padding="@dimen/button_padding"/>
 
-            <TextView
-                android:id="@+id/txt_menu_course"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_small"
-                android:text="Home"
-                android:textColor="@color/colorPrimaryDark" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -63,18 +86,12 @@ android:focusableInTouchMode="true">
             android:layout_centerInParent="true"
             android:orientation="vertical">
             <ImageView
-                android:layout_width="@dimen/button_size_small"
-                android:layout_height="@dimen/button_size_small"
-                android:src="@drawable/banner_02"
+                android:layout_width="@dimen/button_size_large"
+                android:layout_height="@dimen/button_size_large"
+                android:src="@drawable/plus"
                 android:padding="@dimen/button_padding"/>
 
-            <TextView
-                android:id="@+id/txt_menu_register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_small"
-                android:text="Add"
-                android:textColor="@color/colorPrimaryDark" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -86,18 +103,12 @@ android:focusableInTouchMode="true">
             android:layout_centerInParent="true"
             android:orientation="vertical">
             <ImageView
-                android:layout_width="@dimen/button_size_small"
-                android:layout_height="@dimen/button_size_small"
-                android:src="@drawable/banner_02"
+                android:layout_width="@dimen/button_size_large"
+                android:layout_height="@dimen/button_size_large"
+                android:src="@drawable/dice"
                 android:padding="@dimen/button_padding"/>
 
-            <TextView
-                android:id="@+id/txt_menu_news"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_small"
-                android:text="Random"
-                android:textColor="@color/colorPrimaryDark" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -109,24 +120,19 @@ android:focusableInTouchMode="true">
             android:layout_centerInParent="true"
             android:orientation="vertical">
             <ImageView
-                android:layout_width="@dimen/button_size_small"
-                android:layout_height="@dimen/button_size_small"
-                android:src="@drawable/banner_02"
+                android:layout_width="@dimen/button_size_large"
+                android:layout_height="@dimen/button_size_large"
+                android:src="@drawable/chef"
                 android:padding="@dimen/button_padding"/>
 
-            <TextView
-                android:id="@+id/txt_menu_activity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_small"
-                android:text="FindFood"
-                android:textColor="@color/colorPrimaryDark" />
+
+
         </LinearLayout>
 
 
     </LinearLayout>
 </RelativeLayout>
-    </RelativeLayout>
+    </LinearLayout>
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -164,7 +170,7 @@ android:focusableInTouchMode="true">
                     android:layout_height="match_parent"
                     android:text="@string/page_home"
                     android:gravity="center"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/colorFontTitle"
                     android:textSize="@dimen/text_big"
                     fontPath="fonts/ThaiSansNeue-Bold.ttf"
                     android:layout_weight="1"
