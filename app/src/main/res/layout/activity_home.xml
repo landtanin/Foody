@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/main_content"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:fitsSystemWindows="true"
+android:background="#ffffff"
+android:focusableInTouchMode="true">
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_marginTop="?actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<RelativeLayout
+    android:id="@+id/rl_tabbar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/tabbar_height"
+    android:background="@color/colorPrimary"
+    android:layout_alignParentBottom="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tabbar_height"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+
+
+        <LinearLayout
+            android:id="@+id/menu_course"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/tabbar_height"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="@dimen/button_size_small"
+                android:layout_height="@dimen/button_size_small"
+                android:src="@drawable/banner_02"
+                android:padding="@dimen/button_padding"/>
+
+            <TextView
+                android:id="@+id/txt_menu_course"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_small"
+                android:text="Home"
+                android:textColor="@color/colorPrimaryDark" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menu_register"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/tabbar_height"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="@dimen/button_size_small"
+                android:layout_height="@dimen/button_size_small"
+                android:src="@drawable/banner_02"
+                android:padding="@dimen/button_padding"/>
+
+            <TextView
+                android:id="@+id/txt_menu_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_small"
+                android:text="Add"
+                android:textColor="@color/colorPrimaryDark" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menu_news"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/tabbar_height"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="@dimen/button_size_small"
+                android:layout_height="@dimen/button_size_small"
+                android:src="@drawable/banner_02"
+                android:padding="@dimen/button_padding"/>
+
+            <TextView
+                android:id="@+id/txt_menu_news"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_small"
+                android:text="Random"
+                android:textColor="@color/colorPrimaryDark" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menu_activity"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/tabbar_height"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="@dimen/button_size_small"
+                android:layout_height="@dimen/button_size_small"
+                android:src="@drawable/banner_02"
+                android:padding="@dimen/button_padding"/>
+
+            <TextView
+                android:id="@+id/txt_menu_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_small"
+                android:text="FindFood"
+                android:textColor="@color/colorPrimaryDark" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>
+    </RelativeLayout>
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/colorPrimary"
+        app:layout_scrollFlags="snap|enterAlways">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:contentInsetLeft="0dp"
+            android:contentInsetStart="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            app:layout_scrollFlags="snap|enterAlways">
+
+            <LinearLayout
+                android:id="@+id/vg_topbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:orientation="horizontal"
+                android:animateLayoutChanges="true">
+                <ImageView
+                    android:id="@+id/menu_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:src="@drawable/banner_02"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/page_home"
+                    android:gravity="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_big"
+                    fontPath="fonts/ThaiSansNeue-Bold.ttf"
+                    android:layout_weight="1"
+                    tools:ignore="MissingPrefix" />
+
+                <ImageView
+                    android:id="@+id/menu_facebook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:src="@drawable/banner_02"/>
+            </LinearLayout>
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
