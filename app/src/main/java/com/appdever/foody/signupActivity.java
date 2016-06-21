@@ -2,12 +2,14 @@ package com.appdever.foody;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -65,10 +67,22 @@ public class signupActivity extends AppCompatActivity {
 
     private File mCurrentPhoto;
 
+    public static String myUsername = null;
+
+//    private ProgressBar spinner;
+
+    private EditText username, email, password, verifyPass;
+
+    private AlertDialog.Builder ad = null;
+
+    private ProgressDialog progress = null;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
 
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -76,6 +90,8 @@ public class signupActivity extends AppCompatActivity {
         }
 
         bindWidget();
+
+//        spinner.setVisibility(View.GONE);
 
 //        test = (ImageView) findViewById(R.id.imageView3);
 
@@ -112,19 +128,59 @@ public class signupActivity extends AppCompatActivity {
         });
 
         okButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, mByteArrayOutputStream);
-                byte[] byteArray = mByteArrayOutputStream.toByteArray();
-                encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                if (checkEmptyField()) {
 
-                Log.e("base64", encoded);
+                loadingPage();
+//                spinner.setVisibility(View.VISIBLE);
+                final Handler handler = new Handler();
+                Thread t = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
 
-                if(SaveData())
-                {
-                    // When Save Complete
-                }
+
+                            if (bitmap == null) {
+
+                                Toast.makeText(signupActivity.this, "Please select picture", Toast.LENGTH_SHORT).show();
+//                    Log.v("base64", encoded);
+
+                            } else {
+
+                                bitmap.compress(Bitmap.CompressFormat.PNG, 100, mByteArrayOutputStream);
+                                byte[] byteArray = mByteArrayOutputStream.toByteArray();
+                                encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
+
+
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (SaveData()) {
+                                            progress.dismiss();
+
+                                            Toast.makeText(signupActivity.this, "Saved successfully", Toast.LENGTH_SHORT).show();
+
+                                            Intent objIntent = new Intent(signupActivity.this, editProfileActivity.class);
+                                            objIntent.putExtra("userIntent", myUsername);
+                                            startActivity(objIntent);
+                                        }
+                                    }
+                                });
+                                // When Save Complete
+//                    spinner.setVisibility(View.GONE);
+
+
+                            }
+
+
+
+
+                    }
+                });
+                t.start();
+
 /*
                 String strUsername = username.getText().toString().trim();
                 String strEmail = email.getText().toString().trim();
@@ -228,7 +284,64 @@ public class signupActivity extends AppCompatActivity {
                 }
             }*/
             }
+        }
         });
+    }
+
+    private void loadingPage() {
+
+        progress = new ProgressDialog(this);
+        progress.setTitle("Loading");
+        progress.setMessage("Wait while loading...");
+        progress.show();
+
+    }
+
+
+    private boolean checkEmptyField() {
+
+        // Dialog
+        ad = new AlertDialog.Builder(this);
+
+        ad.setTitle("Error! ");
+        ad.setIcon(android.R.drawable.btn_star_big_on);
+        ad.setPositiveButton("Close", null);
+
+
+        // Check Username
+        if(username.getText().length() == 0)
+        {
+            ad.setMessage("Please input [Username] ");
+            ad.show();
+            username.requestFocus();
+            return false;
+        }
+        if(email.getText().length() == 0)
+        {
+            ad.setMessage("Please input [Email] ");
+            ad.show();
+            email.requestFocus();
+            return false;
+        }
+        // Check Password
+        if(password.getText().length() == 0 || verifyPass.getText().length() == 0 )
+        {
+            ad.setMessage("Please input [Password/Confirm Password] ");
+            ad.show();
+            password.requestFocus();
+            return false;
+        }
+        // Check Password and Confirm Password (Match)
+        if(!password.getText().toString().equals(verifyPass.getText().toString()))
+        {
+            ad.setMessage("Unmatched Password ");
+            ad.show();
+            verifyPass.requestFocus();
+            return false;
+        }
+
+
+        return true;
     }
 
     private void dispatchPhotoSelectionIntent() {
@@ -262,9 +375,6 @@ public class signupActivity extends AppCompatActivity {
 
                     bitmap = getThumbnail(imageUri);
                     addImageButton.setImageBitmap(bitmap);
-
-
-
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -376,58 +486,23 @@ public class signupActivity extends AppCompatActivity {
 
         addImageButton = (ImageButton) findViewById(R.id.addImageButton);
 
+//        spinner = (ProgressBar)findViewById(R.id.progressBar1);
+        username = (EditText) findViewById(R.id.usernameTextField);
+        email = (EditText) findViewById(R.id.emailTextField);
+        password = (EditText) findViewById(R.id.passwordTextField);
+        verifyPass = (EditText) findViewById(R.id.verifyPassTextField);
+
+
     }
 
     public boolean SaveData()
     {
 
-        final EditText username = (EditText) findViewById(R.id.usernameTextField);
-        final EditText email = (EditText) findViewById(R.id.emailTextField);
-        final EditText password = (EditText) findViewById(R.id.passwordTextField);
-        final EditText verifyPass = (EditText) findViewById(R.id.verifyPassTextField);
-
-
 //        Log.e("base64", encoded);
 
-        // Dialog
-        final AlertDialog.Builder ad = new AlertDialog.Builder(this);
 
-        ad.setTitle("Error! ");
-        ad.setIcon(android.R.drawable.btn_star_big_on);
-        ad.setPositiveButton("Close", null);
 
-        // Check Username
-        if(username.getText().length() == 0)
-        {
-            ad.setMessage("Please input [Username] ");
-            ad.show();
-            username.requestFocus();
-            return false;
-        }
-        // Check Password
-        if(password.getText().length() == 0 || verifyPass.getText().length() == 0 )
-        {
-            ad.setMessage("Please input [Password/Confirm Password] ");
-            ad.show();
-            password.requestFocus();
-            return false;
-        }
-        // Check Password and Confirm Password (Match)
-        if(!password.getText().toString().equals(verifyPass.getText().toString()))
-        {
-            ad.setMessage("Password and Confirm Password Not Match! ");
-            ad.show();
-            verifyPass.requestFocus();
-            return false;
-        }
-        if(email.getText().length() == 0)
-        {
-            ad.setMessage("Please input [Email] ");
-            ad.show();
-            email.requestFocus();
-            return false;
-        }
-
+        myUsername = username.getText().toString();
 
         String url = "http://foodyth.azurewebsites.net/foody/saveADDData.php";
 
@@ -469,7 +544,6 @@ public class signupActivity extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(signupActivity.this, "Saved successfully", Toast.LENGTH_SHORT).show();
             username.setText("");
             password.setText("");
             verifyPass.setText("");
