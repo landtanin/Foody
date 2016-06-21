@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-<<<<<<< HEAD
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,8 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import android.app.AlertDialog;
 
-=======
->>>>>>> dc4b94969c0d50ce592cf28d9ec46f741fad8530
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -31,7 +28,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-<<<<<<< HEAD
 import android.os.StrictMode;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -42,14 +38,6 @@ import android.view.Menu;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-=======
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
->>>>>>> dc4b94969c0d50ce592cf28d9ec46f741fad8530
 
 public class Login2Activity extends AppCompatActivity {
 
@@ -60,6 +48,11 @@ public class Login2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
+
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
         bindWidget();
 
@@ -73,28 +66,18 @@ public class Login2Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String strUsername = username.getText().toString().trim();
+              /*  String strUsername = username.getText().toString().trim();
                 String strPassword = password.getText().toString().trim();
 
                 if (strUsername.equals("") || strPassword.equals("")) {
 
                     Toast.makeText(Login2Activity.this,"กรุณากรอกข้อมูลให้ครบถ้วน", Toast.LENGTH_SHORT).show();
 
-<<<<<<< HEAD
                 }*/
 
                 if (LoginData())
                 {
                     //success
-=======
-                }else {
-                    if (SaveData()) {
-
-//                        Toast.makeText(Login2Activity.this, "Saved successfully", Toast.LENGTH_SHORT).show();
-
-                    }
-
->>>>>>> dc4b94969c0d50ce592cf28d9ec46f741fad8530
                 }
 
             }
@@ -171,7 +154,6 @@ public class Login2Activity extends AppCompatActivity {
             newActivity.putExtra("MemberID","");
             startActivity(newActivity);
         }
-<<<<<<< HEAD
         return true;
     }
 
@@ -204,18 +186,12 @@ public class Login2Activity extends AppCompatActivity {
         }
         return str.toString();
     }
-=======
-        return str.toString();
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_main, menu);
+        return true;
     }
 
-
-    private void bindWidget() {
-
-        username = (EditText) findViewById(R.id.usernameTextField);
-        password = (EditText) findViewById(R.id.passwordTextField);
->>>>>>> dc4b94969c0d50ce592cf28d9ec46f741fad8530
-
-        loginButton = (Button) findViewById(R.id.loginButton);
-
-    }
 }
