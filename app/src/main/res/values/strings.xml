@@ -2,6 +2,9 @@
     <string name="app_name">Foody</string>
 
     <string name="page_home">Home</string>
+    <string name="page_create">CreateMenu</string>
+    <string name="page_random">Random</string>
+    <string name="page_search">Search</string>
 
 
 

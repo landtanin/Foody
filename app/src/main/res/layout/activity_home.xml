@@ -52,85 +52,7 @@ android:focusableInTouchMode="true">
         app:tabTextColor="@color/colorPrimaryDark"
         android:fillViewport="false" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/tabbar_height"
-        android:orientation="horizontal"
-        android:weightSum="4">
 
-
-
-        <LinearLayout
-            android:id="@+id/menu_course"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/tabbar_height"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_centerInParent="true"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="@dimen/button_size_large"
-                android:layout_height="@dimen/button_size_large"
-                android:src="@drawable/home"
-                android:padding="@dimen/button_padding"/>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/menu_register"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/tabbar_height"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_centerInParent="true"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="@dimen/button_size_large"
-                android:layout_height="@dimen/button_size_large"
-                android:src="@drawable/plus"
-                android:padding="@dimen/button_padding"/>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/menu_news"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/tabbar_height"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_centerInParent="true"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="@dimen/button_size_large"
-                android:layout_height="@dimen/button_size_large"
-                android:src="@drawable/dice"
-                android:padding="@dimen/button_padding"/>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/menu_activity"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/tabbar_height"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_centerInParent="true"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="@dimen/button_size_large"
-                android:layout_height="@dimen/button_size_large"
-                android:src="@drawable/chef"
-                android:padding="@dimen/button_padding"/>
-
-
-
-        </LinearLayout>
-
-
-    </LinearLayout>
 </RelativeLayout>
     </LinearLayout>
 
@@ -166,6 +88,7 @@ android:focusableInTouchMode="true">
                     android:padding="@dimen/activity_horizontal_margin"
                     android:src="@drawable/banner_02"/>
                 <TextView
+                    android:id="@+id/txtPageName"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:text="@string/page_home"
