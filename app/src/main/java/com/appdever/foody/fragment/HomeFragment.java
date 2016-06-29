@@ -16,6 +16,7 @@ public class HomeFragment extends Fragment {
     private static final String LOG_TAG = HomeFragment.class.getSimpleName();
     private ListView lv_who_see;
     private String pageName = "";
+
     public HomeFragment() {
     }
 
@@ -38,6 +39,9 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+
+
+
         return rootView;
     }
 
