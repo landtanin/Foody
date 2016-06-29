@@ -48,6 +48,7 @@ public class HomeActivity extends AppCompatWithFont {
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         //
 
+
         txtPageName = (TextView) findViewById(R.id.txtPageName);
         container = (ViewPager) findViewById(R.id.container);
         tabLayout = (TabLayout) findViewById(R.id.tabs);

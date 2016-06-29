@@ -49,7 +49,6 @@ android:focusableInTouchMode="true">
 
 
 
-
 <RelativeLayout
     android:id="@+id/rl_tabbar"
     android:layout_width="match_parent"
