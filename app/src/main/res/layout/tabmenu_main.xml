@@ -16,12 +16,12 @@
             android:layout_height="@dimen/button_size_small"
             android:padding="@dimen/button_padding"/>
 
-        <!--<TextView-->
-            <!--android:id="@+id/txt_menu"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:textSize="@dimen/text_small"-->
-            <!--android:textColor="@color/colorPrimary" />-->
+        <TextView
+            android:id="@+id/txt_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_small"
+            android:textColor="@color/colorPrimary" />
     </LinearLayout>
 
 
