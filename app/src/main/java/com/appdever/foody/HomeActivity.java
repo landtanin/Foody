@@ -6,8 +6,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,6 +23,9 @@ public class HomeActivity extends AppCompatWithFont {
     public ViewPager container;
     public TabLayout tabLayout;
     public TextView txtPageName;
+    public DrawerLayout drawerLayout;
+    public Toolbar toolbar;
+    public ActionBarDrawerToggle actionBarDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +37,17 @@ public class HomeActivity extends AppCompatWithFont {
     }
 
     public void initInstance(){
+
+        //Hambergur
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawerLayout= (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.drawer_open,R.string.drawer_close);
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+        //
+
         txtPageName = (TextView) findViewById(R.id.txtPageName);
         container = (ViewPager) findViewById(R.id.container);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -97,6 +114,13 @@ public class HomeActivity extends AppCompatWithFont {
 
     }
 
+    //Hambergur
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        actionBarDrawerToggle.syncState();
+    }
+    //
 
     public class MainMenuPagerAdapter extends SmartFragmentStatePagerAdapter {
         private SmartFragmentStatePagerAdapter adapterViewPager;
@@ -148,6 +172,8 @@ public class HomeActivity extends AppCompatWithFont {
 
             return view;
         }
+
+
 
     }
 
