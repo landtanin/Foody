@@ -99,6 +99,22 @@ public class HomeActivity extends AppCompatWithFont {
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getPosition()){
+                    case 0:
+                        txtPageName.setText(getString(R.string.page_home));
+
+                        break;
+                    case 1:
+                        txtPageName.setText(getString(R.string.page_create));
+                        break;
+                    case 2:
+                        txtPageName.setText(getString(R.string.page_random));
+                        break;
+                    case 3:
+                        txtPageName.setText(getString(R.string.page_search));
+                        break;
+
+                }
                 tab.getIcon().setColorFilter(ContextCompat.getColor(getApplicationContext(),R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
             }
 
