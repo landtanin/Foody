@@ -27,13 +27,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:layout_marginTop="@dimen/margin_from_top"
-                android:layout_marginBottom="@dimen/margin_from_bottom">
+                android:padding="@dimen/space_x1">
 
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"/>
+
 
 
 
@@ -47,10 +43,6 @@
                     />
 
 
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"/>
 
             </LinearLayout>
 
