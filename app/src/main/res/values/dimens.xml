@@ -26,4 +26,7 @@
     <dimen name="text_small">12sp</dimen>
     <dimen name="text_medium">16sp</dimen>
     <dimen name="text_big">20sp</dimen>
+
+    <dimen name="margin_from_top">40dp</dimen>
+    <dimen name="margin_from_bottom">40dp</dimen>
 </resources>

@@ -10,6 +10,7 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -27,9 +28,13 @@ public class HomeFragment extends Fragment {
     private ListView lv_who_see;
     private String pageName = "";
 
+//    private String foodGenres;
+
     private RecyclerView rv;
     private RecyclerAdapter recyclerAdapter;
     List<DataTest01> newsList=new ArrayList<>();
+
+    private ImageView homeFoodBanner;
 
     public HomeFragment() {
     }
@@ -47,6 +52,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -64,16 +70,18 @@ public class HomeFragment extends Fragment {
                 Toast.LENGTH_SHORT).show();
 
         int namefac = 0;
-        StaggeredGridLayoutManager aaa = new StaggeredGridLayoutManager(3,1);
+        StaggeredGridLayoutManager aaa = new StaggeredGridLayoutManager(2,1);
         rv = (RecyclerView) rootView.findViewById(R.id.rv_test01);
         rv.setLayoutManager(aaa);
         recyclerAdapter = new RecyclerAdapter(getActivity(), newsList);
         rv.setAdapter(recyclerAdapter);
-        rv.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+//        rv.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         rv.setHasFixedSize(true);
-        for (int i=0; i < 20; i++){
-            newsList.add(new DataTest01("https://cdn3.artstation.com/p/assets/images/images/001/987/707/large/ilya-kuvshinov-cut2.jpg?1455606496","Test".concat(String.valueOf(i))));
+
+        for (int i=0; i < 10; i++){
+            newsList.add(new DataTest01(R.drawable.banner_02,"Test".concat(String.valueOf(i))));
         }
+
         recyclerAdapter.notifyDataSetChanged();
         Log.e("Kasira", String.valueOf(recyclerAdapter.getItemCount()));
 
@@ -99,6 +107,13 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
 
+        homeFoodBanner = (ImageView) getView().findViewById(R.id.homeFoodBanner);
 
+        homeFoodBanner.setImageResource(R.drawable.bannertest);
+
+    }
 }

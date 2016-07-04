@@ -1,37 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="#E57373">
+              android:orientation="vertical"
+              android:padding="@dimen/space_x1"
+              >
 
     <!--<ImageView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:scaleType="centerCrop"-->
-        <!--android:id="@+id/homeMenuImage"/>-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:scaleType="centerCrop"-->
+    <!--android:id="@+id/homeMenuImage"/>-->
     <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"/>-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"/>-->
 
-    <RelativeLayout
+
+    <TextView
+        android:id="@+id/tvTest01"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imgTest01"
+        android:text="Test01"/>
 
-        <ImageView
-            android:id="@+id/imgTest01"
-            android:layout_width="100dp"
-            android:layout_height="80dp"
-            android:layout_alignParentLeft="true"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher"/>
-        <TextView
-            android:id="@+id/tvTest01"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/imgTest01"
-            android:text="Test01"/>
+    <ImageView
+        android:id="@+id/imgTest01"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher"
+        android:layout_gravity="center_horizontal"/>
 
-    </RelativeLayout>
 
 </LinearLayout>

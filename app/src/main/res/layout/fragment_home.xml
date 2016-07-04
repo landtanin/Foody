@@ -2,7 +2,8 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".fragment.HomeFragment">
+             tools:context=".fragment.HomeFragment"
+             android:background="@color/colorFontTitle">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -16,40 +17,43 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="10"/>
+            <!--<Space-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="1"/>-->
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="6">
+                android:layout_weight="1"
+                android:layout_marginTop="@dimen/margin_from_top"
+                android:layout_marginBottom="@dimen/margin_from_bottom">
 
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="10"/>
+                    android:layout_weight="5"/>
+
+
 
                 <ImageView
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/imageView3"
-                    android:layout_weight="10"
-                    android:src="@drawable/bannertest"/>
+                    android:layout_height="150dp"
+                    android:id="@+id/homeFoodBanner"
+                    android:layout_weight="20"
+                    android:scaleType="center"
+                    android:layout_gravity="center"
+                    />
+
 
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="10"/>
+                    android:layout_weight="5"/>
 
             </LinearLayout>
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="20"/>
 
             <!--<GridView-->
                 <!--android:layout_width="match_parent"-->
@@ -66,7 +70,8 @@
                 android:id="@+id/rv_test01"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="10"
+                android:layout_weight="1"
+
                 />
         </LinearLayout>
 
