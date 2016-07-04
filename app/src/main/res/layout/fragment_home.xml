@@ -15,37 +15,39 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
             <!--<Space-->
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="0dp"-->
                 <!--android:layout_weight="1"/>-->
 
-            <LinearLayout
-                android:orientation="horizontal"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="@dimen/home_banner_height"
                 android:layout_weight="1"
-                android:padding="@dimen/space_x1">
-
-
-
-
+                android:padding="@dimen/space_x1"
+                >
 
                 <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="150dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:id="@+id/homeFoodBanner"
-                    android:layout_weight="20"
+                    android:layout_weight="1"
                     android:scaleType="center"
                     android:layout_gravity="center"
                     />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:background="#91fafff8"
+                    android:text="Test01"
+                    android:textColor="#000000"/>
 
-
-            </LinearLayout>
-
+            </FrameLayout>
 
             <!--<GridView-->
                 <!--android:layout_width="match_parent"-->
@@ -62,7 +64,7 @@
                 android:id="@+id/rv_test01"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="5"
 
                 />
         </LinearLayout>

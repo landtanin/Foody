@@ -29,4 +29,6 @@
 
     <dimen name="margin_from_top">40dp</dimen>
     <dimen name="margin_from_bottom">40dp</dimen>
+
+    <dimen name="home_banner_height">150dp</dimen>
 </resources>
