@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.appdever.foody.fragment.HomeFragment;
 import com.appdever.foody.fragment.RandomFragment;
+import com.appdever.foody.fragment.SearchFragment;
 import com.appdever.foody.manager.SmartFragmentStatePagerAdapter;
 
 public class HomeActivity extends AppCompatActivity {
@@ -33,7 +34,7 @@ public class HomeActivity extends AppCompatActivity {
     public final int myHomeFragment = 0;
     public final int createMenuFragment = 1;
     public final int randomFragment = 2;
-    public final int activityFragment = 3;
+    public final int searchFragment = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +101,7 @@ public class HomeActivity extends AppCompatActivity {
                     case randomFragment:
                         txtPageName.setText(getString(R.string.page_random));
                         break;
-                    case activityFragment:
+                    case searchFragment:
                         txtPageName.setText(getString(R.string.page_search));
                         break;
 
@@ -134,7 +135,7 @@ public class HomeActivity extends AppCompatActivity {
                     case randomFragment:
                         txtPageName.setText(getString(R.string.page_random));
                         break;
-                    case activityFragment:
+                    case searchFragment:
                         txtPageName.setText(getString(R.string.page_search));
                         break;
 
@@ -194,8 +195,8 @@ public class HomeActivity extends AppCompatActivity {
                     return RandomFragment.newInstance();
 
 
-                case activityFragment:
-                    return HomeFragment.newInstance();
+                case searchFragment:
+                    return SearchFragment.newInstance();
 
 
                 default:
