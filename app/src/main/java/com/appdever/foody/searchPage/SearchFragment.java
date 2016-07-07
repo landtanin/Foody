@@ -3,16 +3,14 @@ package com.appdever.foody.searchPage;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import com.appdever.foody.HomePage.HomeFragment;
 import com.appdever.foody.R;
 import com.appdever.foody.manager.SmartFragmentStatePagerAdapter;
 
@@ -31,11 +29,12 @@ public class SearchFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    public ViewPager searchContainer;
+    public NonSwipeableViewPager searchContainer;
+    public TabLayout searchTabLayout;
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+//    private String mParam1;
+//    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -43,8 +42,7 @@ public class SearchFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+
      * @return A new instance of fragment SearchFragment.
      */
     // TODO: Rename and change types and number of parameters
@@ -63,18 +61,90 @@ public class SearchFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+//        if (getArguments() != null) {
+//            mParam1 = getArguments().getString(ARG_PARAM1);
+//            mParam2 = getArguments().getString(ARG_PARAM2);
+//        }
+
     }
+
+    private void initInstance(View rootView) {
+
+        searchContainer = (NonSwipeableViewPager) rootView.findViewById(R.id.searchContainer);
+        searchTabLayout = (TabLayout) rootView.findViewById(R.id.searchTabs);
+
+        SearchMainMenuPagerAdapter searchMenuPageAdapter = new SearchMainMenuPagerAdapter(getChildFragmentManager());
+
+        searchContainer.setAdapter(searchMenuPageAdapter);
+        searchContainer.setOffscreenPageLimit(2);
+
+        searchTabLayout.setupWithViewPager(searchContainer);
+        searchTabLayout.setClipToPadding(true);
+
+        for(int i = 0; i< searchTabLayout.getTabCount();i++) {
+
+            TabLayout.Tab tab = searchTabLayout.getTabAt(i);
+
+            tab.setText(searchMenuPageAdapter.tabString[i]);
+        }
+
+        // TODO: set tab color different
+
+//        searchContainer.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//
+//            }
+//        });
+
+        searchTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+//                switch (tab.getPosition()) {
+//                    case 0:
+//
+//                }
+                searchContainer.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false);
+
+        View rootView = inflater.inflate(R.layout.fragment_search, container, false);
+
+        initInstance(rootView);
+
+        return rootView ;
     }
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -115,18 +185,18 @@ public class SearchFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    public class MainMenuPagerAdapter extends SmartFragmentStatePagerAdapter {
+    public class SearchMainMenuPagerAdapter extends SmartFragmentStatePagerAdapter {
 
         private SmartFragmentStatePagerAdapter adapterViewPager;
         //        private int[] text_menu = {R.string.tabmenu_course, R.string.tabmenu_register, R.string.tabmenu_news, R.string.tabmenu_activity, R.string.tabmenu_contact};
-        public int[] image_menu = {R.drawable.home, R.drawable.plus, R.drawable.dice, R.drawable.chef};
+//        public int[] image_menu = {R.drawable.home, R.drawable.plus, R.drawable.dice, R.drawable.chef};
 
+        public String[] tabString = {"ค้นหาด้วยวัตถุดิบ","เลือกประเภทอาหาร"};
 
-
-        public MainMenuPagerAdapter(FragmentManager fm) {
+        public SearchMainMenuPagerAdapter(FragmentManager fm) {
             super(fm);
-            adapterViewPager = new SmartFragmentStatePagerAdapter(getActivity().getSupportFragmentManager());
-            adapterViewPager.getRegisteredFragment(searchContainer.getCurrentItem());
+//            adapterViewPager = new SmartFragmentStatePagerAdapter(getActivity().getSupportFragmentManager());
+//            adapterViewPager.getRegisteredFragment(searchContainer.getCurrentItem());
         }
 
         @Override
@@ -135,43 +205,39 @@ public class SearchFragment extends Fragment {
             switch (position) {
 
                 case 0:
-                    return HomeFragment.newInstance();
+                    return ingredientSearchFragment.newInstance();
 
                 case 1:
-                    return HomeFragment.newInstance();
+                    return selectFoodFragment.newInstance();
 
                 default:
-                    return HomeFragment.newInstance();
+                    return SearchFragment.newInstance();
 
             }
         }
-
-
+        
         @Override
         public int getCount() {
 
-            return image_menu.length;
+            return tabString.length;
 
         }
-
-
-        public View getTabView(int position) {
-
-            View view = LayoutInflater.from(getActivity().getApplicationContext()).inflate(R.layout.tabmenu_main, null);
-//            TextView txt_menu = (TextView) view.findViewById(R.id.txt_menu);
-//            txt_menu.setText(text_menu[position]);
+        
+//        public View getTabView(int position) {
 //
-//            Font.setFontFace(txt_menu,0);
-
-
-
-            ImageView img_menu = (ImageView) view.findViewById(R.id.img_menu);
-            img_menu.setImageResource(image_menu[position]);
-
-            return view;
-        }
-
-
+//            View view = LayoutInflater.from(getActivity().getApplicationContext()).inflate(R.layout.tabmenu_main, null);
+////            TextView txt_menu = (TextView) view.findViewById(R.id.txt_menu);
+////            txt_menu.setText(text_menu[position]);
+////
+////            Font.setFontFace(txt_menu,0);
+//
+//
+//
+//            ImageView img_menu = (ImageView) view.findViewById(R.id.img_menu);
+//            img_menu.setImageResource(image_menu[position]);
+//
+//            return view;
+//        }
 
     }
 }
