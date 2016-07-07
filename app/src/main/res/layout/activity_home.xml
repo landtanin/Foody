@@ -127,6 +127,7 @@ android:focusableInTouchMode="true">
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
                     android:padding="@dimen/activity_horizontal_margin"
+                    android:visibility="invisible"
                     android:src="@drawable/banner_02"/>
             </LinearLayout>
         </android.support.v7.widget.Toolbar>
