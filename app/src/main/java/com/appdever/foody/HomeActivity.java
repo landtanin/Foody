@@ -1,4 +1,4 @@
-package com.appdever.foody.HomePage;
+package com.appdever.foody;
 
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -17,10 +17,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.appdever.foody.R;
+import com.appdever.foody.HomePage.HomeFragment;
 import com.appdever.foody.fragment.RandomFragment;
-import com.appdever.foody.searchPage.SearchFragment;
 import com.appdever.foody.manager.SmartFragmentStatePagerAdapter;
+import com.appdever.foody.searchPage.SearchFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
