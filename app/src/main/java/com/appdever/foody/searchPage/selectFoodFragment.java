@@ -1,5 +1,6 @@
-package com.appdever.foody.fragment;
+package com.appdever.foody.searchPage;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,12 +13,12 @@ import com.appdever.foody.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link RandomFragment.OnFragmentInteractionListener} interface
+ * {@link selectFoodFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link RandomFragment#newInstance} factory method to
+ * Use the {@link selectFoodFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RandomFragment extends Fragment {
+public class selectFoodFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +30,7 @@ public class RandomFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public RandomFragment() {
+    public selectFoodFragment() {
         // Required empty public constructor
     }
 
@@ -37,15 +38,16 @@ public class RandomFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-
-     * @return A new instance of fragment RandomFragment.
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment selectFoodFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static RandomFragment newInstance() {
-        RandomFragment fragment = new RandomFragment();
+    public static selectFoodFragment newInstance(String param1, String param2) {
+        selectFoodFragment fragment = new selectFoodFragment();
         Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -63,8 +65,7 @@ public class RandomFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        return inflater.inflate(R.layout.fragment_random, container, false);
+        return inflater.inflate(R.layout.fragment_select_food, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -74,16 +75,16 @@ public class RandomFragment extends Fragment {
         }
     }
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
 
     @Override
     public void onDetach() {

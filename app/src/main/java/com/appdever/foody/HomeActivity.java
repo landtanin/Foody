@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.appdever.foody.HomePage.HomeFragment;
-import com.appdever.foody.fragment.RandomFragment;
+import com.appdever.foody.randomPage.RandomFragment;
 import com.appdever.foody.manager.SmartFragmentStatePagerAdapter;
 import com.appdever.foody.searchPage.SearchFragment;
 
