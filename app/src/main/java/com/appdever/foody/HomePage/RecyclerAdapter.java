@@ -1,4 +1,4 @@
-package com.appdever.foody.adapter;
+package com.appdever.foody.HomePage;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.appdever.foody.R;
-import com.appdever.foody.fragment.DataTest01;
 import com.bumptech.glide.Glide;
 
 import java.util.List;

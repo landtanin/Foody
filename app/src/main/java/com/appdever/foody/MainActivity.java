@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.appdever.foody.HomePage.HomeActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button signUpButton, loginButton;

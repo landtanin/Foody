@@ -1,4 +1,4 @@
-package com.appdever.foody;
+package com.appdever.foody.HomePage;
 
 /**
  * Created by landtanin on 6/21/2016 AD.

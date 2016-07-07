@@ -1,4 +1,4 @@
-package com.appdever.foody.fragment;
+package com.appdever.foody.searchPage;
 
 import android.content.Context;
 import android.net.Uri;

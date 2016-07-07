@@ -1,4 +1,4 @@
-package com.appdever.foody.fragment;
+package com.appdever.foody.HomePage;
 
 import android.graphics.Point;
 import android.os.Bundle;
@@ -15,7 +15,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.appdever.foody.R;
-import com.appdever.foody.adapter.RecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +58,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+
 
         Display display = getActivity().getWindowManager().getDefaultDisplay();
         Point size = new Point();
