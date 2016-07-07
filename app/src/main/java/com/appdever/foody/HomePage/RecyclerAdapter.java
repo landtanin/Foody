@@ -20,7 +20,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     private List<DataTest01> newList;
     Context context;
 
-    public RecyclerAdapter(Context context,List<DataTest01> newsList) {
+    public RecyclerAdapter(Context context, List<DataTest01> newsList) {
         this.newList = newsList;
         this.context = context;
     }
@@ -30,7 +30,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.home_menu_icon, parent, false);
+                .inflate(R.layout.recycler_home_row, parent, false);
         return new RecyclerViewHolder(itemView);
     }
 

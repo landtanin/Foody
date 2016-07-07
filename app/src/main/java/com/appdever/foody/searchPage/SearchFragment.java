@@ -208,7 +208,7 @@ public class SearchFragment extends Fragment {
                     return ingredientSearchFragment.newInstance();
 
                 case 1:
-                    return selectFoodFragment.newInstance();
+                    return SelectFoodFragment.newInstance();
 
                 default:
                     return SearchFragment.newInstance();

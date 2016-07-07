@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.appdever.foody.R;
@@ -24,8 +23,7 @@ import java.util.List;
  */
 public class HomeFragment extends Fragment {
     private static final String LOG_TAG = HomeFragment.class.getSimpleName();
-    private ListView lv_who_see;
-    private String pageName = "";
+
 
 //    private String foodGenres;
 
@@ -38,10 +36,7 @@ public class HomeFragment extends Fragment {
     public HomeFragment() {
     }
 
-    public Fragment setPageName(String pageName){
-        this.pageName = pageName;
-        return this;
-    }
+
 
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
@@ -63,13 +58,16 @@ public class HomeFragment extends Fragment {
         Display display = getActivity().getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
+
+//        Toast start
         int width = size.x;
         int height = size.y;
 
         Toast.makeText(getActivity(),"Width =" + width +",Height"+ height,
                 Toast.LENGTH_SHORT).show();
+//       Toast end
 
-        int namefac = 0;
+
         StaggeredGridLayoutManager aaa = new StaggeredGridLayoutManager(2,1);
         rv = (RecyclerView) rootView.findViewById(R.id.rv_test01);
         rv.setLayoutManager(aaa);
