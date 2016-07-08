@@ -12,10 +12,9 @@
         <ImageView
             android:id="@+id/imgTitle"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:layout_weight="1"
             android:src="@mipmap/ic_launcher" />
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -32,7 +31,6 @@
             android:padding="8dp"
             android:gravity="center"
             android:text="test1"
-            android:layout_weight="1"
             android:textColor="@color/colorFontTitle"
             android:textSize="@dimen/text_big" />
 
@@ -44,7 +42,6 @@
             android:padding="8dp"
             android:gravity="center"
             android:text="test1"
-            android:layout_weight="1"
             android:textColor="@color/colorFontTitle"
             android:textSize="@dimen/text_big" />
 
