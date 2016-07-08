@@ -67,8 +67,9 @@
             android:text="เข้าสู่ระบบ"
             android:id="@+id/loginButton"
             android:layout_gravity="center_horizontal"
-            android:background="#747676"
-            android:layout_weight="7" />
+            android:background="#ffffff"
+            android:layout_weight="7"
+            android:textColor="#F25822" />
 
         <Space
             android:layout_width="20px"
