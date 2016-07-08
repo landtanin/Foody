@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="com.appdever.foody.Login2Activity">
+
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.appdever.foody.Login2Activity">
+    >
 
 
     <LinearLayout
@@ -77,3 +80,4 @@
     </LinearLayout>
 
 </RelativeLayout>
+</layout>

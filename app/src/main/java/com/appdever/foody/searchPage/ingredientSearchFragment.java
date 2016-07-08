@@ -1,7 +1,5 @@
 package com.appdever.foody.searchPage;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,14 +8,15 @@ import android.view.ViewGroup;
 
 import com.appdever.foody.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ingredientSearchFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ingredientSearchFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+///**
+// * A simple {@link Fragment} subclass.
+// * Activities that contain this fragment must implement the
+// * {@link ingredientSearchFragment.OnFragmentInteractionListener} interface
+// * to handle interaction events.
+// * Use the {@link ingredientSearchFragment#newInstance} factory method to
+// * create an instance of this fragment.
+// */
+
 public class ingredientSearchFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,6 +28,11 @@ public class ingredientSearchFragment extends Fragment {
 //    private String mParam2;
 
 //    private OnFragmentInteractionListener mListener;
+
+
+    private DeselectableRadioButton pigRadioButton, chickenRadioButton, cowRadioButton,
+            fishRadioButton, shrimpRadioButton, squidRadioButton, eggRadioButton;
+
 
     public ingredientSearchFragment() {
         // Required empty public constructor
@@ -65,8 +69,18 @@ public class ingredientSearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ingredient_search, container, false);
+
+        View rootView = inflater.inflate(R.layout.fragment_ingredient_search, container, false);
+
+        pigRadioButton = (DeselectableRadioButton) rootView.findViewById(R.id.pigRadioButton);
+        chickenRadioButton = (DeselectableRadioButton) rootView.findViewById(R.id.chickenRadioButton);
+        cowRadioButton = (DeselectableRadioButton) rootView.findViewById(R.id.cowRadioButton);
+        fishRadioButton = (DeselectableRadioButton) rootView.findViewById(R.id.fishRadioButton);
+        shrimpRadioButton = (DeselectableRadioButton) rootView.findViewById(R.id.fishRadioButton);
+
+        return rootView;
     }
+
 
 //    // TODO: Rename method, update argument and hook method into UI event
 //    public void onButtonPressed(Uri uri) {

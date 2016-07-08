@@ -37,6 +37,7 @@ public class Login2Activity extends AppCompatActivity {
     private Button loginButton;
     private EditText username, password;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

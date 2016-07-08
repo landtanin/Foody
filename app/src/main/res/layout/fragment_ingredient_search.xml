@@ -1,3 +1,4 @@
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
@@ -51,7 +52,7 @@
 
                 >
 
-                <RadioButton
+                <com.appdever.foody.searchPage.DeselectableRadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="หมู"
@@ -59,10 +60,11 @@
                     android:id="@+id/pigRadioButton"
                     android:textColor="#000000"
                     android:checked="false"
+
                     android:layout_columnWeight="1"
                     android:buttonTint="@color/colorPrimary"
                     />
-                <RadioButton
+                <com.appdever.foody.searchPage.DeselectableRadioButton
                     android:textSize="@dimen/radio_font_size"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -73,7 +75,7 @@
                     android:layout_columnWeight="1"
                     android:buttonTint="@color/colorPrimary"
                     />
-                <RadioButton
+                <com.appdever.foody.searchPage.DeselectableRadioButton
                     android:buttonTint="@color/colorPrimary"
                     android:textSize="@dimen/radio_font_size"
                     android:layout_width="wrap_content"
@@ -85,7 +87,7 @@
                     android:layout_columnWeight="1"
                     />
 
-                <RadioButton
+                <com.appdever.foody.searchPage.DeselectableRadioButton
                     android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -96,7 +98,7 @@
                     android:layout_columnWeight="1"
                     android:textSize="@dimen/radio_font_size"/>
 
-                <RadioButton
+                <com.appdever.foody.searchPage.DeselectableRadioButton
                     android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -107,7 +109,7 @@
                     android:layout_columnWeight="1"
                     android:textSize="@dimen/radio_font_size"/>
 
-                <RadioButton
+                <com.appdever.foody.searchPage.DeselectableRadioButton
                     android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -118,7 +120,7 @@
                     android:layout_columnWeight="1"
                     android:textSize="@dimen/radio_font_size"/>
 
-                <RadioButton
+                <com.appdever.foody.searchPage.DeselectableRadioButton
                     android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -180,7 +182,7 @@
                 android:layout_marginLeft="@dimen/margin_subCat_sideIng"
                 >
 
-                <RadioButton
+                <com.appdever.foody.searchPage.DeselectableRadioButton
                     android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -191,7 +193,7 @@
                     android:layout_columnWeight="1"
                     android:textSize="@dimen/radio_font_size"/>
 
-                <RadioButton
+                <com.appdever.foody.searchPage.DeselectableRadioButton
                     android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -202,7 +204,7 @@
                     android:layout_columnWeight="1"
                     android:textSize="@dimen/radio_font_size"/>
 
-                <RadioButton
+                <com.appdever.foody.searchPage.DeselectableRadioButton
                     android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -246,7 +248,7 @@
                 android:layout_marginLeft="@dimen/margin_subCat_sideIng"
                 >
 
-                <RadioButton
+                <com.appdever.foody.searchPage.DeselectableRadioButton
                     android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -257,7 +259,7 @@
                     android:layout_columnWeight="1"
                     android:textSize="@dimen/radio_font_size"/>
 
-                <RadioButton
+                <com.appdever.foody.searchPage.DeselectableRadioButton
                     android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -268,7 +270,7 @@
                     android:layout_columnWeight="1"
                     android:textSize="@dimen/radio_font_size"/>
 
-                <RadioButton
+                <com.appdever.foody.searchPage.DeselectableRadioButton
                     android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -310,7 +312,7 @@
                 android:layout_marginLeft="@dimen/margin_subCat_sideIng"
                 >
 
-                <RadioButton
+                <com.appdever.foody.searchPage.DeselectableRadioButton
                     android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -321,7 +323,7 @@
                     android:layout_columnWeight="1"
                     android:textSize="@dimen/radio_font_size"/>
 
-                <RadioButton
+                <com.appdever.foody.searchPage.DeselectableRadioButton
                     android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -332,7 +334,7 @@
                     android:layout_columnWeight="1"
                     android:textSize="@dimen/radio_font_size"/>
 
-                <RadioButton
+                <com.appdever.foody.searchPage.DeselectableRadioButton
                     android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -374,7 +376,7 @@
                 android:layout_marginLeft="@dimen/margin_subCat_sideIng"
                 >
 
-                <RadioButton
+                <com.appdever.foody.searchPage.DeselectableRadioButton
                     android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -385,7 +387,7 @@
                     android:layout_columnWeight="1"
                     android:textSize="@dimen/radio_font_size"/>
 
-                <RadioButton
+                <com.appdever.foody.searchPage.DeselectableRadioButton
                     android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -396,7 +398,7 @@
                     android:layout_columnWeight="1"
                     android:textSize="@dimen/radio_font_size"/>
 
-                <RadioButton
+                <com.appdever.foody.searchPage.DeselectableRadioButton
                     android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -438,7 +440,7 @@
                 android:layout_marginLeft="@dimen/margin_subCat_sideIng"
                 >
 
-                <RadioButton
+                <com.appdever.foody.searchPage.DeselectableRadioButton
                     android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -449,7 +451,7 @@
                     android:layout_columnWeight="1"
                     android:textSize="@dimen/radio_font_size"/>
 
-                <RadioButton
+                <com.appdever.foody.searchPage.DeselectableRadioButton
                     android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -460,7 +462,7 @@
                     android:layout_columnWeight="1"
                     android:textSize="@dimen/radio_font_size"/>
 
-                <RadioButton
+                <com.appdever.foody.searchPage.DeselectableRadioButton
                     android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
