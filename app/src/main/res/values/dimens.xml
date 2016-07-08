@@ -34,6 +34,11 @@
     <dimen name="margin_from_top_searchIng">96dp</dimen>
     <dimen name="margin_subCat_sideIng">40dp</dimen>
 
-
     <dimen name="home_banner_height">150dp</dimen>
+
+    <dimen name="header1_font_size">20dp</dimen>
+    <dimen name="header2_font_size">15dp</dimen>
+
+    <dimen name="margin_food_type_radios">20dp</dimen>
+
 </resources>
