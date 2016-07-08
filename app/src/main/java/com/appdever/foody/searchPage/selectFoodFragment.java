@@ -47,9 +47,9 @@ public class selectFoodFragment extends Fragment {
 //        rv.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         rv.setHasFixedSize(true);
 
-        DataSelectFood selectFood = new DataSelectFood(R.drawable.bannertest,"1","1");
-        DataSelectFood selectFood1 = new DataSelectFood(R.drawable.banner_02,"2","2");
-        DataSelectFood selectFood3 = new DataSelectFood(R.drawable.bannertest,"3","3");
+        DataSelectFood selectFood = new DataSelectFood(R.drawable.food_type,"ประเภทผัด","1");
+        DataSelectFood selectFood1 = new DataSelectFood(R.drawable.food_type,"ประเภทแกง","2");
+        DataSelectFood selectFood3 = new DataSelectFood(R.drawable.food_type,"ประเภททอด","3");
         selectFoodList.add(selectFood);
         selectFoodList.add(selectFood1);
         selectFoodList.add(selectFood3);
