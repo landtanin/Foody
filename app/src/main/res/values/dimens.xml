@@ -38,9 +38,9 @@
 
     <dimen name="home_banner_height">150dp</dimen>
 
-    <dimen name="header1_font_size">29dp</dimen>
-    <dimen name="header2_font_size">25dp</dimen>
-    <dimen name="radio_font_size">20dp</dimen>
+    <dimen name="header1_font_size">29sp</dimen>
+    <dimen name="header2_font_size">25sp</dimen>
+    <dimen name="radio_font_size">20sp</dimen>
 
     <dimen name="margin_food_type_radios">20dp</dimen>
 
