@@ -14,18 +14,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SelectFoodFragment extends Fragment {
+public class selectFoodFragment extends Fragment {
     private RecyclerView rv;
     private com.appdever.foody.searchPage.SelectFoodAdapter selectFoodAdapter;
     List<DataSelectFood> selectFoodList =new ArrayList<>();
 
-    public SelectFoodFragment() {
+    public selectFoodFragment() {
         // Required empty public constructor
     }
 
 
-    public static SelectFoodFragment newInstance() {
-        SelectFoodFragment fragment = new SelectFoodFragment();
+    public static selectFoodFragment newInstance() {
+        selectFoodFragment fragment = new selectFoodFragment();
         return fragment;
     }
 

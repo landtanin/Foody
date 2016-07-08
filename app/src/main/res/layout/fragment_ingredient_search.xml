@@ -3,12 +3,158 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              tools:context="com.appdever.foody.searchPage.ingredientSearchFragment"
-             android:background="#ff0000">
+    >
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <ScrollView
+        android:id="@+id/IngSearchscrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"/>
+        android:layout_gravity="center_horizontal|top"
+        >
 
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/selectIngredientText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_from_sides"
+                android:layout_marginTop="@dimen/margin_from_top_searchIng"
+                android:text="เลือกวัตถุดิบหลัก"
+                android:textColor="#000000"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000"
+                android:layout_marginLeft="@dimen/margin_from_sides"
+                android:layout_marginRight="@dimen/margin_from_sides">
+
+            </View>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:columnCount="2"
+                android:rowCount="4"
+                android:useDefaultMargins="true"
+                android:padding="@dimen/button_padding"
+                >
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="หมู"
+                    android:id="@+id/pigRadioButton"
+                    android:textColor="#000000"
+                    android:checked="false"
+                    android:layout_columnWeight="1"
+                    />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ไก่"
+                    android:id="@+id/chickenRadioButton"
+                    android:textColor="#000000"
+                    android:checked="false"
+                    android:layout_columnWeight="1"
+                    />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="เนื้อ"
+                    android:id="@+id/cowRadioButton"
+                    android:textColor="#000000"
+                    android:checked="false"
+                    android:layout_columnWeight="1"
+                    />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ปลา"
+                    android:id="@+id/fishRadioButton"
+                    android:textColor="#000000"
+                    android:checked="false"
+                    android:layout_columnWeight="1"
+                    />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="กุ้ง"
+                    android:id="@+id/shrimpRadioButton"
+                    android:textColor="#000000"
+                    android:checked="false"
+                    android:layout_columnWeight="1"
+                    />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="หมึก"
+                    android:id="@+id/sqiudRadioButton"
+                    android:textColor="#000000"
+                    android:checked="false"
+                    android:layout_columnWeight="1"
+                    />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ไข่"
+                    android:id="@+id/eggRadioButton"
+                    android:textColor="#000000"
+                    android:checked="false"
+                    android:layout_columnWeight="1"
+                    />
+
+
+            </GridLayout>
+
+            <TextView
+                android:id="@+id/selectSideIngredientText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_from_sides"
+                android:layout_marginTop="@dimen/margin_from_top"
+                android:text="เลือกวัตถุดิบเสริม"
+                android:textColor="#000000"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000"
+                android:layout_marginLeft="@dimen/margin_from_sides"
+                android:layout_marginRight="@dimen/margin_from_sides">
+
+            </View>
+
+            <TextView
+                android:id="@+id/rootSideText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_subCat_sideIng"
+                android:layout_marginTop="@dimen/margin_from_top"
+                android:text="เลือกวัตถุดิบเสริม"
+                android:textColor="#000000"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000000"
+                android:layout_marginLeft="@dimen/margin_from_sides"
+                android:layout_marginRight="@dimen/margin_from_sides">
+
+            </View>
+
+        </LinearLayout>
+
+    </ScrollView>
 </FrameLayout>

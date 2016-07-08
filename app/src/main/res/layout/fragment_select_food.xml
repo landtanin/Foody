@@ -2,13 +2,14 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".searchPage.SelectFoodFragment"
-             android:background="#00ff00">
+             tools:context=".searchPage.selectFoodFragment"
+             >
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_test01"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/tabbar_height"
         android:scrollbars="vertical"/>
 
 
