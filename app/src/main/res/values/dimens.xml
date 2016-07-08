@@ -19,7 +19,9 @@
     <dimen name="tabbar_height_x2">40dp</dimen>
     <dimen name="button_size_small">32dp</dimen>
     <dimen name="button_size_medium">40dp</dimen>
-    <dimen name="button_size_large">48dp</dimen>
+    <dimen name="button_width_size_medium">150dp</dimen>
+
+    <dimen name="button_size_large">60dp</dimen>
 
     <dimen name="button_padding">8dp</dimen>
 
@@ -31,14 +33,17 @@
     <dimen name="margin_from_bottom">40dp</dimen>
     <dimen name="margin_from_sides">20dp</dimen>
 
-    <dimen name="margin_from_top_searchIng">96dp</dimen>
+    <dimen name="margin_from_top_searchIng">76dp</dimen>
     <dimen name="margin_subCat_sideIng">40dp</dimen>
 
     <dimen name="home_banner_height">150dp</dimen>
 
-    <dimen name="header1_font_size">20dp</dimen>
-    <dimen name="header2_font_size">15dp</dimen>
+    <dimen name="header1_font_size">29dp</dimen>
+    <dimen name="header2_font_size">25dp</dimen>
+    <dimen name="radio_font_size">20dp</dimen>
 
     <dimen name="margin_food_type_radios">20dp</dimen>
+
+    <dimen name="line_width">0.5dp</dimen>
 
 </resources>

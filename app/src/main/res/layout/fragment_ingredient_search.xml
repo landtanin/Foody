@@ -2,6 +2,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+             android:background="#ffffff"
              tools:context="com.appdever.foody.searchPage.ingredientSearchFragment"
     >
 
@@ -32,7 +33,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/line_width"
                 android:background="#000000"
                 android:layout_marginLeft="@dimen/margin_from_sides"
                 android:layout_marginRight="@dimen/margin_from_sides">
@@ -47,18 +48,22 @@
                 android:useDefaultMargins="true"
                 android:layout_marginLeft="@dimen/margin_food_type_radios"
                 android:padding="@dimen/button_padding"
+
                 >
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="หมู"
+                    android:textSize="@dimen/radio_font_size"
                     android:id="@+id/pigRadioButton"
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
+                    android:buttonTint="@color/colorPrimary"
                     />
                 <RadioButton
+                    android:textSize="@dimen/radio_font_size"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ไก่"
@@ -66,8 +71,11 @@
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
+                    android:buttonTint="@color/colorPrimary"
                     />
                 <RadioButton
+                    android:buttonTint="@color/colorPrimary"
+                    android:textSize="@dimen/radio_font_size"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="เนื้อ"
@@ -78,6 +86,7 @@
                     />
 
                 <RadioButton
+                    android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ปลา"
@@ -85,9 +94,10 @@
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
-                    />
+                    android:textSize="@dimen/radio_font_size"/>
 
                 <RadioButton
+                    android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="กุ้ง"
@@ -95,9 +105,10 @@
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
-                    />
+                    android:textSize="@dimen/radio_font_size"/>
 
                 <RadioButton
+                    android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="หมึก"
@@ -105,9 +116,10 @@
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
-                    />
+                    android:textSize="@dimen/radio_font_size"/>
 
                 <RadioButton
+                    android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ไข่"
@@ -115,7 +127,7 @@
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
-                    />
+                    android:textSize="@dimen/radio_font_size"/>
 
 
             </GridLayout>
@@ -132,7 +144,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/line_width"
                 android:background="#000000"
                 android:layout_marginLeft="@dimen/margin_from_sides"
                 android:layout_marginRight="@dimen/margin_from_sides">
@@ -151,7 +163,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/line_width"
                 android:background="#000000"
                 android:layout_marginLeft="@dimen/margin_subCat_sideIng"
                 android:layout_marginRight="@dimen/margin_from_sides">
@@ -169,6 +181,7 @@
                 >
 
                 <RadioButton
+                    android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="แครอท"
@@ -176,9 +189,10 @@
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
-                    />
+                    android:textSize="@dimen/radio_font_size"/>
 
                 <RadioButton
+                    android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="เผือก"
@@ -186,9 +200,10 @@
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
-                    />
+                    android:textSize="@dimen/radio_font_size"/>
 
                 <RadioButton
+                    android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="โสม"
@@ -196,9 +211,10 @@
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
-                    />
+                    android:textSize="@dimen/radio_font_size"/>
 
             </GridLayout>
+
 
 
             <TextView
@@ -213,7 +229,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/line_width"
                 android:background="#000000"
                 android:layout_marginLeft="@dimen/margin_subCat_sideIng"
                 android:layout_marginRight="@dimen/margin_from_sides">
@@ -231,6 +247,7 @@
                 >
 
                 <RadioButton
+                    android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ต้น1"
@@ -238,9 +255,10 @@
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
-                    />
+                    android:textSize="@dimen/radio_font_size"/>
 
                 <RadioButton
+                    android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ต้น2"
@@ -248,9 +266,10 @@
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
-                    />
+                    android:textSize="@dimen/radio_font_size"/>
 
                 <RadioButton
+                    android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ต้น3"
@@ -258,7 +277,7 @@
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
-                    />
+                    android:textSize="@dimen/radio_font_size"/>
 
             </GridLayout>
 
@@ -274,7 +293,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/line_width"
                 android:background="#000000"
                 android:layout_marginLeft="@dimen/margin_subCat_sideIng"
                 android:layout_marginRight="@dimen/margin_from_sides">
@@ -292,6 +311,7 @@
                 >
 
                 <RadioButton
+                    android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ใบ1"
@@ -299,9 +319,10 @@
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
-                    />
+                    android:textSize="@dimen/radio_font_size"/>
 
                 <RadioButton
+                    android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ใบ2"
@@ -309,9 +330,10 @@
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
-                    />
+                    android:textSize="@dimen/radio_font_size"/>
 
                 <RadioButton
+                    android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ใบ3"
@@ -319,7 +341,7 @@
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
-                    />
+                    android:textSize="@dimen/radio_font_size"/>
 
             </GridLayout>
 
@@ -335,7 +357,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/line_width"
                 android:background="#000000"
                 android:layout_marginLeft="@dimen/margin_subCat_sideIng"
                 android:layout_marginRight="@dimen/margin_from_sides">
@@ -353,6 +375,7 @@
                 >
 
                 <RadioButton
+                    android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ดอก1"
@@ -360,9 +383,10 @@
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
-                    />
+                    android:textSize="@dimen/radio_font_size"/>
 
                 <RadioButton
+                    android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ดอก2"
@@ -370,9 +394,10 @@
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
-                    />
+                    android:textSize="@dimen/radio_font_size"/>
 
                 <RadioButton
+                    android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ดอก3"
@@ -380,7 +405,7 @@
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
-                    />
+                    android:textSize="@dimen/radio_font_size"/>
 
             </GridLayout>
 
@@ -396,7 +421,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/line_width"
                 android:background="#000000"
                 android:layout_marginLeft="@dimen/margin_subCat_sideIng"
                 android:layout_marginRight="@dimen/margin_from_sides">
@@ -414,6 +439,7 @@
                 >
 
                 <RadioButton
+                    android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ผล1"
@@ -421,9 +447,10 @@
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
-                    />
+                    android:textSize="@dimen/radio_font_size"/>
 
                 <RadioButton
+                    android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ผล2"
@@ -431,9 +458,10 @@
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
-                    />
+                    android:textSize="@dimen/radio_font_size"/>
 
                 <RadioButton
+                    android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ผล3"
@@ -441,7 +469,7 @@
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
-                    />
+                    android:textSize="@dimen/radio_font_size"/>
 
             </GridLayout>
 
@@ -457,21 +485,32 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/line_width"
                 android:background="#000000"
                 android:layout_marginLeft="@dimen/margin_subCat_sideIng"
                 android:layout_marginRight="@dimen/margin_from_sides">
 
             </View>
 
+
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="@dimen/margin_subCat_sideIng"
-                android:background="#ffffff"
+                android:background="@drawable/other_text_file"
                 android:layout_marginTop="@dimen/margin_food_type_radios"
-                android:lines="4"/>
+                android:lines="5"
+                />
+            <Button
+                android:layout_width="@dimen/button_width_size_medium"
+                android:layout_height="@dimen/button_size_large"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_food_type_radios"
+                android:layout_marginBottom="@dimen/margin_food_type_radios"
+                android:textSize="@dimen/radio_font_size"
+                android:text="ค้นหา"/>
 
         </LinearLayout>
 
