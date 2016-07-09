@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.appdever.foody.R;
 
@@ -26,6 +29,7 @@ public class RandomFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private ImageButton button;
 
     private OnFragmentInteractionListener mListener;
 
@@ -57,6 +61,8 @@ public class RandomFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
@@ -64,7 +70,21 @@ public class RandomFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.fragment_random, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_random, container, false);
+
+        button = (ImageButton) rootView.findViewById(R.id.imageButton);
+
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Toast.makeText(getContext(),
+                        "Button is clicked", Toast.LENGTH_LONG).show();
+
+            }
+        });
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
