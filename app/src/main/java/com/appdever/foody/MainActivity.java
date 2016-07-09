@@ -5,15 +5,13 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.appdever.foody.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button signUpButton, loginButton;
-    TextView skipText;
+//    private Button signUpButton, loginButton;
+//    TextView skipText;
 
     ActivityMainBinding binding;
 
@@ -21,9 +19,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
-
 
 //        bindWidget();
 
@@ -67,12 +63,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-    private void bindWidget() {
-
-        signUpButton = (Button) findViewById(R.id.signUpButton);
-        loginButton = (Button) findViewById(R.id.loginButton);
-        skipText=(TextView) findViewById(R.id.skipText);
-
-    }
+//
+//    private void bindWidget() {
+//
+//        signUpButton = (Button) findViewById(R.id.signUpButton);
+//        loginButton = (Button) findViewById(R.id.loginButton);
+//        skipText=(TextView) findViewById(R.id.skipText);
+//
+//    }
 }

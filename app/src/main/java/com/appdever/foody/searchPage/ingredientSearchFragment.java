@@ -1,12 +1,15 @@
 package com.appdever.foody.searchPage;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.appdever.foody.R;
+import com.appdever.foody.databinding.FragmentIngredientSearchBinding;
 
 ///**
 // * A simple {@link Fragment} subclass.
@@ -30,9 +33,10 @@ public class ingredientSearchFragment extends Fragment {
 //    private OnFragmentInteractionListener mListener;
 
 
-    private DeselectableRadioButton pigRadioButton, chickenRadioButton, cowRadioButton,
-            fishRadioButton, shrimpRadioButton, squidRadioButton, eggRadioButton;
+//    private DeselectableRadioButton pigRadioButton, chickenRadioButton, cowRadioButton,
+//            fishRadioButton, shrimpRadioButton, squidRadioButton, eggRadioButton;
 
+    FragmentIngredientSearchBinding binding;
 
     public ingredientSearchFragment() {
         // Required empty public constructor
@@ -70,13 +74,24 @@ public class ingredientSearchFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View rootView = inflater.inflate(R.layout.fragment_ingredient_search, container, false);
+        FragmentIngredientSearchBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_ingredient_search, container, false);
 
-        pigRadioButton = (DeselectableRadioButton) rootView.findViewById(R.id.pigRadioButton);
-        chickenRadioButton = (DeselectableRadioButton) rootView.findViewById(R.id.chickenRadioButton);
-        cowRadioButton = (DeselectableRadioButton) rootView.findViewById(R.id.cowRadioButton);
-        fishRadioButton = (DeselectableRadioButton) rootView.findViewById(R.id.fishRadioButton);
-        shrimpRadioButton = (DeselectableRadioButton) rootView.findViewById(R.id.fishRadioButton);
+        final View rootView = binding.getRoot();
+
+//        pigRadioButton = (DeselectableRadioButton) rootView.findViewById(R.id.pigRadioButton);
+//        chickenRadioButton = (DeselectableRadioButton) rootView.findViewById(R.id.chickenRadioButton);
+//        cowRadioButton = (DeselectableRadioButton) rootView.findViewById(R.id.cowRadioButton);
+//        fishRadioButton = (DeselectableRadioButton) rootView.findViewById(R.id.fishRadioButton);
+//        shrimpRadioButton = (DeselectableRadioButton) rootView.findViewById(R.id.fishRadioButton);
+
+        binding.pigRadioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getContext(), "test", Toast.LENGTH_LONG).show();
+
+            }
+        });
 
         return rootView;
     }
