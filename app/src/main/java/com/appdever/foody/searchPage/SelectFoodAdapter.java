@@ -1,11 +1,14 @@
 package com.appdever.foody.searchPage;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.appdever.foody.R;
@@ -24,6 +27,7 @@ public class SelectFoodAdapter extends RecyclerView.Adapter<SelectFoodAdapter.Se
     public static class SelectFoodViewHolder extends RecyclerView.ViewHolder {
         TextView tvTitle,tvSubTitle;
         ImageView imgTitle;
+        RelativeLayout btnMenuType;
 
 
         SelectFoodViewHolder(View itemView) {
@@ -31,6 +35,7 @@ public class SelectFoodAdapter extends RecyclerView.Adapter<SelectFoodAdapter.Se
             tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
             tvSubTitle = (TextView) itemView.findViewById(R.id.tvSubTitle);
             imgTitle = (ImageView) itemView.findViewById(R.id.imgTitle);
+            btnMenuType = (RelativeLayout) itemView.findViewById(R.id.btnMenuType);
         }
 
     }
@@ -59,7 +64,16 @@ public class SelectFoodAdapter extends RecyclerView.Adapter<SelectFoodAdapter.Se
         Glide.with(context).load(dataSelectFood.getImgTitle()).placeholder(R.drawable.banner_02).error(R.drawable.banner_app).into(holder.imgTitle);
 
 
+       holder.btnMenuType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context,EnterSearchActivity.class));
+            }
+        });
+
     }
+
+
 
 
 

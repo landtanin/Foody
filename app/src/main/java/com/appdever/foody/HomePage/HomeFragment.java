@@ -60,11 +60,11 @@ public class HomeFragment extends Fragment {
         display.getSize(size);
 
 //        Toast start
-        int width = size.x;
-        int height = size.y;
-
-        Toast.makeText(getActivity(),"Width =" + width +",Height"+ height,
-                Toast.LENGTH_SHORT).show();
+//        int width = size.x;
+//        int height = size.y;
+//
+//        Toast.makeText(getActivity(),"Width =" + width +",Height"+ height,
+//                Toast.LENGTH_SHORT).show();
 //       Toast end
 
 
@@ -81,7 +81,7 @@ public class HomeFragment extends Fragment {
         }
 
         recyclerAdapter.notifyDataSetChanged();
-        Log.e("Kasira", String.valueOf(recyclerAdapter.getItemCount()));
+//        Log.e("Kasira", String.valueOf(recyclerAdapter.getItemCount()));
 
         return rootView;
     }
