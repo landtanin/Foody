@@ -505,6 +505,7 @@
                 android:background="@drawable/other_text_file"
                 android:layout_marginTop="@dimen/margin_food_type_radios"
                 android:lines="5"
+                android:textColor="#000000"
                 />
             <Button
                 android:layout_width="@dimen/button_width_size_medium"
@@ -513,7 +514,8 @@
                 android:layout_marginTop="@dimen/margin_food_type_radios"
                 android:layout_marginBottom="@dimen/margin_food_type_radios"
                 android:textSize="@dimen/radio_font_size"
-                android:text="ค้นหา"/>
+                android:text="ค้นหา"
+                android:id="@+id/searchButton"/>
 
         </LinearLayout>
 

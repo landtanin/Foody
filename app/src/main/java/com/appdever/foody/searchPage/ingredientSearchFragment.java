@@ -1,5 +1,6 @@
 package com.appdever.foody.searchPage;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -89,6 +90,18 @@ public class ingredientSearchFragment extends Fragment {
             public void onClick(View v) {
 
                 Toast.makeText(getContext(), "test", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        binding.searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent objIntent = new Intent(rootView.getContext(), EnterSearchActivity.class);
+//                objIntent.putExtra("user", pilotName);
+                startActivity(objIntent);
+
 
             }
         });

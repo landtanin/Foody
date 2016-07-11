@@ -18,8 +18,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.appdever.foody.HomePage.HomeFragment;
-import com.appdever.foody.randomPage.RandomFragment;
+import com.appdever.foody.addMenuPage.addMenuFragment;
 import com.appdever.foody.manager.SmartFragmentStatePagerAdapter;
+import com.appdever.foody.randomPage.RandomFragment;
 import com.appdever.foody.searchPage.SearchFragment;
 
 public class HomeActivity extends AppCompatActivity {
@@ -188,7 +189,7 @@ public class HomeActivity extends AppCompatActivity {
                     return HomeFragment.newInstance();
 
                 case createMenuFragment:
-                    return HomeFragment.newInstance();
+                    return addMenuFragment.newInstance();
 
 
                 case randomFragment:
