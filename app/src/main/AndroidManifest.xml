@@ -31,7 +31,7 @@
             android:name=".editProfileActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".HomeActivity"/>
-        <activity android:name=".searchPage.EnterSearchActivity">
+        <activity android:name=".searchPage.enterSearch.EnterSearchActivity">
         </activity>
     </application>
 

@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<FrameLayout
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".searchPage.enterSearch.EnterSearchActivity">
+<LinearLayout
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#ffffff"
-    tools:context="com.appdever.foody.searchPage.EnterSearchActivity">
+    android:orientation="vertical"
+    >
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -15,23 +18,43 @@
         android:layout_height="?actionBarSize"
         android:background="@color/colorPrimary"
         app:layout_scrollFlags="snap|enterAlways"
-        android:textAlignment="center"
-        />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:textAlignment="center">
         <LinearLayout
-            android:orientation="vertical"
+            android:id="@+id/enter_search_topbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="?actionBarSize"
+            android:orientation="horizontal"
+            android:animateLayoutChanges="true">
+
+            <TextView
+                android:id="@+id/txtPageName"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/spinner_title"
+                android:gravity="center"
+                android:textColor="@color/colorFontTitle"
+                android:textSize="@dimen/text_big"
+                fontPath="fonts/ThaiSansNeue-Bold.ttf"
+                android:layout_weight="1"
+                tools:ignore="MissingPrefix" />
 
 
         </LinearLayout>
+    </android.support.design.widget.AppBarLayout>
 
-    </ScrollView>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spinner_text_size"
+        android:id="@+id/enter_search_spinner"
+        android:backgroundTint="@color/cardview_dark_background"
+        android:layout_marginTop="10dp"
+        />
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_enter_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"/>
 
-
-</FrameLayout>
+</LinearLayout>
+</layout>

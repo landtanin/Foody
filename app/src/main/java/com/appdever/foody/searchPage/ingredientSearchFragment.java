@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.appdever.foody.R;
 import com.appdever.foody.databinding.FragmentIngredientSearchBinding;
+import com.appdever.foody.searchPage.enterSearch.EnterSearchActivity;
 
 ///**
 // * A simple {@link Fragment} subclass.

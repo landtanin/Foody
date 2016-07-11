@@ -6,9 +6,16 @@
     <string name="page_random">Random</string>
     <string name="page_search">Search</string>
 
+    <string name="spinner_title">เลือกประเภทอาหาร</string>
+
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Close</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="hard_code_menus">
+        <item>ต้ม</item>
+        <item>ทอด</item>
+        <item>ปิ้ง</item>
+        <item>ย่าง</item>
+    </string-array>
+
 </resources>
