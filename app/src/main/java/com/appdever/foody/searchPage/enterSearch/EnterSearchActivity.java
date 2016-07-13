@@ -126,7 +126,7 @@ public class EnterSearchActivity extends AppCompatActivity implements AdapterVie
                                 strCookingMethod = ID_food.getString("cooking_method");
                                 strImg = ID_food.getString("img");
 
-                                newsList.add(new EnterSearchMenu(strNameFood));
+                                newsList.add(new EnterSearchMenu(strNameFood,strImg));
 
                             }
 

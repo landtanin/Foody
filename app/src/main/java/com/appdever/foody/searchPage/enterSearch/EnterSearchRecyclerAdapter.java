@@ -5,9 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.appdever.foody.R;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -37,6 +39,8 @@ public class EnterSearchRecyclerAdapter extends RecyclerView.Adapter<EnterSearch
 
         EnterSearchMenu enterSearchMenu = newList.get(position);
         holder.myMenu.setText(enterSearchMenu.getMyMenu());
+        Glide.with(context).load(enterSearchMenu.getMenuImage()).placeholder(R.drawable.home).into(holder.menuImage);
+
     }
 
     @Override
@@ -47,10 +51,11 @@ public class EnterSearchRecyclerAdapter extends RecyclerView.Adapter<EnterSearch
 
     public static class RecyclerViewHolder extends RecyclerView.ViewHolder {
         TextView myMenu;
-
+        ImageView menuImage;
         RecyclerViewHolder(View itemView) {
             super(itemView);
             myMenu = (TextView) itemView.findViewById(R.id.enter_search_row_txt);
+            menuImage = (ImageView) itemView.findViewById(R.id.enter_search_row_img);
         }
     }
 }
