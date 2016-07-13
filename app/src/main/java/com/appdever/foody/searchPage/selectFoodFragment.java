@@ -49,29 +49,24 @@ public class selectFoodFragment extends Fragment {
 //        rv.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         rv.setHasFixedSize(true);
 
-        DataSelectFood selectStir = new DataSelectFood(R.drawable.type_stir,"ประเภทผัด","1");
-        DataSelectFood selectCurry = new DataSelectFood(R.drawable.type_curry,"ประเภทแกง","2");
-        DataSelectFood selectFry = new DataSelectFood(R.drawable.type_fry,"ประเภททอด","3");
-        DataSelectFood selectGrill = new DataSelectFood(R.drawable.type_grill,"ประเภทย่าง,","4");
-        DataSelectFood selectBoil = new DataSelectFood(R.drawable.type_boil,"ประเภทต้ม","5");
-        DataSelectFood selectThaiSalad = new DataSelectFood(R.drawable.type_thai_salad,"ประเภทยำ","6");
-        DataSelectFood selectSalad = new DataSelectFood(R.drawable.type_salad,"ประเภทสลัด","7");
-        DataSelectFood selectSteam = new DataSelectFood(R.drawable.type_steam,"ประเภทนึ่ง","8");
+        DataSelectFood selectBoil = new DataSelectFood(R.drawable.type_boil,"ต้ม",1);
+        DataSelectFood selectStir = new DataSelectFood(R.drawable.type_stir,"ผัด",2);
+        DataSelectFood selectCurry = new DataSelectFood(R.drawable.type_curry,"แกง",3);
+        DataSelectFood selectFry = new DataSelectFood(R.drawable.type_fry,"ทอด",4);
+        DataSelectFood selectSteam = new DataSelectFood(R.drawable.type_steam,"นึ่ง",5);
+        DataSelectFood selectGrill = new DataSelectFood(R.drawable.type_grill,"ย่าง,",6);
+        DataSelectFood selectSalad = new DataSelectFood(R.drawable.type_salad,"สลัด-ยำ",7);
 
-
+        selectFoodList.add(selectBoil);
         selectFoodList.add(selectStir);
         selectFoodList.add(selectCurry);
         selectFoodList.add(selectFry);
-        selectFoodList.add(selectGrill);
-        selectFoodList.add(selectBoil);
-        selectFoodList.add(selectThaiSalad);
-        selectFoodList.add(selectSalad);
         selectFoodList.add(selectSteam);
-
+        selectFoodList.add(selectGrill);
+        selectFoodList.add(selectSalad);
 
         selectFoodAdapter.notifyDataSetChanged();
         Log.e("Kasira", String.valueOf(selectFoodAdapter.getItemCount()));
-
 
         return rootview;
     }

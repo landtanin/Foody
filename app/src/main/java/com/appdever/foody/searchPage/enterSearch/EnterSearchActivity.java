@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,11 +15,19 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appdever.foody.JSONObtained;
+import com.appdever.foody.KeyStore;
 import com.appdever.foody.R;
 import com.appdever.foody.databinding.ActivityEnterSearchBinding;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.HttpUrl;
+import okhttp3.Response;
 
 public class EnterSearchActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
@@ -63,6 +72,35 @@ public class EnterSearchActivity extends AppCompatActivity implements AdapterVie
         for (int i=0; i < 20; i++){
             newsList.add(new EnterSearchMenu("Test"));
         }
+
+
+        connectDatabase();
+
+    }
+
+    private void connectDatabase() {
+
+//        Request request = new Request.Builder().url(JSONObtained.getAbsoluteUrl("food.php" + "?type=ย่าง")).build();
+// optional
+        int getSendKey = getIntent().getExtras().getInt(KeyStore.SELECT_FOOD_SEND_KEY);
+
+        HttpUrl myurl = HttpUrl.parse(JSONObtained.getAbsoluteUrl("food.php")).newBuilder().addQueryParameter("id_typefood", String.valueOf(getSendKey)).build();
+
+        JSONObtained.getInstance().newCall(JSONObtained.getRequest(myurl)).enqueue(new Callback() {
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.d("eeeeee", e.getLocalizedMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.d("xxxxxx", response.body().string());
+            }
+        });
+
+
+
     }
 
     @Override

@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.appdever.foody.KeyStore;
 import com.appdever.foody.R;
 import com.appdever.foody.searchPage.enterSearch.EnterSearchActivity;
 import com.bumptech.glide.Glide;
@@ -33,7 +34,7 @@ public class SelectFoodAdapter extends RecyclerView.Adapter<SelectFoodAdapter.Se
         SelectFoodViewHolder(View itemView) {
             super(itemView);
             tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
-            tvSubTitle = (TextView) itemView.findViewById(R.id.tvSubTitle);
+//            tvSubTitle = (TextView) itemView.findViewById(R.id.tvSubTitle);
             imgTitle = (ImageView) itemView.findViewById(R.id.imgTitle);
             btnMenuType = (RelativeLayout) itemView.findViewById(R.id.btnMenuType);
         }
@@ -59,22 +60,21 @@ public class SelectFoodAdapter extends RecyclerView.Adapter<SelectFoodAdapter.Se
 
 
       DataSelectFood dataSelectFood = selectFoodList.get(position);
-        holder.tvTitle.setText(dataSelectFood.getTvTitle());
-        holder.tvSubTitle.setText(dataSelectFood.getTvSubTitle());
+        holder.tvTitle.setText("ประเภท"+dataSelectFood.getTvTitle());
+//        holder.tvSubTitle.setText(dataSelectFood.getTvSubTitle());
         Glide.with(context).load(dataSelectFood.getImgTitle()).placeholder(R.drawable.banner_02).error(R.drawable.banner_app).into(holder.imgTitle);
+
+        final int sendKey = dataSelectFood.getIdFood();
 
 
        holder.btnMenuType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context,EnterSearchActivity.class));
+                context.startActivity(new Intent(context,EnterSearchActivity.class).putExtra(KeyStore.SELECT_FOOD_SEND_KEY,sendKey));
             }
         });
 
     }
-
-
-
 
 
     @Override
