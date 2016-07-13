@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="#41303030"
+        android:textColor="#f7751e"
+        android:id="@+id/field"
+        android:layout_weight="80"
+        android:imeOptions="actionNext"
+        android:singleLine="true"/>
+    <ImageButton
+        android:layout_marginTop="10dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/trash"
+        android:id="@+id/delete_field"
+        android:layout_weight=".5"/>
+
+
+
+</LinearLayout>
+
