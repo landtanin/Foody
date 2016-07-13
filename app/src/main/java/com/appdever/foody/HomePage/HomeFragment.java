@@ -1,17 +1,17 @@
 package com.appdever.foody.HomePage;
 
+import android.content.Context;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.appdever.foody.R;
 
@@ -31,11 +31,17 @@ public class HomeFragment extends Fragment {
     private RecyclerAdapter recyclerAdapter;
     List<DataTest01> newsList=new ArrayList<>();
 
-    private ImageView homeFoodBanner;
+    private ImageView homeFoodBanner,homeFoodBanner2;
+
+    private static final int SWIPE_MIN_DISTANCE = 120;
+    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+    private Context mContext;
+    private ViewFlipper mViewFlipper;
+//    private final GestureDetector detector = new GestureDetector(new SwipeGestureDetector());
+
 
     public HomeFragment() {
     }
-
 
 
     public static HomeFragment newInstance() {
@@ -53,6 +59,23 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+
+        //-----------------------------------------------------------------------
+
+        mContext = getContext();
+        mViewFlipper = (ViewFlipper) rootView.findViewById(R.id.view_flipper);
+//        mViewFlipper.setInAnimation(getContext(),android.R.anim.slide_in_left);
+//        mViewFlipper.setOutAnimation(getContext(),R.animator.my_duration);
+
+//        mViewFlipper.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(final View view, final MotionEvent event) {
+//                detector.onTouchEvent(event);
+//                return true;
+//            }
+//        });
+
+        //-----------------------------------------------------------------------
 
 
         Display display = getActivity().getWindowManager().getDefaultDisplay();
@@ -110,8 +133,35 @@ public class HomeFragment extends Fragment {
         super.onStart();
 
         homeFoodBanner = (ImageView) getView().findViewById(R.id.homeFoodBanner);
-
+        homeFoodBanner2 = (ImageView) getView().findViewById(R.id.homeFoodBanner2);
         homeFoodBanner.setImageResource(R.drawable.bannertest);
+        homeFoodBanner2.setImageResource(R.drawable.m2);
+
 
     }
+//
+//    class SwipeGestureDetector extends GestureDetector.SimpleOnGestureListener {
+//        @Override
+//        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+//            try {
+//                // right to left swipe
+//                if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+//                    mViewFlipper.setInAnimation(AnimationUtils.loadAnimation(mContext, R.anim.left_in));
+//                    mViewFlipper.setOutAnimation(AnimationUtils.loadAnimation(mContext, R.anim.left_out));
+//                    mViewFlipper.showNext();
+//                    return true;
+//                } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+//                    mViewFlipper.setInAnimation(AnimationUtils.loadAnimation(mContext, R.anim.right_in));
+//                    mViewFlipper.setOutAnimation(AnimationUtils.loadAnimation(mContext,R.anim.right_out));
+//                    mViewFlipper.showPrevious();
+//                    return true;
+//                }
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//
+//            return false;
+//        }
+//    }
 }
