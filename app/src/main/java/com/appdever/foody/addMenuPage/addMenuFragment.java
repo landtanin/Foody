@@ -18,6 +18,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -31,12 +33,15 @@ import com.appdever.foody.R;
 //import com.isseiaoki.simplecropview.CropImageView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.FormBody;
@@ -87,13 +92,47 @@ public class addMenuFragment extends Fragment {
 
     }
 
+    private List<String> matt = new ArrayList<String>();
+
+    void getmaterial() {
+        getHttp http = new getHttp();
+        String response = null;
+        try {
+            response = http.run("http://foodyth.azurewebsites.net/testAPI/getmaterial.php");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        try {
+            JSONArray data = new JSONArray(response);
+
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject c = null;
+                c = data.getJSONObject(i);
+
+                matt.add(c.getString("name_material"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootview = inflater.inflate(R.layout.fragment_add_menu, container, false);
 
+        getmaterial();
 
         setviewid(rootview);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line, matt);
+        AutoCompleteTextView textView = (AutoCompleteTextView)
+                rootview.findViewById(R.id.material_field);
+        textView.setAdapter(adapter);
+
+
+
 
         selectimage.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -117,7 +156,9 @@ public class addMenuFragment extends Fragment {
                 LayoutInflater layoutInflater =
                         (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 final View addView = layoutInflater.inflate(R.layout.addmenu_row, null);
-                final EditText field = (EditText)addView.findViewById(R.id.field);
+                final AutoCompleteTextView field = (AutoCompleteTextView)addView.findViewById(R.id.field);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line, matt);
+                field.setAdapter(adapter);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     field.setId(View.generateViewId());
@@ -269,6 +310,7 @@ public class addMenuFragment extends Fragment {
             loading.dismiss();
             Toast.makeText(getActivity().getApplicationContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     public class postHttp {
@@ -278,6 +320,17 @@ public class addMenuFragment extends Fragment {
             Request request = new Request.Builder()
                     .url(url)
                     .post(body)
+                    .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }
+    }
+    public class getHttp {
+        OkHttpClient client = new OkHttpClient();
+
+        String run(String url) throws IOException {
+            Request request = new Request.Builder()
+                    .url(url)
                     .build();
             Response response = client.newCall(request).execute();
             return response.body().string();
