@@ -126,6 +126,7 @@ public class EnterSearchActivity extends AppCompatActivity implements AdapterVie
                                 strCookingMethod = ID_food.getString("cooking_method");
                                 strImg = ID_food.getString("img");
 
+                                // update data to ArrayList in recycler adapter
                                 newsList.add(new EnterSearchMenu(strNameFood,strImg));
 
                             }
@@ -207,7 +208,6 @@ public class EnterSearchActivity extends AppCompatActivity implements AdapterVie
 ////            strError = c.getString("Error");
 //
 //                } catch (JSONException e) {
-//                    // TODO Auto-generated catch block
 //                    e.printStackTrace();
 //                }
 //
