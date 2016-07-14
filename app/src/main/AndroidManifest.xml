@@ -33,6 +33,8 @@
         <activity android:name=".HomeActivity"/>
         <activity android:name=".searchPage.enterSearch.EnterSearchActivity">
         </activity>
+        <activity android:name=".FoodDetailActivity">
+        </activity>
     </application>
 
 </manifest>

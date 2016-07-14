@@ -50,4 +50,6 @@
 
     <dimen name="enter_search_row_height">60dp</dimen>
 
+    <dimen name="main_activity_font_size">18sp</dimen>
+
 </resources>

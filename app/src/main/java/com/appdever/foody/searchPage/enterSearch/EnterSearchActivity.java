@@ -2,24 +2,22 @@ package com.appdever.foody.searchPage.enterSearch;
 
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
-import android.view.Display;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.appdever.foody.JSONObtained;
 import com.appdever.foody.KeyStore;
 import com.appdever.foody.R;
 import com.appdever.foody.databinding.ActivityEnterSearchBinding;
+import com.appdever.foody.manager.JSONObtained;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,7 +39,7 @@ public class EnterSearchActivity extends AppCompatActivity implements AdapterVie
     List<EnterSearchMenu> newsList = new ArrayList<>();
 
     private String resultServer;
-    private String strFoodID = "0";
+    private static String strFoodID = "0";
     private String strFoodTypeID = "0";
     private String strNameFood;
     private String strCookingMethod = "Unknown method";
@@ -55,8 +53,6 @@ public class EnterSearchActivity extends AppCompatActivity implements AdapterVie
 
         binding.enterSearchSpinner.setOnItemSelectedListener(this);
 
-        connectDatabase();
-
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.hard_code_menus, android.R.layout.simple_spinner_item);
 
@@ -64,9 +60,9 @@ public class EnterSearchActivity extends AppCompatActivity implements AdapterVie
 
         binding.enterSearchSpinner.setAdapter(adapter);
 
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
+//        Display display = getWindowManager().getDefaultDisplay();
+//        Point size = new Point();
+//        display.getSize(size);
 
 //        int width = size.x;
 //        int height = size.y;
@@ -78,21 +74,62 @@ public class EnterSearchActivity extends AppCompatActivity implements AdapterVie
         StaggeredGridLayoutManager aaa = new StaggeredGridLayoutManager(1,1);
         rv = (RecyclerView) findViewById(R.id.rv_enter_search);
         rv.setLayoutManager(aaa);
-        recyclerAdapter = new EnterSearchRecyclerAdapter(EnterSearchActivity.this, newsList);
+        recyclerAdapter = new EnterSearchRecyclerAdapter(EnterSearchActivity.this, newsList, new EnterSearchRecyclerAdapter.abc() {
+            @Override
+            public void mySetOnClickListener(int listNumber) {
+                Log.d("ABC", newsList.get(listNumber).getMyMenu());
+            }
+        });
         rv.setAdapter(recyclerAdapter);
 
         rv.setHasFixedSize(true);
-//        for (int i=0; i < 1; i++){
-//
-//        }
 
+        connectDatabase();
+
+//        listActionController();
 
     }
+
+//    private void listActionController() {
+//
+//        if (EnterSearchRecyclerAdapter.ListNumber) {
+//        }
+//
+////        rv.setOnTouchListener(new View.OnTouchListener() {
+////            @Override
+////            public boolean onTouch(View v, MotionEvent event) {
+////                binding.rvEnterSearch.setOnClickListener(new View.OnClickListener() {
+////                    @Override
+////                    public void onClick(View v) {
+////                        Log.d("CHECKKK", );
+////                    }
+////                });
+////            }
+////        });
+//    }
+
+//    public void IntentToDetailActivity() {
+//
+//        Intent objIntent = new Intent(this, FoodDetailActivity.class);
+//        Bundle extras = new Bundle();
+//        extras.putString(KeyStore.FOODID_DETAIL_SEND_KEY,strFoodID);
+//        extras.putString(KeyStore.FOODTYOEID_DETAIL_SEND_KEY,strFoodTypeID);
+//        extras.putString(KeyStore.NAMEFOOD_DETAIL_SEND_KEY,strNameFood);
+//        extras.putString(KeyStore.FOODMETHOD_DETAIL_SEND_KEY,strCookingMethod);
+//        extras.putString(KeyStore.FOODIMG_DETAIL_SEND_KEY,strImg);
+//        objIntent.putExtras(extras);
+//        startActivity(objIntent);
+//
+//    }
 
     private void connectDatabase() {
 
 //        Request request = new Request.Builder().url(JSONObtained.getAbsoluteUrl("food.php" + "?type=ย่าง")).build();
 // optional
+
+//        Bundle bundle=getIntent().getExtras();
+//        int key=bundle.getInt(KeyStore.SELECT_FOOD_SEND_KEY);
+
         int getSendKey = getIntent().getExtras().getInt(KeyStore.SELECT_FOOD_SEND_KEY);
 
         final HttpUrl myurl = HttpUrl.parse(JSONObtained.getAbsoluteUrl("food.php")).newBuilder().addQueryParameter("id_typefood", String.valueOf(getSendKey)).build();
@@ -150,12 +187,7 @@ public class EnterSearchActivity extends AppCompatActivity implements AdapterVie
                 super.onPostExecute(s);
             }
 
-
         }.execute();
-
-
-
-
 
 //        JSONObtained.getInstance().newCall(JSONObtained.getRequest(myurl)).enqueue(new Callback() {
 
@@ -233,6 +265,10 @@ public class EnterSearchActivity extends AppCompatActivity implements AdapterVie
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
+//
+//    @Override
+//    public void recyclerViewListClicked(View v, int position) {
+//
+//    }
 }
 

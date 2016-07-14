@@ -20,10 +20,13 @@ public class EnterSearchRecyclerAdapter extends RecyclerView.Adapter<EnterSearch
 
     private List<EnterSearchMenu> newList;
     Context context;
+    public int ListNumber;
+    abc mAbc;
 
-    public EnterSearchRecyclerAdapter(Context context, List<EnterSearchMenu> newList) {
+    public EnterSearchRecyclerAdapter(Context context, List<EnterSearchMenu> newList, abc mAbc) {
         this.context = context;
         this.newList = newList;
+        this.mAbc = mAbc;
     }
 
     @Override
@@ -35,11 +38,18 @@ public class EnterSearchRecyclerAdapter extends RecyclerView.Adapter<EnterSearch
 
 
     @Override
-    public void onBindViewHolder(RecyclerViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerViewHolder holder, final int position) {
 
         EnterSearchMenu enterSearchMenu = newList.get(position);
         holder.myMenu.setText(enterSearchMenu.getMyMenu());
         Glide.with(context).load(enterSearchMenu.getMenuImage()).placeholder(R.drawable.home).into(holder.menuImage);
+        holder.enterSearchListView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ListNumber = position;
+                mAbc.mySetOnClickListener(position);
+            }
+        });
 
     }
 
@@ -52,10 +62,19 @@ public class EnterSearchRecyclerAdapter extends RecyclerView.Adapter<EnterSearch
     public static class RecyclerViewHolder extends RecyclerView.ViewHolder {
         TextView myMenu;
         ImageView menuImage;
+        View enterSearchListView;
         RecyclerViewHolder(View itemView) {
             super(itemView);
+
+            enterSearchListView = itemView;
+
             myMenu = (TextView) itemView.findViewById(R.id.enter_search_row_txt);
             menuImage = (ImageView) itemView.findViewById(R.id.enter_search_row_img);
         }
     }
+
+    public interface abc{
+        void mySetOnClickListener(int listNumber);
+    }
+
 }
