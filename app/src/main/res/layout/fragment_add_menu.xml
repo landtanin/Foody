@@ -62,6 +62,35 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginLeft="5dp" />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="เกี่ยวกับ"
+                        android:textSize="20dp"
+                        android:textColor="#f7751e"
+                        android:id="@+id/textView2"
+                        android:layout_marginBottom="10dp" />
+
+                    <EditText
+                        android:id="@+id/editText"
+                        android:inputType="textMultiLine"
+                        android:lines="5"
+                        android:minLines="3"
+                        android:gravity="top|left"
+                        android:maxLines="10"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:scrollbars="vertical"
+                        android:background="#41303030"
+                        android:textColor="#f7751e" />
+                </LinearLayout>
+
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="200dp"
@@ -69,10 +98,10 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
                         android:text="วัตถุดิบ"
                         android:textSize="20dp"
-                        android:textColor="#f7751e" />
+                        android:textColor="#f7751e"
+                        android:layout_marginTop="10dp" />
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/material_layout"
@@ -84,13 +113,28 @@
                         android:background="#41303030"
                         android:textColor="#f7751e"
                         android:id="@+id/material_field"
-                        android:layout_weight=".99"
+                        android:layout_weight=".55"
                         android:imeOptions="actionNext"
                         android:singleLine="true" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_weight=".05" />
+
+                    <AutoCompleteTextView
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/autoCompleteTextView"
+                        android:background="#41303030"
+                        android:textColor="#f7751e"
+                        android:layout_weight=".3"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"/>
+
                     <ImageButton
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:layout_weight=".01"
                         android:id="@+id/deletefield_button_"
                         android:background="#00ffffff" />
 

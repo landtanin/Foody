@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import com.appdever.foody.HomeActivity;
 import com.appdever.foody.R;
+import com.squareup.picasso.Picasso;
 //import com.isseiaoki.simplecropview.CropImageView;
 
 import org.json.JSONArray;
@@ -148,6 +149,7 @@ public class addMenuFragment extends Fragment {
                 //mCropView.setImageResource(R.drawable.sample5);
                 //}
 
+
             }});
 
 
@@ -233,8 +235,11 @@ public class addMenuFragment extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            image_food = Bitmap.createScaledBitmap(getImage,(int)(getImage.getWidth()*0.1), (int)(getImage.getHeight()*0.1), true);
-            selectimage.setImageBitmap(image_food);
+            //image_food = Bitmap.createScaledBitmap(getImage,(int)(getImage.getWidth()*0.1), (int)(getImage.getHeight()*0.1), true);
+            //selectimage.setImageBitmap(image_food);
+            Picasso.with(getContext()).load(image).resize(50, 50)
+                    .centerCrop().into(selectimage);
+
 
         }
     }
@@ -282,7 +287,9 @@ public class addMenuFragment extends Fragment {
             {
                 material_json.put(i);
             }
-
+            //Log.e("namefood", String.valueOf(String.valueOf(namefood)));
+            //Log.e("process", String.valueOf(String.valueOf(process)));
+            //Log.e("encodeImage", String.valueOf(String.valueOf(encodeImage)));
 
             RequestBody formBody = new FormBody.Builder()
                     .add("namefood", namefood)
@@ -293,7 +300,7 @@ public class addMenuFragment extends Fragment {
 
             String response = null;
             try {
-                response = http.run("http://foodyth.azurewebsites.net/testAPI/test.php", formBody);
+                response = http.run("http://foodyth.azurewebsites.net/testAPI/testadd.php", formBody);
                 Log.e("sendd", String.valueOf(String.valueOf(response)));
 
                 return response;
