@@ -1,168 +1,186 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="com.appdever.foody.addMenuPage.addMenuFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.appdever.foody.addMenuPage.addMenuFragment">
 
     <!--&lt;!&ndash; TODO: Update blank fragment layout &ndash;&gt;-->
     <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:text="@string/hello_blank_fragment"/>-->
-
-
-    <RelativeLayout
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:text="@string/hello_blank_fragment"/>-->
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="com.appdever.foody.signupActivity"
-        android:background="#ffffff">
+        android:layout_height="match_parent">
 
 
-
-        <LinearLayout
-            android:orientation="vertical"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            tools:context="com.appdever.foody.signupActivity"
+            android:background="#ffffff">
 
-            <LinearLayout
-                android:layout_width="350dp"
-                android:layout_height="100dp">
 
-                <ImageButton
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/plus_onclick"
-                    android:id="@id/addImageButton"/>
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="20px"
-                    android:layout_weight="2" />
 
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:id="@+id/namefood"
-                    android:layout_marginTop="25dp"
-                    android:layout_weight="15"
-                    android:background="#41303030"
-                    android:textSize="25dp"
-                    android:hint="ชื่ออาหาร"
-                    android:textColor="#f7751e"
-                    />
-            </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="200dp"
-                android:layout_height="50dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:text="วัตถุดิบ"
-                    android:textSize="20dp"
-                    android:textColor="#f7751e" />
-            </LinearLayout>
-            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
-                <EditText
-                    android:layout_width="300dp"
-                    android:layout_height="50dp"
-                    android:background="#41303030"
-                    android:textColor="#f7751e"
-                    android:id="@+id/raw" />
-                <ImageButton
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/trash"
-                    android:id="@+id/bin" />
-            </LinearLayout>
-            <Space
-                android:layout_width="20px"
-                android:layout_height="10dp"
-                android:layout_weight="0.0050" />
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
 
-            <Button
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:scaleType="fitCenter"
-                android:layout_gravity="center_horizontal"
-                android:text="+ เพิ่มวัตถุดิบ"
-                android:textSize="20dp"
-                android:background="#f7751e"
-                android:id="@+id/add" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp">
 
-            <Space
-                android:layout_width="20px"
-                android:layout_height="10dp"
-                android:layout_weight="0.0050" />
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/plus_onclick"
+                        android:id="@+id/addImage_Button"/>
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="20px"
+                        android:layout_weight="2" />
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="200dp"
-                android:layout_height="50dp">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/namefood_field"
+                        android:layout_marginTop="25dp"
+                        android:layout_weight="15"
+                        android:background="#41303030"
+                        android:textSize="25dp"
+                        android:hint="ชื่ออาหาร"
+                        android:textColor="#f7751e"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="5dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:text="วัตถุดิบ"
+                        android:textSize="20dp"
+                        android:textColor="#f7751e" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/material_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <AutoCompleteTextView
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:background="#41303030"
+                        android:textColor="#f7751e"
+                        android:id="@+id/material_field"
+                        android:layout_weight=".99"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true" />
+                    <ImageButton
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_weight=".01"
+                        android:id="@+id/deletefield_button_"
+                        android:background="#00ffffff" />
 
-                <TextView
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:text="วิธีทำ"
-                    android:textSize="20dp"
-                    android:textColor="#f7751e" />
-
-            </LinearLayout>
-
-            <EditText
-                android:layout_width="300dp"
-                android:layout_height="50dp"
-                android:background="#41303030"
-                android:textColor="#f7751e"
-                android:id="@+id/howto" />
-
-
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="275dp"
-                android:layout_height="0dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="0.05"
-                android:layout_marginTop="70dp">
-
-
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/textFieldHeightSignUp"
-                    android:text="ยกเลิก"
-                    android:textSize="15dp"
-                    android:id="@+id/cancelButton"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="50"
-                    android:background="#747676" />
+                    android:id="@+id/addfield_layout"></LinearLayout>
 
                 <Space
-                    android:layout_width="0dp"
-                    android:layout_height="20px"
-                    android:layout_weight="7" />
+                    android:layout_width="20px"
+                    android:layout_height="10dp"
+                    android:layout_weight="0.0050" />
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/textFieldHeightSignUp"
-                    android:text="ตกลง"
-                    android:textSize="15dp"
-                    android:id="@+id/okButton"
+                    android:layout_width="120dp"
+                    android:layout_height="35dp"
+                    android:scaleType="fitCenter"
                     android:layout_gravity="center_horizontal"
-                    android:layout_weight="50"
-                    android:background="#f7751e" />
+                    android:text="+ เพิ่มวัตถุดิบ"
+                    android:background="#f7751e"
+                    android:id="@+id/addmaterial_button" />
+
+
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:text="วิธีทำ"
+                        android:textSize="20dp"
+                        android:textColor="#f7751e" />
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/process_field"
+                    android:inputType="textMultiLine"
+                    android:lines="8"
+                    android:minLines="6"
+                    android:gravity="top|left"
+                    android:maxLines="10"
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:scrollbars="vertical"
+                    android:background="#41303030"
+                    android:textColor="#f7751e"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="275dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="0.05"
+                    android:layout_marginTop="20dp">
+
+
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/textFieldHeightSignUp"
+                        android:text="ยกเลิก"
+                        android:id="@+id/cancel_Button"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="50"
+                        android:background="#747676" />
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="20px"
+                        android:layout_weight="7" />
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/textFieldHeightSignUp"
+                        android:text="ตกลง"
+                        android:id="@+id/ok_Button"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="50"
+                        android:background="#f7751e" />
+                </LinearLayout>
+
             </LinearLayout>
-
-        </LinearLayout>
-    </RelativeLayout>
-
+        </RelativeLayout>
+    </ScrollView>
 
 </FrameLayout>

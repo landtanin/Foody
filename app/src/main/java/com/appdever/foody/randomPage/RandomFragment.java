@@ -1,5 +1,6 @@
 package com.appdever.foody.randomPage;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,13 +14,16 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.appdever.foody.MainActivity;
 import com.appdever.foody.R;
+import com.squareup.picasso.Picasso;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -62,9 +66,9 @@ public class RandomFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private ImageButton button;
-    private Bitmap bitmap;
-    private ProgressDialog pDialog;
     private ImageView img;
+    ProgressDialog pDialog;
+    Bitmap bitmap;
     String strFoodPic = "0";
 
     private OnFragmentInteractionListener mListener;
@@ -113,6 +117,7 @@ public class RandomFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_random, container, false);
 
         button = (ImageButton) rootView.findViewById(R.id.imageButton);
+        img = (ImageView) rootView.findViewById(R.id.imageView3);
 
         button.setOnClickListener(new View.OnClickListener() {
 
@@ -120,6 +125,8 @@ public class RandomFragment extends Fragment {
             public void onClick(View arg0) {
 
                 Random();
+                new LoadImage().execute(strFoodPic);
+
 
                /* new LoadImage().execute(strFoodPic);*/
 
@@ -175,7 +182,9 @@ public class RandomFragment extends Fragment {
     public boolean Random()
     {
 
-        final AlertDialog.Builder ad = new AlertDialog.Builder(getContext());
+    /*    final AlertDialog.Builder ad = new AlertDialog.Builder(getContext());*/
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
 
         String url = "http://foodyth.azurewebsites.net/foody/random3.php";
         List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -183,20 +192,21 @@ public class RandomFragment extends Fragment {
         String resultServer  = getHttpPost(url,params);
 
         /*** Default Value ***/
-        String strStatusID = "0";
+        //String strStatusID = "0";
         String strFoodID = "0";
         String strFoodName = "0";
 
-        String strError = "Unknow Status!";
+
+        //String strError = "Unknow Status!";
 
         JSONObject c;
         try {
             c = new JSONObject(resultServer);
-            strStatusID = c.getString("StatusID");
+            //strStatusID = c.getString("StatusID");
             strFoodID = c.getString("id_food");
             strFoodName = c.getString("name_food");
-            /*strFoodPic = c.getString("FoodPic");*/
-            strError = c.getString("Error");
+            strFoodPic = c.getString("img");
+            //strError = c.getString("Error");
 
         } catch (JSONException e) {
             // TODO Auto-generated catch block
@@ -204,17 +214,52 @@ public class RandomFragment extends Fragment {
         }
 
         // Prepare Login
-        if(strStatusID.equals("1"))
-        {
 
+        if(strFoodID != null)
+        {
             // Dialog
-            ad.setTitle("อาหารที่ถูกสุ่ม");
+          /*  ad.setTitle("อาหารที่ถูกสุ่ม");
             //      ad.setIcon(android.R.drawable.btn_star_big_on);
             ad.setPositiveButton("Close", null);
-            ad.setMessage(strFoodID);
+            //ad.setMessage(strFoodID);
             ad.setMessage(strFoodName);
 
-            ad.show();
+            ad.show();*/
+            builder.setPositiveButton("ดูรายละเอียด", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            }).setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+            final AlertDialog dialog = builder.create();
+            LayoutInflater inflater = getActivity().getLayoutInflater();
+            View dialogLayout = inflater.inflate(R.layout.go_pro_dialog_layout, null);
+            dialog.setView(dialogLayout);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setTitle(strFoodName);
+            dialog.setMessage(strFoodPic);
+
+            dialog.show();
+
+            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface d) {
+
+                    ImageView image = (ImageView) dialog.findViewById(R.id.goProDialogImage);
+                    Bitmap icon = BitmapFactory.decodeResource(getActivity().getResources(),
+                            R.drawable.whygoprodialogimage);
+                    float imageWidthInPX = (float)image.getWidth();
+
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(Math.round(imageWidthInPX),
+                            Math.round(imageWidthInPX * (float)icon.getHeight() / (float)icon.getWidth()));
+                    image.setLayoutParams(layoutParams);
+
+
+                }
+            });
         }
 
       /*  else
@@ -256,8 +301,6 @@ public class RandomFragment extends Fragment {
         }
         return str.toString();
     }
-
-
     private class LoadImage extends AsyncTask<String, String, Bitmap> {
         @Override
         protected void onPreExecute() {
@@ -286,11 +329,9 @@ public class RandomFragment extends Fragment {
             }else{
 
                 pDialog.dismiss();
-         /*       Toast.makeText(MainActivity.this, "Image Does Not exist or Network Error", Toast.LENGTH_SHORT).show();*/
+                Toast.makeText(getContext(), "Image Does Not exist or Network Error", Toast.LENGTH_SHORT).show();
 
             }
         }
     }
-
-
 }
