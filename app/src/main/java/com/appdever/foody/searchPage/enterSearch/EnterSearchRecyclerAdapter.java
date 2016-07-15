@@ -44,8 +44,8 @@ public class EnterSearchRecyclerAdapter
 
         final EnterSearchMenu enterSearchMenu = newList.get(position);
 
-        holder.myMenu.setText(enterSearchMenu.getMyMenu());
-        Glide.with(context).load(enterSearchMenu.getMenuImage()).placeholder(R.drawable.home).into(holder.menuImage);
+        holder.myMenu.setText(enterSearchMenu.getNameFood());
+        Glide.with(context).load(enterSearchMenu.getImg()).placeholder(R.drawable.home).into(holder.menuImage);
 
         holder.enterSearchListView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -5,6 +5,8 @@
     <string name="page_create">CreateMenu</string>
     <string name="page_random">Random</string>
     <string name="page_search">Search</string>
+    <string name="food_detail_activity">เมนูอาหาร</string>
+
 
     <string name="spinner_title">เลือกประเภทอาหาร</string>
 

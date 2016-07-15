@@ -38,12 +38,14 @@ public class EnterSearchActivity extends AppCompatActivity{
     List<EnterSearchMenu> newsList = new ArrayList<>();
 
     private String resultServer;
-    private static String strFoodID = "0";
+    private String strFoodID = "0";
     private String strFoodTypeID = "0";
     private String strNameFood;
     private String strCookingMethod = "Unknown method";
     private String strImg = "Unknown image";
     private String strError = "Unknown Status!";
+    private String strPrepareIngredient = "No ingredients were found";
+    private String strFoodDescription = "No description";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +66,21 @@ public class EnterSearchActivity extends AppCompatActivity{
         recyclerAdapter = new EnterSearchRecyclerAdapter(EnterSearchActivity.this, newsList, new EnterSearchRecyclerAdapter.abc() {
             @Override
             public void mySetOnClickListener(EnterSearchMenu enterSearchMenu) {
-                Log.d("ABC", enterSearchMenu.getMyMenu());
+                Log.d("ABC", enterSearchMenu.getNameFood());
+//                Log.d("ABC", strNameFood);
 
-                IntentToDetailActivity();
+                Intent objIntent = new Intent(EnterSearchActivity.this, FoodDetailActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString(KeyStore.FOODID_DETAIL_SEND_KEY,enterSearchMenu.getFoodID());
+                extras.putString(KeyStore.FOODTYOEID_DETAIL_SEND_KEY,enterSearchMenu.getFoodTypeID());
+                extras.putString(KeyStore.NAMEFOOD_DETAIL_SEND_KEY,enterSearchMenu.getNameFood());
+                extras.putString(KeyStore.FOODMETHOD_DETAIL_SEND_KEY,enterSearchMenu.getCookingMethod());
+                extras.putString(KeyStore.FOODIMG_DETAIL_SEND_KEY,enterSearchMenu.getImg());
+                extras.putString(KeyStore.FOOD_INGREDIENT_SEND_KEY,enterSearchMenu.getPrepareIngredient());
+                extras.putString(KeyStore.FOOD_DESCRIPTION_SEND_KEY,enterSearchMenu.getFoodDescription());
+                objIntent.putExtras(extras);
+                startActivity(objIntent);
+
 
             }
         });
@@ -79,21 +93,10 @@ public class EnterSearchActivity extends AppCompatActivity{
 
     }
 
-    public void IntentToDetailActivity() {
-
-        Intent objIntent = new Intent(this, FoodDetailActivity.class);
-        Bundle extras = new Bundle();
-        extras.putString(KeyStore.FOODID_DETAIL_SEND_KEY,strFoodID);
-        extras.putString(KeyStore.FOODTYOEID_DETAIL_SEND_KEY,strFoodTypeID);
-        extras.putString(KeyStore.NAMEFOOD_DETAIL_SEND_KEY,strNameFood);
-        extras.putString(KeyStore.FOODMETHOD_DETAIL_SEND_KEY,strCookingMethod);
-        extras.putString(KeyStore.FOODIMG_DETAIL_SEND_KEY,strImg);
-        objIntent.putExtras(extras);
-        startActivity(objIntent);
-
-    }
 
     private void connectDatabase() {
+
+
 
 //        Request request = new Request.Builder().url(JSONObtained.getAbsoluteUrl("food.php" + "?type=ย่าง")).build();
 // optional
@@ -133,9 +136,13 @@ public class EnterSearchActivity extends AppCompatActivity{
                                 strNameFood = ID_food.getString("name_food");
                                 strCookingMethod = ID_food.getString("cooking_method");
                                 strImg = ID_food.getString("img");
+                                strPrepareIngredient = ID_food.getString("prepare_ingredient");
+                                strFoodDescription = ID_food.getString("description");
 
                                 // update data to ArrayList in recycler adapter
-                                newsList.add(new EnterSearchMenu(strNameFood,strImg));
+                                newsList.add(new EnterSearchMenu(strFoodID, strFoodTypeID, strNameFood,
+                                        strCookingMethod,strImg, strPrepareIngredient, strFoodDescription));
+                                // TODO: add strFoodID, strFoodTypeID, strNameFood, strCookingMethod, strImg, strPrepareIngredient, strFoodDescription
 
                             }
 

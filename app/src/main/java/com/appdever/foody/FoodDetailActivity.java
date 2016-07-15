@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide;
 
 public class FoodDetailActivity extends AppCompatActivity {
 
-    private String strFoodID, strFoodTypeID, strNameFood, strCookingMethod, strImg;
+    private String strFoodID, strFoodTypeID, strNameFood, strCookingMethod, strImg,strFoodIngredient, strFoodDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +22,13 @@ public class FoodDetailActivity extends AppCompatActivity {
         strNameFood = extras.getString(KeyStore.NAMEFOOD_DETAIL_SEND_KEY);
         strCookingMethod = extras.getString(KeyStore.FOODMETHOD_DETAIL_SEND_KEY);
         strImg = extras.getString(KeyStore.FOODIMG_DETAIL_SEND_KEY);
+        strFoodIngredient = extras.getString(KeyStore.FOOD_INGREDIENT_SEND_KEY);
+        strFoodDescription = extras.getString(KeyStore.FOOD_DESCRIPTION_SEND_KEY);
 
         Glide.with(this).load(strImg).into(binding.detailImg);
         binding.detailFoodNameTxt.setText(strNameFood);
-//        binding.materialDetailText.setText(strCookingMethod);
+        binding.materialDetailText.setText(strFoodIngredient);
         binding.methodDetailText.setText(strCookingMethod);
+
     }
 }

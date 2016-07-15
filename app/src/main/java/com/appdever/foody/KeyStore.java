@@ -11,5 +11,7 @@ public class KeyStore {
     public static final String NAMEFOOD_DETAIL_SEND_KEY = "NAMEFOOD_DETAIL_SEND_KEY";
     public static final String FOODMETHOD_DETAIL_SEND_KEY = "FOODMETHOD_DETAIL_SEND_KEY";
     public static final String FOODIMG_DETAIL_SEND_KEY = "FOODIMG_DETAIL_SEND_KEY";
+    public static final String FOOD_INGREDIENT_SEND_KEY = "FOOD_INGREDIENT_SEND_KEY";
+    public static final String FOOD_DESCRIPTION_SEND_KEY = "FOOD_DESCRIPTION_SEND_KEY";
 
 }
