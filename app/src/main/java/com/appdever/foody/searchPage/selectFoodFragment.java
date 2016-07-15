@@ -66,7 +66,7 @@ public class selectFoodFragment extends Fragment {
         selectFoodList.add(selectSalad);
 
         selectFoodAdapter.notifyDataSetChanged();
-        Log.e("Kasira", String.valueOf(selectFoodAdapter.getItemCount()));
+        Log.d("Kasira", String.valueOf(selectFoodAdapter.getItemCount()));
 
         return rootview;
     }

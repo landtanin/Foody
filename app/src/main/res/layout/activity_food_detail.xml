@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+         xmlns:tools="http://schemas.android.com/tools"
+         tools:context="com.appdever.foody.FoodDetailActivity">
+<LinearLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/detailImg"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/detailFoodNameTxt"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/materialText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_from_sides"
+        android:layout_marginTop="@dimen/margin_from_top"
+        android:text="วัตถุดิบ"
+        android:textSize="@dimen/header2_font_size"
+        android:textColor="#000000"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_width"
+        android:background="#000000"
+        android:layout_marginLeft="@dimen/margin_from_sides"
+        android:layout_marginRight="@dimen/margin_from_sides">
+
+    </View>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/materialDetailText"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:id="@+id/methodText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_from_sides"
+        android:layout_marginTop="@dimen/margin_from_top"
+        android:text="วิธีทำ"
+        android:textSize="@dimen/header2_font_size"
+        android:textColor="#000000"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_width"
+        android:background="#000000"
+        android:layout_marginLeft="@dimen/margin_from_sides"
+        android:layout_marginRight="@dimen/margin_from_sides">
+
+    </View>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/methodDetailText"
+        android:textColor="#000000"/>
+
+    <!--TODO: detailImg, detailFoodNameTxt, materialDetailText, methodDetailText-->
+
+</LinearLayout>
+</layout>

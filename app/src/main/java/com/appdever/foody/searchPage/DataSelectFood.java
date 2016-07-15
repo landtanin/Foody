@@ -4,14 +4,14 @@ package com.appdever.foody.searchPage;
  * Created by arisak on 7/7/2559.
  */
 public class DataSelectFood {
-    private int imgTitle, idFood;
+    private int imgTitle, idFoodType;
     private String tvTitle;
 
 
-    public DataSelectFood(int imgTitle, String tvTitle, int idFood) {
+    public DataSelectFood(int imgTitle, String tvTitle, int idFoodType) {
         this.imgTitle = imgTitle;
         this.tvTitle = tvTitle;
-        this.idFood = idFood;
+        this.idFoodType = idFoodType;
     }
 
     public int getImgTitle() {
@@ -22,7 +22,7 @@ public class DataSelectFood {
         return tvTitle;
     }
 
-    public int getIdFood() {
-        return idFood;
+    public int getIdFoodType() {
+        return idFoodType;
     }
 }

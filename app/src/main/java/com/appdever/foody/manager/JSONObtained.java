@@ -1,4 +1,4 @@
-package com.appdever.foody;
+package com.appdever.foody.manager;
 
 /**
  * Created by landtanin on 7/12/2016 AD.

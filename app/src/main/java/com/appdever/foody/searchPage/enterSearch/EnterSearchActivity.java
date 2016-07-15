@@ -1,25 +1,19 @@
 package com.appdever.foody.searchPage.enterSearch;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
-import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
-import android.view.Display;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.appdever.foody.JSONObtained;
+import com.appdever.foody.FoodDetailActivity;
 import com.appdever.foody.KeyStore;
 import com.appdever.foody.R;
 import com.appdever.foody.databinding.ActivityEnterSearchBinding;
+import com.appdever.foody.manager.JSONObtained;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,7 +26,10 @@ import java.util.List;
 import okhttp3.HttpUrl;
 import okhttp3.Response;
 
-public class EnterSearchActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class EnterSearchActivity extends AppCompatActivity{
+
+    // implement for spinner
+//        implements AdapterView.OnItemSelectedListener{
 
     ActivityEnterSearchBinding binding;
 
@@ -41,7 +38,7 @@ public class EnterSearchActivity extends AppCompatActivity implements AdapterVie
     List<EnterSearchMenu> newsList = new ArrayList<>();
 
     private String resultServer;
-    private String strFoodID = "0";
+    private static String strFoodID = "0";
     private String strFoodTypeID = "0";
     private String strNameFood;
     private String strCookingMethod = "Unknown method";
@@ -53,39 +50,46 @@ public class EnterSearchActivity extends AppCompatActivity implements AdapterVie
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_enter_search);
 
-        binding.enterSearchSpinner.setOnItemSelectedListener(this);
+        // -----------------Spinner-------------------------------------
+//        binding.enterSearchSpinner.setOnItemSelectedListener(this);
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+//                R.array.hard_code_menus, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        binding.enterSearchSpinner.setAdapter(adapter);
+        //---------------Spinner-end------------------------------------
 
-        connectDatabase();
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.hard_code_menus, android.R.layout.simple_spinner_item);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        binding.enterSearchSpinner.setAdapter(adapter);
-
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-
-//        int width = size.x;
-//        int height = size.y;
-//
-//        Toast.makeText(EnterSearchActivity.this,"Width =" + width +",Height"+ height,
-//                Toast.LENGTH_SHORT).show();
-
-        int namefac = 0;
         StaggeredGridLayoutManager aaa = new StaggeredGridLayoutManager(1,1);
         rv = (RecyclerView) findViewById(R.id.rv_enter_search);
         rv.setLayoutManager(aaa);
-        recyclerAdapter = new EnterSearchRecyclerAdapter(EnterSearchActivity.this, newsList);
+        recyclerAdapter = new EnterSearchRecyclerAdapter(EnterSearchActivity.this, newsList, new EnterSearchRecyclerAdapter.abc() {
+            @Override
+            public void mySetOnClickListener(EnterSearchMenu enterSearchMenu) {
+                Log.d("ABC", enterSearchMenu.getMyMenu());
+
+                IntentToDetailActivity();
+
+            }
+        });
+
         rv.setAdapter(recyclerAdapter);
 
         rv.setHasFixedSize(true);
-//        for (int i=0; i < 1; i++){
-//
-//        }
 
+        connectDatabase();
+
+    }
+
+    public void IntentToDetailActivity() {
+
+        Intent objIntent = new Intent(this, FoodDetailActivity.class);
+        Bundle extras = new Bundle();
+        extras.putString(KeyStore.FOODID_DETAIL_SEND_KEY,strFoodID);
+        extras.putString(KeyStore.FOODTYOEID_DETAIL_SEND_KEY,strFoodTypeID);
+        extras.putString(KeyStore.NAMEFOOD_DETAIL_SEND_KEY,strNameFood);
+        extras.putString(KeyStore.FOODMETHOD_DETAIL_SEND_KEY,strCookingMethod);
+        extras.putString(KeyStore.FOODIMG_DETAIL_SEND_KEY,strImg);
+        objIntent.putExtras(extras);
+        startActivity(objIntent);
 
     }
 
@@ -93,6 +97,10 @@ public class EnterSearchActivity extends AppCompatActivity implements AdapterVie
 
 //        Request request = new Request.Builder().url(JSONObtained.getAbsoluteUrl("food.php" + "?type=ย่าง")).build();
 // optional
+
+//        Bundle bundle=getIntent().getExtras();
+//        int key=bundle.getInt(KeyStore.SELECT_FOOD_SEND_KEY);
+
         int getSendKey = getIntent().getExtras().getInt(KeyStore.SELECT_FOOD_SEND_KEY);
 
         final HttpUrl myurl = HttpUrl.parse(JSONObtained.getAbsoluteUrl("food.php")).newBuilder().addQueryParameter("id_typefood", String.valueOf(getSendKey)).build();
@@ -150,12 +158,7 @@ public class EnterSearchActivity extends AppCompatActivity implements AdapterVie
                 super.onPostExecute(s);
             }
 
-
         }.execute();
-
-
-
-
 
 //        JSONObtained.getInstance().newCall(JSONObtained.getRequest(myurl)).enqueue(new Callback() {
 
@@ -217,22 +220,28 @@ public class EnterSearchActivity extends AppCompatActivity implements AdapterVie
 
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+    // ------------------------override spinner method------------------------------------
 
-        ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
-        ((TextView) parent.getChildAt(0)).setTextSize(25);
-
-        String item = parent.getItemAtPosition(position).toString();
-
-        Toast.makeText(EnterSearchActivity.this,item, Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-
+//    @Override
+//    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//
+//        ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
+//        ((TextView) parent.getChildAt(0)).setTextSize(25);
+//
+//        String item = parent.getItemAtPosition(position).toString();
+//
+//        Toast.makeText(EnterSearchActivity.this,item, Toast.LENGTH_SHORT).show();
+//
+//    }
+//
+//    @Override
+//    public void onNothingSelected(AdapterView<?> parent) {
+//
+//    }
+//
+//    @Override
+//    public void recyclerViewListClicked(View v, int position) {
+//
+//    }
 }
 

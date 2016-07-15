@@ -64,7 +64,7 @@ public class SelectFoodAdapter extends RecyclerView.Adapter<SelectFoodAdapter.Se
 //        holder.tvSubTitle.setText(dataSelectFood.getTvSubTitle());
         Glide.with(context).load(dataSelectFood.getImgTitle()).placeholder(R.drawable.banner_02).error(R.drawable.banner_app).into(holder.imgTitle);
 
-        final int sendKey = dataSelectFood.getIdFood();
+        final int sendKey = dataSelectFood.getIdFoodType();
 
 
        holder.btnMenuType.setOnClickListener(new View.OnClickListener() {
