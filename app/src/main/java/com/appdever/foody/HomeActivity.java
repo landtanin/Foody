@@ -1,5 +1,6 @@
 package com.appdever.foody;
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -14,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,7 +25,7 @@ import com.appdever.foody.manager.SmartFragmentStatePagerAdapter;
 import com.appdever.foody.randomPage.RandomFragment;
 import com.appdever.foody.searchPage.SearchFragment;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     public ViewPager container;
     public TabLayout tabLayout;
@@ -31,6 +33,7 @@ public class HomeActivity extends AppCompatActivity {
     public DrawerLayout drawerLayout;
     public Toolbar toolbar;
     public ActionBarDrawerToggle actionBarDrawerToggle;
+    public Button btnLogin,btnRegister;
 
     public final int myHomeFragment = 0;
     public final int createMenuFragment = 1;
@@ -63,6 +66,12 @@ public class HomeActivity extends AppCompatActivity {
         txtPageName = (TextView) findViewById(R.id.txtPageName);
         container = (ViewPager) findViewById(R.id.container);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+        btnLogin = (Button) findViewById(R.id.btnLogin);
+        btnRegister = (Button) findViewById(R.id.btnRegister);
+
+        btnLogin.setOnClickListener(this);
+        btnRegister.setOnClickListener(this);
 
         MainMenuPagerAdapter menuPagerAdapter = new MainMenuPagerAdapter(getSupportFragmentManager());
 
@@ -163,6 +172,19 @@ public class HomeActivity extends AppCompatActivity {
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         actionBarDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnLogin:
+                startActivity(new Intent(HomeActivity.this, Login2Activity.class));
+                break;
+            case R.id.btnRegister:
+                startActivity(new Intent(HomeActivity.this, signupActivity.class));
+                break;
+            default:
+        }
     }
     //-----------------------Hamburger-onPostCreate-end--------------------------
 
