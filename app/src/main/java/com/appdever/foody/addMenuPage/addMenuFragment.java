@@ -251,7 +251,6 @@ public class addMenuFragment extends Fragment {
                 e.printStackTrace();
             }
             image_food = Bitmap.createScaledBitmap(getImage,(int)(getImage.getWidth()*0.2), (int)(getImage.getHeight()*0.2), true);
-            //selectimage.setImageBitmap(image_food);
             Picasso.with(getContext()).load(image).resize(50, 50)
                     .centerCrop().into(selectimage);
 
