@@ -75,7 +75,6 @@ public class Login2Activity extends AppCompatActivity {
 
                 }
 
-
             }
         });
 

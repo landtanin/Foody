@@ -2,10 +2,12 @@ package com.appdever.foody.HomePage;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +16,18 @@ import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
 import com.appdever.foody.R;
+import com.appdever.foody.manager.JSONObtained;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.HttpUrl;
+import okhttp3.Response;
 
 /**
  * Created by arisak on 23/6/2559.
@@ -29,7 +40,7 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView rv;
     private RecyclerAdapter recyclerAdapter;
-    List<DataTest01> newsList=new ArrayList<>();
+    List<HomeListItem> newsList=new ArrayList<>();
 
     private ImageView homeFoodBanner,homeFoodBanner2;
 
@@ -38,6 +49,10 @@ public class HomeFragment extends Fragment {
     private Context mContext;
     private ViewFlipper mViewFlipper;
 //    private final GestureDetector detector = new GestureDetector(new SwipeGestureDetector());
+
+    private String resultServer;
+
+    private String homeNameFood, homeImgFood;
 
 
     public HomeFragment() {
@@ -52,6 +67,70 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+    }
+
+    private void homeConnectDatabase() {
+
+
+        final HttpUrl myurl = HttpUrl.parse(JSONObtained.getAbsoluteUrl("food.php")).newBuilder().build();
+
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... params) {
+                try {
+
+                    Response response = JSONObtained.getInstance().newCall(JSONObtained.getRequest(myurl)).execute();
+
+                    if (response.isSuccessful()) {
+
+                        resultServer = response.body().string();
+
+                        Log.d("HOMESERVERCONNECT", resultServer);
+
+                        JSONObject foodJSONStr, ID_food = null;
+
+                        try {
+                            foodJSONStr = new JSONObject(resultServer);
+                            JSONArray foods = foodJSONStr.getJSONArray("foods");
+
+
+                            for (int i = 0; i<foods.length(); i++) {
+
+                                ID_food = foods.getJSONObject(i);
+//                                strFoodID = ID_food.getString("id_food");
+//                                strFoodTypeID = ID_food.getString("id_typefood");
+                                homeNameFood = ID_food.getString("name_food");
+//                                strCookingMethod = ID_food.getString("cooking_method");
+                                homeImgFood = ID_food.getString("img");
+//                                strPrepareIngredient = ID_food.getString("prepare_ingredient");
+//                                strFoodDescription = ID_food.getString("description");
+
+                                // update data to ArrayList in recycler adapter
+                                newsList.add(new HomeListItem(homeImgFood, homeNameFood));
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+
+                recyclerAdapter.notifyDataSetChanged();
+
+                super.onPostExecute(s);
+            }
+
+        }.execute();
 
     }
 
@@ -90,21 +169,27 @@ public class HomeFragment extends Fragment {
 //                Toast.LENGTH_SHORT).show();
 //       Toast end
 
-
         StaggeredGridLayoutManager aaa = new StaggeredGridLayoutManager(2,1);
         rv = (RecyclerView) rootView.findViewById(R.id.rv_test01);
         rv.setLayoutManager(aaa);
-        recyclerAdapter = new RecyclerAdapter(getActivity(), newsList);
+        recyclerAdapter = new RecyclerAdapter(getActivity(), newsList, new RecyclerAdapter.homeListCarrier() {
+            @Override
+            public void homeOnClickListener(HomeListItem homeListItem) {
+
+            }
+        });
         rv.setAdapter(recyclerAdapter);
 //        rv.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         rv.setHasFixedSize(true);
 
-        for (int i=0; i < 10; i++){
-            newsList.add(new DataTest01(R.drawable.banner_02,"Test".concat(String.valueOf(i))));
-        }
+//        for (int i=0; i < 10; i++){
+//            newsList.add(new HomeListItem(R.drawable.banner_02,"Test".concat(String.valueOf(i))));
+//        }
 
-        recyclerAdapter.notifyDataSetChanged();
+//        recyclerAdapter.notifyDataSetChanged();
 //        Log.e("Kasira", String.valueOf(recyclerAdapter.getItemCount()));
+        homeConnectDatabase();
+
 
         return rootView;
     }
@@ -137,8 +222,8 @@ public class HomeFragment extends Fragment {
         homeFoodBanner.setImageResource(R.drawable.bannertest);
         homeFoodBanner2.setImageResource(R.drawable.m2);
 
-
     }
+
 
 
 }
