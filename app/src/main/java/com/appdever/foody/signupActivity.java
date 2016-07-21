@@ -132,27 +132,20 @@ public class signupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (checkEmptyField()) {
+                if (checkEmptyField()&&bitmap!=null) {
 
-                loadingPage();
+                    loadingPage();
 //                spinner.setVisibility(View.VISIBLE);
-                final Handler handler = new Handler();
-                Thread t = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
+                    final Handler handler = new Handler();
+                    Thread t = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
 
-
-                            if (bitmap == null) {
-
-                                Toast.makeText(signupActivity.this, "Please select picture", Toast.LENGTH_SHORT).show();
-//                    Log.v("base64", encoded);
-
-                            } else {
+                            if (bitmap != null) {
 
                                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, mByteArrayOutputStream);
                                 byte[] byteArray = mByteArrayOutputStream.toByteArray();
                                 encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
-
 
                                 handler.post(new Runnable() {
                                     @Override
@@ -168,18 +161,19 @@ public class signupActivity extends AppCompatActivity {
                                         }
                                     }
                                 });
-                                // When Save Complete
-//                    spinner.setVisibility(View.GONE);
-
+//                                Toast.makeText(signupActivity.this, "Please select picture", Toast.LENGTH_SHORT).show();
+//                    Log.v("base64", encoded);
 
                             }
 
 
+                            // When Save Complete
+//                    spinner.setVisibility(View.GONE);
 
 
-                    }
-                });
-                t.start();
+                        }
+                    });
+                    t.start();
 
 /*
                 String strUsername = username.getText().toString().trim();
@@ -283,7 +277,11 @@ public class signupActivity extends AppCompatActivity {
                     alertRepass.setText ("");
                 }
             }*/
-            }
+                } else {
+
+                    Toast.makeText(signupActivity.this, "Please select picture", Toast.LENGTH_SHORT).show();
+
+                }
         }
         });
     }
@@ -296,7 +294,6 @@ public class signupActivity extends AppCompatActivity {
         progress.show();
 
     }
-
 
     private boolean checkEmptyField() {
 
@@ -339,7 +336,6 @@ public class signupActivity extends AppCompatActivity {
             verifyPass.requestFocus();
             return false;
         }
-
 
         return true;
     }
