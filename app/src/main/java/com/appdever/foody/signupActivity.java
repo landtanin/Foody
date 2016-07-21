@@ -22,6 +22,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -341,9 +343,15 @@ public class signupActivity extends AppCompatActivity {
     }
 
     private void dispatchPhotoSelectionIntent() {
-        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+//        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+//                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//        this.startActivityForResult(galleryIntent, REQUEST_IMAGE_SELECTOR);
+
+        Intent intent = new Intent(Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        this.startActivityForResult(galleryIntent, REQUEST_IMAGE_SELECTOR);
+//        intent.setType("image/*");
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), REQUEST_IMAGE_SELECTOR);
+
     }
 
     @Override
@@ -357,12 +365,29 @@ public class signupActivity extends AppCompatActivity {
             if (cursor == null || cursor.getCount() < 1) {
                 mCurrentPhoto = null;
             }
+            int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             cursor.moveToFirst();
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+//            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             if (columnIndex < 0) { // no column index
                 mCurrentPhoto = null;
             }
-            mCurrentPhoto = new File(cursor.getString(columnIndex));
+
+            String myUrl = data.getData().toString();
+            if (myUrl.startsWith("content://com.google.android.apps.photos.content")) {
+
+                Glide.with(this).load(Uri.parse(myUrl)).into(addImageButton);
+                try {
+                    bitmap = getThumbnail(Uri.parse(myUrl));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return;
+            }
+
+//            Log.d("CURSORCHECK", String.valueOf(cursor.getString(columnIndex)));
+//            mCurrentPhoto = new File(cursor.getString(columnIndex));
+            mCurrentPhoto = new File(getPath(data.getData()));
+
 
             if (mCurrentPhoto != null) {
 
@@ -425,23 +450,23 @@ public class signupActivity extends AppCompatActivity {
         else return k;
     }
 
-//    public String getPath(Uri uri) {
-//        String[] projection = {MediaStore.Images.Media.DATA};
-//        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
-//        if (cursor != null) {
-//
-//            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-//            cursor.moveToFirst();
-//
-//
-//            return cursor.getString(column_index);
-//
-//        } else {
-//            cursor.close();
-//            return null;
-//        }
-//
-//    }
+    public String getPath(Uri uri) {
+        String[] projection = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+        if (cursor != null) {
+
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+
+
+            return cursor.getString(column_index);
+
+        } else {
+            cursor.close();
+            return null;
+        }
+
+    }
     //    public void onActivityResult(int requestCode, int resultCode, Intent data) {
 //        if (resultCode == RESULT_OK) {
 //            if (requestCode == SELECT_PICTURE) {
