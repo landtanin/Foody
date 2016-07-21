@@ -44,6 +44,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -95,27 +97,80 @@ public class addMenuFragment extends Fragment {
     private List<String> matt = new ArrayList<String>();
 
     void getmaterial() {
-        getHttp http = new getHttp();
-        String response = null;
-        try {
-            response = http.run("http://foodyth.azurewebsites.net/testAPI/getmaterial.php");
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+//        getHttp http = new getHttp();
+//        String response = null;
+//        try {
+//            response = http.run("http://foodyth.azurewebsites.net/testAPI/getmaterial.php");
+//        } catch (IOException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//
+//        OkHttpClient client = new OkHttpClient();
+//        Request request = new Request.Builder()
+//                .url("http://foodyth.azurewebsites.net/testAPI/getmaterial.php")
+//                .build();
+//        client.newCall(request).enqueue(new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                if (response.isSuccessful())
+//                    getActivity().runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//
+//                        }
+//                    });
+//            }
+//        });
 
-        try {
-            JSONArray data = new JSONArray(response);
 
-            for (int i = 0; i < data.length(); i++) {
-                JSONObject c = null;
-                c = data.getJSONObject(i);
 
-                matt.add(c.getString("name_material"));
+        new AsyncTask<Void, Void, String>() {
+
+            @Override
+            protected String doInBackground(Void... params) {
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder()
+                        .url("http://foodyth.azurewebsites.net/testAPI/getmaterial.php")
+                        .build();
+
+
+                try {
+
+                    Response response = client.newCall(request).execute();
+                    return response.body().string();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                return null;
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
+            @Override
+            protected void onPostExecute( final String result ) {
+
+                try {
+                    JSONArray   data = new JSONArray(result);
+                    for (int i = 0; i < data.length(); i++) {
+                        JSONObject c = null;
+                        c = data.getJSONObject(i);
+
+                        matt.add(c.getString("name_material"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
+            }
+        }.execute();
+
     }
 
     @Override

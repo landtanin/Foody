@@ -1,6 +1,7 @@
 package com.appdever.foody.randomPage;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -18,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.appdever.foody.FoodDetailActivity;
+import com.appdever.foody.KeyStore;
 import com.appdever.foody.R;
 import com.bumptech.glide.Glide;
 
@@ -64,7 +67,15 @@ public class RandomFragment extends Fragment {
     private ImageView img;
     ProgressDialog pDialog;
     Bitmap bitmap;
-    String strFoodPic = "0";
+    private String strFoodPic = "0";
+    private String strFoodID = "0";
+    private String strFoodName = "0";
+    private String strFoodPrepare = "0";
+    private String strFoodDescription = "0";
+    private String strFoodCooking = "0";
+    private String strFoodTypefood = "0";
+
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -132,7 +143,9 @@ public class RandomFragment extends Fragment {
 */
             }
         });
+
         return rootView;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -189,8 +202,8 @@ public class RandomFragment extends Fragment {
 
         /*** Default Value ***/
         //String strStatusID = "0";
-        String strFoodID = "0";
-        String strFoodName = "0";
+        //String strFoodID = "0";
+       // String strFoodName = "0";
 
 
         //String strError = "Unknow Status!";
@@ -202,6 +215,10 @@ public class RandomFragment extends Fragment {
             strFoodID = c.getString("id_food");
             strFoodName = c.getString("name_food");
             strFoodPic = c.getString("img");
+            strFoodPrepare = c.getString("prepare_ingredient");
+            strFoodDescription = c.getString("description");
+            strFoodCooking = c.getString("cooking_method");
+            strFoodTypefood = c.getString("id_typefood");
             //strError = c.getString("Error");
 
         } catch (JSONException e) {
@@ -224,6 +241,20 @@ public class RandomFragment extends Fragment {
             builder.setPositiveButton("ดูรายละเอียด", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    Intent objIntent = new Intent(getContext(), FoodDetailActivity.class);
+                    Bundle extras = new Bundle();
+                    extras.putString(KeyStore.FOODID_DETAIL_SEND_KEY,strFoodID);
+                    extras.putString(KeyStore.FOODTYOEID_DETAIL_SEND_KEY,strFoodTypefood);
+                    extras.putString(KeyStore.NAMEFOOD_DETAIL_SEND_KEY,strFoodName);
+                    extras.putString(KeyStore.FOODMETHOD_DETAIL_SEND_KEY,strFoodCooking);
+                    extras.putString(KeyStore.FOODIMG_DETAIL_SEND_KEY,strFoodPic);
+                    extras.putString(KeyStore.FOOD_INGREDIENT_SEND_KEY,strFoodPrepare);
+                    extras.putString(KeyStore.FOOD_DESCRIPTION_SEND_KEY,strFoodDescription);
+                    objIntent.putExtras(extras);
+                    startActivity(objIntent);
+
+                    /*Intent i=new Intent(getActivity(), FoodDetailActivity.class);
+                    startActivity(i);*/
                 }
             }).setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
                 @Override
