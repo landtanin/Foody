@@ -56,7 +56,7 @@ public class addMenuFragment extends Fragment {
 
     private Button add_meterial,save;
     private ImageView selectimage;
-    private EditText field_meterial,field_namefood,field_process;
+    private EditText field_meterial,field_namefood,field_process,field_about;
     private LinearLayout addfield_layout;
 
     private Bitmap image_food;
@@ -96,27 +96,41 @@ public class addMenuFragment extends Fragment {
     private List<String> matt = new ArrayList<String>();
 
     void getmaterial() {
-        getHttp http = new getHttp();
-        String response = null;
-        try {
-            response = http.run("http://foodyth.azurewebsites.net/testAPI/getmaterial.php");
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        try {
-            JSONArray data = new JSONArray(response);
-
-            for (int i = 0; i < data.length(); i++) {
-                JSONObject c = null;
-                c = data.getJSONObject(i);
-
-                matt.add(c.getString("name_material"));
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... voids) {
+                getHttp http = new getHttp();
+                String response = null;
+                try {
+                    response = http.run("http://foodyth.azurewebsites.net/testAPI/getmaterial.php");
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                return  response;
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
+            @Override
+            protected void onPostExecute(String string) {
+                super.onPostExecute(string);
+
+                try {
+                    JSONArray data = new JSONArray(string);
+
+                    for (int i = 0; i < data.length(); i++) {
+                        JSONObject c = null;
+                        c = data.getJSONObject(i);
+
+                        matt.add(c.getString("name_material"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.execute();
+
+
+
     }
 
     @Override
@@ -195,11 +209,10 @@ public class addMenuFragment extends Fragment {
                             image_food,
                             field_namefood.getText().toString(),
                             field_process.getText().toString(),
+                            field_about.getText().toString(),
                             material
                     ).execute();
                 }
-
-
             }});
 
 
@@ -216,6 +229,7 @@ public class addMenuFragment extends Fragment {
         addfield_layout = (LinearLayout) rootview.findViewById(R.id.addfield_layout);
         selectimage = (ImageView) rootview.findViewById(R.id.addImage_Button);
         save = (Button) rootview.findViewById(R.id.ok_Button);
+        field_about = (EditText) rootview.findViewById(R.id.about_field);
     }
 
     private void selectImage() {
@@ -235,7 +249,7 @@ public class addMenuFragment extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            //image_food = Bitmap.createScaledBitmap(getImage,(int)(getImage.getWidth()*0.1), (int)(getImage.getHeight()*0.1), true);
+            image_food = Bitmap.createScaledBitmap(getImage,(int)(getImage.getWidth()*0.2), (int)(getImage.getHeight()*0.2), true);
             //selectimage.setImageBitmap(image_food);
             Picasso.with(getContext()).load(image).resize(50, 50)
                     .centerCrop().into(selectimage);
@@ -248,15 +262,17 @@ public class addMenuFragment extends Fragment {
         private Bitmap image;
         private String namefood;
         private String process;
+        private String about;
         private String material[] = new String[fieldlist.size()];
 
         ProgressDialog loading;
 
-        public Upload(Bitmap image, String namefood, String process,String[] material) {
+        public Upload(Bitmap image, String namefood, String process,String about,String[] material) {
             this.image = image;
             this.namefood = namefood;
             this.process = process;
             this.material = material;
+            this.about = about;
         }
 
         @Override
@@ -295,6 +311,7 @@ public class addMenuFragment extends Fragment {
                     .add("namefood", namefood)
                     .add("process", process)
                     .add("image", encodeImage)
+                    .add("about",about)
                     .add("material", material_json.toString())
                     .build();
 
