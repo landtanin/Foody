@@ -53,6 +53,7 @@
     <android.support.v7.widget.AppCompatImageView
         android:layout_width="match_parent"
         android:layout_height="180dp"
+        android:layout_marginTop="@dimen/margin_from_top"
         android:layout_centerInParent="true"
         android:layout_alignParentTop="true"
         android:scaleType="centerCrop"
