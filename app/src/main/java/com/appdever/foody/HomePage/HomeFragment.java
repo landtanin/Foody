@@ -1,6 +1,7 @@
 package com.appdever.foody.HomePage;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
+import com.appdever.foody.FoodDetailActivity;
+import com.appdever.foody.KeyStore;
 import com.appdever.foody.R;
 import com.appdever.foody.manager.JSONObtained;
 
@@ -52,7 +55,8 @@ public class HomeFragment extends Fragment {
 
     private String resultServer;
 
-    private String homeNameFood, homeImgFood;
+    private String homeFoodID, homeFoodTypeID, homeNameFood, homeCookingMethod,
+            homeImgFood, homePrepareIngredient, homeFoodDescription;
 
 
     public HomeFragment() {
@@ -99,16 +103,17 @@ public class HomeFragment extends Fragment {
                             for (int i = 0; i<foods.length(); i++) {
 
                                 ID_food = foods.getJSONObject(i);
-//                                strFoodID = ID_food.getString("id_food");
-//                                strFoodTypeID = ID_food.getString("id_typefood");
+                                homeFoodID = ID_food.getString("id_food");
+                                homeFoodTypeID = ID_food.getString("id_typefood");
                                 homeNameFood = ID_food.getString("name_food");
-//                                strCookingMethod = ID_food.getString("cooking_method");
+                                homeCookingMethod = ID_food.getString("cooking_method");
                                 homeImgFood = ID_food.getString("img");
-//                                strPrepareIngredient = ID_food.getString("prepare_ingredient");
-//                                strFoodDescription = ID_food.getString("description");
+                                homePrepareIngredient = ID_food.getString("prepare_ingredient");
+                                homeFoodDescription = ID_food.getString("description");
 
                                 // update data to ArrayList in recycler adapter
-                                newsList.add(new HomeListItem(homeImgFood, homeNameFood));
+                                newsList.add(new HomeListItem(homeFoodID, homeFoodTypeID, homeNameFood, homeCookingMethod,
+                                        homeImgFood, homePrepareIngredient, homeFoodDescription));
 
                             }
 
@@ -175,6 +180,18 @@ public class HomeFragment extends Fragment {
         recyclerAdapter = new RecyclerAdapter(getActivity(), newsList, new RecyclerAdapter.homeListCarrier() {
             @Override
             public void homeOnClickListener(HomeListItem homeListItem) {
+
+                Intent objIntent = new Intent(getActivity(), FoodDetailActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString(KeyStore.FOODID_DETAIL_SEND_KEY,homeListItem.getHomeFoodId());
+                extras.putString(KeyStore.FOODTYOEID_DETAIL_SEND_KEY,homeListItem.getHomeFoodTypeId());
+                extras.putString(KeyStore.NAMEFOOD_DETAIL_SEND_KEY,homeListItem.getHomeNameFood());
+                extras.putString(KeyStore.FOODMETHOD_DETAIL_SEND_KEY,homeListItem.getHomeCookingMethod());
+                extras.putString(KeyStore.FOODIMG_DETAIL_SEND_KEY,homeListItem.getImgTest01());
+                extras.putString(KeyStore.FOOD_INGREDIENT_SEND_KEY,homeListItem.getHomePrepareIngredient());
+                extras.putString(KeyStore.FOOD_DESCRIPTION_SEND_KEY,homeListItem.getHomeFoodDescribtion());
+                objIntent.putExtras(extras);
+                startActivity(objIntent);
 
             }
         });

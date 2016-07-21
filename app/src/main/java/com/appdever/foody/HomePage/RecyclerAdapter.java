@@ -41,8 +41,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
         final HomeListItem homeListItem = newList.get(position);
 
-        holder.tvTest01.setText(homeListItem.getTvTest01());
-        Glide.with(context).load(homeListItem.getImgTest01()).into(holder.imgTest01);
+        holder.homeNameFood.setText(homeListItem.getHomeNameFood());
+        Glide.with(context).load(homeListItem.getImgTest01()).into(holder.homeImgFood);
 
         holder.homeGridView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +51,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             }
         });
 
-//        newList.add(Glide.with(context).load("https://cdn3.artstation.com/p/assets/images/images/001/987/707/large/ilya-kuvshinov-cut2.jpg?1455606496").into(holder.imgTest01;)
+//        newList.add(Glide.with(context).load("https://cdn3.artstation.com/p/assets/images/images/001/987/707/large/ilya-kuvshinov-cut2.jpg?1455606496").into(holder.homeImgFood;)
     }
 
 
@@ -59,8 +59,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     public int getItemCount() {   return newList.size();}
 
     public static class RecyclerViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTest01;
-        ImageView imgTest01;
+        TextView homeNameFood;
+        ImageView homeImgFood;
         View homeGridView;
 
         RecyclerViewHolder(View itemView) {
@@ -68,8 +68,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
             homeGridView = itemView;
 
-            tvTest01 = (TextView) itemView.findViewById(R.id.tvTest01);
-            imgTest01 = (ImageView) itemView.findViewById(R.id.imgTest01);
+            homeNameFood = (TextView) itemView.findViewById(R.id.homeNameFood);
+            homeImgFood = (ImageView) itemView.findViewById(R.id.homeImgFood);
         }
     }
 
