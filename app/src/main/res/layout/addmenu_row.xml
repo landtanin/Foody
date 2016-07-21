@@ -22,7 +22,7 @@
     <AutoCompleteTextView
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:id="@+id/autoCompleteTextView"
+        android:id="@+id/count"
         android:background="#41303030"
         android:textColor="#f7751e"
         android:layout_weight=".3"

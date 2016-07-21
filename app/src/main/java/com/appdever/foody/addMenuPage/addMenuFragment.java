@@ -1,12 +1,9 @@
 package com.appdever.foody.addMenuPage;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -28,7 +25,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.appdever.foody.HomeActivity;
 import com.appdever.foody.R;
 import com.squareup.picasso.Picasso;
 //import com.isseiaoki.simplecropview.CropImageView;
@@ -38,11 +34,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.FormBody;
@@ -56,11 +49,12 @@ public class addMenuFragment extends Fragment {
 
     private Button add_meterial,save;
     private ImageView selectimage;
-    private EditText field_meterial,field_namefood,field_process,field_about;
+    private EditText field_meterial,field_namefood,field_process,field_about,count_field;
     private LinearLayout addfield_layout;
 
     private Bitmap image_food;
-    private List<EditText> fieldlist = new ArrayList<EditText>();
+    private List<AutoCompleteTextView> fieldlist = new ArrayList<AutoCompleteTextView>();
+    private List<AutoCompleteTextView> countlist = new ArrayList<AutoCompleteTextView>();
     private static final int RESULT_SELECT_IMAGE = 1;
 
     //private CropImageView mCropView;
@@ -172,6 +166,7 @@ public class addMenuFragment extends Fragment {
                         (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 final View addView = layoutInflater.inflate(R.layout.addmenu_row, null);
                 final AutoCompleteTextView field = (AutoCompleteTextView)addView.findViewById(R.id.field);
+                final AutoCompleteTextView countfield = (AutoCompleteTextView) addView.findViewById(R.id.count);
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line, matt);
                 field.setAdapter(adapter);
 
@@ -179,6 +174,7 @@ public class addMenuFragment extends Fragment {
                     field.setId(View.generateViewId());
                 }
                 fieldlist.add(field);
+                countlist.add(countfield);
 
                 final ImageButton buttonRemove = (ImageButton)addView.findViewById(R.id.delete_field);
                 buttonRemove.setOnClickListener(new View.OnClickListener(){
@@ -186,6 +182,7 @@ public class addMenuFragment extends Fragment {
                     public void onClick(View v) {
                         ((LinearLayout)addView.getParent()).removeView(addView);
                         fieldlist.remove(field);
+                        countlist.remove(countlist);
                     }
                 });
                 addfield_layout.addView(addView);
@@ -197,10 +194,14 @@ public class addMenuFragment extends Fragment {
                 String material[] = new String[fieldlist.size()+1];
                 material[0] = field_meterial.getText().toString();
 
+                String count[] = new String[fieldlist.size()+1];
+                count[0] = count_field.getText().toString();
+
                 for (int i = 1; i <= fieldlist.size(); i++) {
                     //Log.e("field", String.valueOf(fieldlist.get(i).getText().toString()));
                     //Log.e("fieldID", String.valueOf(fieldlist.get(i).getId()));
                     material[i] = fieldlist.get(i-1).getText().toString();
+                    count[i] = countlist.get(i-1).getText().toString();
                 }
 
                 if(image_food!=null){
@@ -209,7 +210,8 @@ public class addMenuFragment extends Fragment {
                             field_namefood.getText().toString(),
                             field_process.getText().toString(),
                             field_about.getText().toString(),
-                            material
+                            material,
+                            count
                     ).execute();
                 }
 
@@ -225,6 +227,7 @@ public class addMenuFragment extends Fragment {
     private void setviewid(View rootview){
         add_meterial = (Button) rootview.findViewById(R.id.addmaterial_button);
         field_meterial = (EditText) rootview.findViewById(R.id.material_field);
+        count_field = (EditText) rootview.findViewById(R.id.count_field);
         field_namefood = (EditText) rootview.findViewById(R.id.namefood_field);
         field_process = (EditText) rootview.findViewById(R.id.process_field);
         addfield_layout = (LinearLayout) rootview.findViewById(R.id.addfield_layout);
@@ -251,7 +254,7 @@ public class addMenuFragment extends Fragment {
                 e.printStackTrace();
             }
             image_food = Bitmap.createScaledBitmap(getImage,(int)(getImage.getWidth()*0.2), (int)(getImage.getHeight()*0.2), true);
-            Picasso.with(getContext()).load(image).resize(50, 50)
+            Picasso.with(getContext()).load(image).resize(100, 100)
                     .centerCrop().into(selectimage);
 
 
@@ -264,14 +267,16 @@ public class addMenuFragment extends Fragment {
         private String process;
         private String about;
         private String material[] = new String[fieldlist.size()];
+        private String count[] = new String[countlist.size()];
 
         ProgressDialog loading;
 
-        public Upload(Bitmap image, String namefood, String process,String about,String[] material) {
+        public Upload(Bitmap image, String namefood, String process,String about,String[] material,String[] count) {
             this.image = image;
             this.namefood = namefood;
             this.process = process;
             this.material = material;
+            this.count = count;
             this.about = about;
         }
 
@@ -298,10 +303,15 @@ public class addMenuFragment extends Fragment {
             String encodeImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
 
             JSONArray material_json = new JSONArray();
-
             for (String i:material )
             {
                 material_json.put(i);
+            }
+
+            JSONArray count_json = new JSONArray();
+            for (String i:count )
+            {
+                count_json.put(i);
             }
 
 
@@ -311,11 +321,13 @@ public class addMenuFragment extends Fragment {
                     .add("image", encodeImage)
                     .add("about",about)
                     .add("material", material_json.toString())
+                    .add("count", count_json.toString())
                     .build();
 
             String response = null;
             try {
                 response = http.run("http://foodyth.azurewebsites.net/testAPI/testadd.php", formBody);
+                Log.e("sendd", "GG");
                 Log.e("sendd", String.valueOf(String.valueOf(response)));
 
                 return response;
