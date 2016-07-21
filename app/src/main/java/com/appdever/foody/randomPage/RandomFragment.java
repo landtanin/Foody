@@ -1,7 +1,6 @@
 package com.appdever.foody.randomPage;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -11,19 +10,16 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.appdever.foody.MainActivity;
 import com.appdever.foody.R;
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -34,7 +30,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -117,7 +112,8 @@ public class RandomFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_random, container, false);
 
         button = (ImageButton) rootView.findViewById(R.id.imageButton);
-        img = (ImageView) rootView.findViewById(R.id.imageView3);
+        //img = (ImageView) rootView.findViewById(R.id.imageView3);
+        //img = (ImageView) rootView.findViewById(R.id.goProDialogImage);
 
         button.setOnClickListener(new View.OnClickListener() {
 
@@ -125,7 +121,7 @@ public class RandomFragment extends Fragment {
             public void onClick(View arg0) {
 
                 Random();
-                new LoadImage().execute(strFoodPic);
+               // new LoadImage().execute(strFoodPic);
 
 
                /* new LoadImage().execute(strFoodPic);*/
@@ -236,11 +232,13 @@ public class RandomFragment extends Fragment {
             });
             final AlertDialog dialog = builder.create();
             LayoutInflater inflater = getActivity().getLayoutInflater();
-            View dialogLayout = inflater.inflate(R.layout.go_pro_dialog_layout, null);
+            View dialogLayout = inflater.inflate(R.layout.random_menu_popup, null);
+            ImageView randomDialogImage= (ImageView) dialogLayout.findViewById(R.id.randomDialogImage);
+            Glide.with(getContext()).load(strFoodPic).into(randomDialogImage);
             dialog.setView(dialogLayout);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setTitle(strFoodName);
-            dialog.setMessage(strFoodPic);
+//            dialog.setMessage(strFoodPic);
 
             dialog.show();
 
@@ -248,7 +246,7 @@ public class RandomFragment extends Fragment {
                 @Override
                 public void onShow(DialogInterface d) {
 
-                    ImageView image = (ImageView) dialog.findViewById(R.id.goProDialogImage);
+                    ImageView image = (ImageView) dialog.findViewById(R.id.randomDialogImage);
                     Bitmap icon = BitmapFactory.decodeResource(getActivity().getResources(),
                             R.drawable.whygoprodialogimage);
                     float imageWidthInPX = (float)image.getWidth();
@@ -256,7 +254,6 @@ public class RandomFragment extends Fragment {
                     LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(Math.round(imageWidthInPX),
                             Math.round(imageWidthInPX * (float)icon.getHeight() / (float)icon.getWidth()));
                     image.setLayoutParams(layoutParams);
-
 
                 }
             });
