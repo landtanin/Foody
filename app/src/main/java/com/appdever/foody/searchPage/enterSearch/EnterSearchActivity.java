@@ -66,7 +66,7 @@ public class EnterSearchActivity extends AppCompatActivity{
         recyclerAdapter = new EnterSearchRecyclerAdapter(EnterSearchActivity.this, newsList, new EnterSearchRecyclerAdapter.abc() {
             @Override
             public void mySetOnClickListener(EnterSearchMenu enterSearchMenu) {
-                Log.d("ABC", enterSearchMenu.getNameFood());
+//                Log.d("ABC", enterSearchMenu.getNameFood());
 //                Log.d("ABC", strNameFood);
 
                 Intent objIntent = new Intent(EnterSearchActivity.this, FoodDetailActivity.class);
@@ -95,8 +95,6 @@ public class EnterSearchActivity extends AppCompatActivity{
 
 
     private void connectDatabase() {
-
-
 
 //        Request request = new Request.Builder().url(JSONObtained.getAbsoluteUrl("food.php" + "?type=ย่าง")).build();
 // optional

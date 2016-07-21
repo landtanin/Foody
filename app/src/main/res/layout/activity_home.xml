@@ -65,7 +65,8 @@
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:background="@color/colorPrimary"
-            app:layout_scrollFlags="snap|enterAlways">
+            app:layout_scrollFlags="snap|enterAlways"
+            android:textAlignment="center">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -103,15 +104,19 @@
                         android:textSize="@dimen/text_big"
                         tools:ignore="MissingPrefix" />
 
-                    <ImageView
-                        android:id="@+id/menu_facebook"
+                    <!--<ImageView-->
+                        <!--android:id="@+id/menu_facebook"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:adjustViewBounds="true"-->
+                        <!--android:padding="@dimen/activity_horizontal_margin"-->
+                        <!--android:scaleType="fitCenter"-->
+                        <!--android:src="@drawable/banner_02"-->
+                        <!--android:visibility="invisible" />-->
+                    <Space
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:adjustViewBounds="true"
-                        android:padding="@dimen/activity_horizontal_margin"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/banner_02"
-                        android:visibility="invisible" />
+                        android:layout_weight="0.18"/>
                 </LinearLayout>
             </android.support.v7.widget.Toolbar>
 

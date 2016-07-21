@@ -20,16 +20,16 @@
         android:layout_height="@dimen/home_banner_height">
 
         <ImageView
-            android:id="@+id/imgTest01"
+            android:id="@+id/homeImgFood"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="center"
+            android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher"
             android:layout_gravity="center"/>
 
 
         <TextView
-            android:id="@+id/tvTest01"
+            android:id="@+id/homeNameFood"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/imgTest01"

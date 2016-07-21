@@ -163,7 +163,6 @@ public class addMenuFragment extends Fragment {
                 //mCropView.setImageResource(R.drawable.sample5);
                 //}
 
-
             }});
 
 
@@ -213,6 +212,8 @@ public class addMenuFragment extends Fragment {
                             material
                     ).execute();
                 }
+
+
             }});
 
 
@@ -303,9 +304,7 @@ public class addMenuFragment extends Fragment {
             {
                 material_json.put(i);
             }
-            //Log.e("namefood", String.valueOf(String.valueOf(namefood)));
-            //Log.e("process", String.valueOf(String.valueOf(process)));
-            //Log.e("encodeImage", String.valueOf(String.valueOf(encodeImage)));
+
 
             RequestBody formBody = new FormBody.Builder()
                     .add("namefood", namefood)
