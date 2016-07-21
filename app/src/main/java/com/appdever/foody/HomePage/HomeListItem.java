@@ -29,5 +29,4 @@ public class HomeListItem {
         this.tvTest01 = tvTest01;
     }
 
-
 }
