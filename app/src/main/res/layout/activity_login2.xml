@@ -55,6 +55,7 @@
             android:layout_gravity="center_horizontal"
             android:background="#71fafff8"
             android:hint=" รหัสผ่าน"
+            android:inputType="textPassword"
             android:layout_weight="7"
             android:imeOptions="actionDone"
             android:singleLine="true"/>

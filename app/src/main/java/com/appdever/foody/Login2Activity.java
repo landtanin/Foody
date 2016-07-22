@@ -174,7 +174,7 @@ public class Login2Activity extends AppCompatActivity {
         else
         {
             Toast.makeText(Login2Activity.this, "Login OK", Toast.LENGTH_SHORT).show();
-            Intent newActivity = new Intent(Login2Activity.this,MainActivity.class);
+            Intent newActivity = new Intent(Login2Activity.this,HomeActivity.class);
             newActivity.putExtra("MemberID","");
             Log.e("ShowLogin",String.valueOf(c));
             startActivity(newActivity);
