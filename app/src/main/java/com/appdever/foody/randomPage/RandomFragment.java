@@ -1,10 +1,12 @@
 package com.appdever.foody.randomPage;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
@@ -43,8 +45,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import android.app.ProgressDialog;
-import android.os.AsyncTask;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,12 +55,10 @@ import android.os.AsyncTask;
  * create an instance of this fragment.
  */
 public class RandomFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private ImageButton button;
@@ -90,7 +88,6 @@ public class RandomFragment extends Fragment {
 
      * @return A new instance of fragment RandomFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static RandomFragment newInstance() {
         RandomFragment fragment = new RandomFragment();
         Bundle args = new Bundle();
@@ -148,7 +145,6 @@ public class RandomFragment extends Fragment {
 
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -183,7 +179,6 @@ public class RandomFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 
@@ -222,7 +217,6 @@ public class RandomFragment extends Fragment {
             //strError = c.getString("Error");
 
         } catch (JSONException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 

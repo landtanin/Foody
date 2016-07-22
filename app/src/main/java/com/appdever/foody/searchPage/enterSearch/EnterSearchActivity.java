@@ -81,7 +81,6 @@ public class EnterSearchActivity extends AppCompatActivity{
                 objIntent.putExtras(extras);
                 startActivity(objIntent);
 
-
             }
         });
 
@@ -92,7 +91,6 @@ public class EnterSearchActivity extends AppCompatActivity{
         connectDatabase();
 
     }
-
 
     private void connectDatabase() {
 
@@ -124,7 +122,6 @@ public class EnterSearchActivity extends AppCompatActivity{
                         try {
                             foodJSONStr = new JSONObject(resultServer);
                             JSONArray foods = foodJSONStr.getJSONArray("foods");
-
 
                             for (int i = 0; i<foods.length(); i++) {
 

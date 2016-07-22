@@ -1,6 +1,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:context="com.appdever.foody.searchPage.ingredientSearchFragment">
+        tools:context=".searchPage.ingredientSearch.ingredientSearchFragment">
 
 <FrameLayout
              android:layout_width="match_parent"
@@ -114,8 +114,52 @@
                     android:buttonTint="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="หมึก"
+                    android:text="ปลาหมึก"
                     android:id="@+id/sqiudRadioButton"
+                    android:textColor="#000000"
+                    android:checked="false"
+                    android:layout_columnWeight="1"
+                    android:textSize="@dimen/radio_font_size"/>
+
+                <com.appdever.foody.searchPage.DeselectableRadioButton
+                    android:buttonTint="@color/colorPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="หอย"
+                    android:id="@+id/shellRadioButton"
+                    android:textColor="#000000"
+                    android:checked="false"
+                    android:layout_columnWeight="1"
+                    android:textSize="@dimen/radio_font_size"/>
+
+                <com.appdever.foody.searchPage.DeselectableRadioButton
+                    android:buttonTint="@color/colorPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ปู"
+                    android:id="@+id/crabRadioButton"
+                    android:textColor="#000000"
+                    android:checked="false"
+                    android:layout_columnWeight="1"
+                    android:textSize="@dimen/radio_font_size"/>
+
+                <com.appdever.foody.searchPage.DeselectableRadioButton
+                    android:buttonTint="@color/colorPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="แฮม"
+                    android:id="@+id/hamRadioButton"
+                    android:textColor="#000000"
+                    android:checked="false"
+                    android:layout_columnWeight="1"
+                    android:textSize="@dimen/radio_font_size"/>
+
+                <com.appdever.foody.searchPage.DeselectableRadioButton
+                    android:buttonTint="@color/colorPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ไส้กรอก"
+                    android:id="@+id/sausageRadioButton"
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
@@ -127,6 +171,17 @@
                     android:layout_height="wrap_content"
                     android:text="ไข่"
                     android:id="@+id/eggRadioButton"
+                    android:textColor="#000000"
+                    android:checked="false"
+                    android:layout_columnWeight="1"
+                    android:textSize="@dimen/radio_font_size"/>
+
+                <com.appdever.foody.searchPage.DeselectableRadioButton
+                    android:buttonTint="@color/colorPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ผัก"
+                    android:id="@+id/vegRadioButton"
                     android:textColor="#000000"
                     android:checked="false"
                     android:layout_columnWeight="1"
@@ -154,336 +209,346 @@
 
             </View>
 
-            <TextView
-                android:id="@+id/rootSideText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_subCat_sideIng"
-                android:layout_marginTop="@dimen/margin_from_top"
-                android:text="ราก"
-                android:textSize="@dimen/header2_font_size"
-                android:textColor="#000000"/>
+            <Button
+                android:layout_width="@dimen/button_width_size_medium"
+                android:layout_gravity="center"
+                android:layout_height="@dimen/button_size_large"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="@dimen/margin_top_condiment_button"
+                android:text="เลือกวัตถุดิบเสริม"
+                android:textSize="@dimen/font_size_x4"
+                android:id="@+id/chooseOtherResource"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/line_width"
-                android:background="#000000"
-                android:layout_marginLeft="@dimen/margin_subCat_sideIng"
-                android:layout_marginRight="@dimen/margin_from_sides">
+            <!--<TextView-->
+                <!--android:id="@+id/rootSideText"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="@dimen/margin_subCat_sideIng"-->
+                <!--android:layout_marginTop="@dimen/margin_from_top"-->
+                <!--android:text=""-->
+                <!--android:textSize="@dimen/header2_font_size"-->
+                <!--android:textColor="#000000"/>-->
 
-            </View>
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/line_width"-->
+                <!--android:background="#000000"-->
+                <!--android:layout_marginLeft="@dimen/margin_subCat_sideIng"-->
+                <!--android:layout_marginRight="@dimen/margin_from_sides"/>-->
 
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:columnCount="2"
-                android:rowCount="4"
-                android:useDefaultMargins="true"
-                android:padding="@dimen/button_padding"
-                android:layout_marginLeft="@dimen/margin_subCat_sideIng"
-                >
+            <!--</View>-->
 
-                <com.appdever.foody.searchPage.DeselectableRadioButton
-                    android:buttonTint="@color/colorPrimary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="แครอท"
-                    android:id="@+id/root1RadioButton"
-                    android:textColor="#000000"
-                    android:checked="false"
-                    android:layout_columnWeight="1"
-                    android:textSize="@dimen/radio_font_size"/>
+            <!--<GridLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:columnCount="2"-->
+                <!--android:rowCount="4"-->
+                <!--android:useDefaultMargins="true"-->
+                <!--android:padding="@dimen/button_padding"-->
+                <!--android:layout_marginLeft="@dimen/margin_subCat_sideIng"-->
+                <!--&gt;-->
 
-                <com.appdever.foody.searchPage.DeselectableRadioButton
-                    android:buttonTint="@color/colorPrimary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="เผือก"
-                    android:id="@+id/root2RadioButton"
-                    android:textColor="#000000"
-                    android:checked="false"
-                    android:layout_columnWeight="1"
-                    android:textSize="@dimen/radio_font_size"/>
+                <!--<com.appdever.foody.searchPage.DeselectableRadioButton-->
+                    <!--android:buttonTint="@color/colorPrimary"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="แครอท"-->
+                    <!--android:id="@+id/root1RadioButton"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:checked="false"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:textSize="@dimen/radio_font_size"/>-->
 
-                <com.appdever.foody.searchPage.DeselectableRadioButton
-                    android:buttonTint="@color/colorPrimary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="โสม"
-                    android:id="@+id/root3RadioButton"
-                    android:textColor="#000000"
-                    android:checked="false"
-                    android:layout_columnWeight="1"
-                    android:textSize="@dimen/radio_font_size"/>
+                <!--<com.appdever.foody.searchPage.DeselectableRadioButton-->
+                    <!--android:buttonTint="@color/colorPrimary"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="เผือก"-->
+                    <!--android:id="@+id/root2RadioButton"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:checked="false"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:textSize="@dimen/radio_font_size"/>-->
 
-            </GridLayout>
+                <!--<com.appdever.foody.searchPage.DeselectableRadioButton-->
+                    <!--android:buttonTint="@color/colorPrimary"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="โสม"-->
+                    <!--android:id="@+id/root3RadioButton"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:checked="false"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:textSize="@dimen/radio_font_size"/>-->
+
+            <!--</GridLayout>-->
 
 
 
-            <TextView
-                android:id="@+id/stemSideText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_subCat_sideIng"
-                android:layout_marginTop="@dimen/margin_from_top"
-                android:text="ลำต้น"
-                android:textSize="@dimen/header2_font_size"
-                android:textColor="#000000"/>
+            <!--<TextView-->
+                <!--android:id="@+id/stemSideText"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="@dimen/margin_subCat_sideIng"-->
+                <!--android:layout_marginTop="@dimen/margin_from_top"-->
+                <!--android:text="ลำต้น"-->
+                <!--android:textSize="@dimen/header2_font_size"-->
+                <!--android:textColor="#000000"/>-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/line_width"
-                android:background="#000000"
-                android:layout_marginLeft="@dimen/margin_subCat_sideIng"
-                android:layout_marginRight="@dimen/margin_from_sides">
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/line_width"-->
+                <!--android:background="#000000"-->
+                <!--android:layout_marginLeft="@dimen/margin_subCat_sideIng"-->
+                <!--android:layout_marginRight="@dimen/margin_from_sides">-->
 
-            </View>
+            <!--</View>-->
 
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:columnCount="2"
-                android:rowCount="4"
-                android:useDefaultMargins="true"
-                android:padding="@dimen/button_padding"
-                android:layout_marginLeft="@dimen/margin_subCat_sideIng"
-                >
+            <!--<GridLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:columnCount="2"-->
+                <!--android:rowCount="4"-->
+                <!--android:useDefaultMargins="true"-->
+                <!--android:padding="@dimen/button_padding"-->
+                <!--android:layout_marginLeft="@dimen/margin_subCat_sideIng"-->
+                <!--&gt;-->
 
-                <com.appdever.foody.searchPage.DeselectableRadioButton
-                    android:buttonTint="@color/colorPrimary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ต้น1"
-                    android:id="@+id/stem1RadioButton"
-                    android:textColor="#000000"
-                    android:checked="false"
-                    android:layout_columnWeight="1"
-                    android:textSize="@dimen/radio_font_size"/>
+                <!--<com.appdever.foody.searchPage.DeselectableRadioButton-->
+                    <!--android:buttonTint="@color/colorPrimary"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="ต้น1"-->
+                    <!--android:id="@+id/stem1RadioButton"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:checked="false"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:textSize="@dimen/radio_font_size"/>-->
 
-                <com.appdever.foody.searchPage.DeselectableRadioButton
-                    android:buttonTint="@color/colorPrimary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ต้น2"
-                    android:id="@+id/stem2RadioButton"
-                    android:textColor="#000000"
-                    android:checked="false"
-                    android:layout_columnWeight="1"
-                    android:textSize="@dimen/radio_font_size"/>
+                <!--<com.appdever.foody.searchPage.DeselectableRadioButton-->
+                    <!--android:buttonTint="@color/colorPrimary"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="ต้น2"-->
+                    <!--android:id="@+id/stem2RadioButton"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:checked="false"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:textSize="@dimen/radio_font_size"/>-->
 
-                <com.appdever.foody.searchPage.DeselectableRadioButton
-                    android:buttonTint="@color/colorPrimary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ต้น3"
-                    android:id="@+id/stem3RadioButton"
-                    android:textColor="#000000"
-                    android:checked="false"
-                    android:layout_columnWeight="1"
-                    android:textSize="@dimen/radio_font_size"/>
+                <!--<com.appdever.foody.searchPage.DeselectableRadioButton-->
+                    <!--android:buttonTint="@color/colorPrimary"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="ต้น3"-->
+                    <!--android:id="@+id/stem3RadioButton"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:checked="false"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:textSize="@dimen/radio_font_size"/>-->
 
-            </GridLayout>
+            <!--</GridLayout>-->
 
-            <TextView
-                android:id="@+id/leaveSideText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_subCat_sideIng"
-                android:layout_marginTop="@dimen/margin_from_top"
-                android:text="ใบ"
-                android:textSize="@dimen/header2_font_size"
-                android:textColor="#000000"/>
+            <!--<TextView-->
+                <!--android:id="@+id/leaveSideText"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="@dimen/margin_subCat_sideIng"-->
+                <!--android:layout_marginTop="@dimen/margin_from_top"-->
+                <!--android:text="ใบ"-->
+                <!--android:textSize="@dimen/header2_font_size"-->
+                <!--android:textColor="#000000"/>-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/line_width"
-                android:background="#000000"
-                android:layout_marginLeft="@dimen/margin_subCat_sideIng"
-                android:layout_marginRight="@dimen/margin_from_sides">
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/line_width"-->
+                <!--android:background="#000000"-->
+                <!--android:layout_marginLeft="@dimen/margin_subCat_sideIng"-->
+                <!--android:layout_marginRight="@dimen/margin_from_sides">-->
 
-            </View>
+            <!--</View>-->
 
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:columnCount="2"
-                android:rowCount="4"
-                android:useDefaultMargins="true"
-                android:padding="@dimen/button_padding"
-                android:layout_marginLeft="@dimen/margin_subCat_sideIng"
-                >
+            <!--<GridLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:columnCount="2"-->
+                <!--android:rowCount="4"-->
+                <!--android:useDefaultMargins="true"-->
+                <!--android:padding="@dimen/button_padding"-->
+                <!--android:layout_marginLeft="@dimen/margin_subCat_sideIng"-->
+                <!--&gt;-->
 
-                <com.appdever.foody.searchPage.DeselectableRadioButton
-                    android:buttonTint="@color/colorPrimary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ใบ1"
-                    android:id="@+id/leave1RadioButton"
-                    android:textColor="#000000"
-                    android:checked="false"
-                    android:layout_columnWeight="1"
-                    android:textSize="@dimen/radio_font_size"/>
+                <!--<com.appdever.foody.searchPage.DeselectableRadioButton-->
+                    <!--android:buttonTint="@color/colorPrimary"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="ใบ1"-->
+                    <!--android:id="@+id/leave1RadioButton"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:checked="false"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:textSize="@dimen/radio_font_size"/>-->
 
-                <com.appdever.foody.searchPage.DeselectableRadioButton
-                    android:buttonTint="@color/colorPrimary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ใบ2"
-                    android:id="@+id/leave2RadioButton"
-                    android:textColor="#000000"
-                    android:checked="false"
-                    android:layout_columnWeight="1"
-                    android:textSize="@dimen/radio_font_size"/>
+                <!--<com.appdever.foody.searchPage.DeselectableRadioButton-->
+                    <!--android:buttonTint="@color/colorPrimary"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="ใบ2"-->
+                    <!--android:id="@+id/leave2RadioButton"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:checked="false"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:textSize="@dimen/radio_font_size"/>-->
 
-                <com.appdever.foody.searchPage.DeselectableRadioButton
-                    android:buttonTint="@color/colorPrimary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ใบ3"
-                    android:id="@+id/leave3RadioButton"
-                    android:textColor="#000000"
-                    android:checked="false"
-                    android:layout_columnWeight="1"
-                    android:textSize="@dimen/radio_font_size"/>
+                <!--<com.appdever.foody.searchPage.DeselectableRadioButton-->
+                    <!--android:buttonTint="@color/colorPrimary"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="ใบ3"-->
+                    <!--android:id="@+id/leave3RadioButton"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:checked="false"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:textSize="@dimen/radio_font_size"/>-->
 
-            </GridLayout>
+            <!--</GridLayout>-->
 
-                <TextView
-                    android:id="@+id/flowerSideText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_subCat_sideIng"
-                    android:layout_marginTop="@dimen/margin_from_top"
-                    android:text="ดอก"
-                    android:textSize="@dimen/header2_font_size"
-                    android:textColor="#000000"/>
+                <!--<TextView-->
+                    <!--android:id="@+id/flowerSideText"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/margin_subCat_sideIng"-->
+                    <!--android:layout_marginTop="@dimen/margin_from_top"-->
+                    <!--android:text="ดอก"-->
+                    <!--android:textSize="@dimen/header2_font_size"-->
+                    <!--android:textColor="#000000"/>-->
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/line_width"
-                    android:background="#000000"
-                    android:layout_marginLeft="@dimen/margin_subCat_sideIng"
-                    android:layout_marginRight="@dimen/margin_from_sides">
+                <!--<View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="@dimen/line_width"-->
+                    <!--android:background="#000000"-->
+                    <!--android:layout_marginLeft="@dimen/margin_subCat_sideIng"-->
+                    <!--android:layout_marginRight="@dimen/margin_from_sides">-->
 
-                </View>
+                <!--</View>-->
 
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:columnCount="2"
-                android:rowCount="4"
-                android:useDefaultMargins="true"
-                android:padding="@dimen/button_padding"
-                android:layout_marginLeft="@dimen/margin_subCat_sideIng"
-                >
+            <!--<GridLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:columnCount="2"-->
+                <!--android:rowCount="4"-->
+                <!--android:useDefaultMargins="true"-->
+                <!--android:padding="@dimen/button_padding"-->
+                <!--android:layout_marginLeft="@dimen/margin_subCat_sideIng"-->
+                <!--&gt;-->
 
-                <com.appdever.foody.searchPage.DeselectableRadioButton
-                    android:buttonTint="@color/colorPrimary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ดอก1"
-                    android:id="@+id/flower1RadioButton"
-                    android:textColor="#000000"
-                    android:checked="false"
-                    android:layout_columnWeight="1"
-                    android:textSize="@dimen/radio_font_size"/>
+                <!--<com.appdever.foody.searchPage.DeselectableRadioButton-->
+                    <!--android:buttonTint="@color/colorPrimary"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="ดอก1"-->
+                    <!--android:id="@+id/flower1RadioButton"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:checked="false"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:textSize="@dimen/radio_font_size"/>-->
 
-                <com.appdever.foody.searchPage.DeselectableRadioButton
-                    android:buttonTint="@color/colorPrimary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ดอก2"
-                    android:id="@+id/flower2RadioButton"
-                    android:textColor="#000000"
-                    android:checked="false"
-                    android:layout_columnWeight="1"
-                    android:textSize="@dimen/radio_font_size"/>
+                <!--<com.appdever.foody.searchPage.DeselectableRadioButton-->
+                    <!--android:buttonTint="@color/colorPrimary"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="ดอก2"-->
+                    <!--android:id="@+id/flower2RadioButton"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:checked="false"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:textSize="@dimen/radio_font_size"/>-->
 
-                <com.appdever.foody.searchPage.DeselectableRadioButton
-                    android:buttonTint="@color/colorPrimary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ดอก3"
-                    android:id="@+id/flower3RadioButton"
-                    android:textColor="#000000"
-                    android:checked="false"
-                    android:layout_columnWeight="1"
-                    android:textSize="@dimen/radio_font_size"/>
+                <!--<com.appdever.foody.searchPage.DeselectableRadioButton-->
+                    <!--android:buttonTint="@color/colorPrimary"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="ดอก3"-->
+                    <!--android:id="@+id/flower3RadioButton"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:checked="false"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:textSize="@dimen/radio_font_size"/>-->
 
-            </GridLayout>
+            <!--</GridLayout>-->
 
-            <TextView
-                android:id="@+id/fruitSideText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_subCat_sideIng"
-                android:layout_marginTop="@dimen/margin_from_top"
-                android:text="ผล"
-                android:textSize="@dimen/header2_font_size"
-                android:textColor="#000000"/>
+            <!--<TextView-->
+                <!--android:id="@+id/fruitSideText"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="@dimen/margin_subCat_sideIng"-->
+                <!--android:layout_marginTop="@dimen/margin_from_top"-->
+                <!--android:text="ผล"-->
+                <!--android:textSize="@dimen/header2_font_size"-->
+                <!--android:textColor="#000000"/>-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/line_width"
-                android:background="#000000"
-                android:layout_marginLeft="@dimen/margin_subCat_sideIng"
-                android:layout_marginRight="@dimen/margin_from_sides">
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/line_width"-->
+                <!--android:background="#000000"-->
+                <!--android:layout_marginLeft="@dimen/margin_subCat_sideIng"-->
+                <!--android:layout_marginRight="@dimen/margin_from_sides">-->
 
-            </View>
+            <!--</View>-->
 
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:columnCount="2"
-                android:rowCount="4"
-                android:useDefaultMargins="true"
-                android:padding="@dimen/button_padding"
-                android:layout_marginLeft="@dimen/margin_subCat_sideIng"
-                >
+            <!--<GridLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:columnCount="2"-->
+                <!--android:rowCount="4"-->
+                <!--android:useDefaultMargins="true"-->
+                <!--android:padding="@dimen/button_padding"-->
+                <!--android:layout_marginLeft="@dimen/margin_subCat_sideIng"-->
+                <!--&gt;-->
 
-                <com.appdever.foody.searchPage.DeselectableRadioButton
-                    android:buttonTint="@color/colorPrimary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ผล1"
-                    android:id="@+id/fruit1RadioButton"
-                    android:textColor="#000000"
-                    android:checked="false"
-                    android:layout_columnWeight="1"
-                    android:textSize="@dimen/radio_font_size"/>
+                <!--<com.appdever.foody.searchPage.DeselectableRadioButton-->
+                    <!--android:buttonTint="@color/colorPrimary"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="ผล1"-->
+                    <!--android:id="@+id/fruit1RadioButton"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:checked="false"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:textSize="@dimen/radio_font_size"/>-->
 
-                <com.appdever.foody.searchPage.DeselectableRadioButton
-                    android:buttonTint="@color/colorPrimary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ผล2"
-                    android:id="@+id/fruit2RadioButton"
-                    android:textColor="#000000"
-                    android:checked="false"
-                    android:layout_columnWeight="1"
-                    android:textSize="@dimen/radio_font_size"/>
+                <!--<com.appdever.foody.searchPage.DeselectableRadioButton-->
+                    <!--android:buttonTint="@color/colorPrimary"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="ผล2"-->
+                    <!--android:id="@+id/fruit2RadioButton"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:checked="false"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:textSize="@dimen/radio_font_size"/>-->
 
-                <com.appdever.foody.searchPage.DeselectableRadioButton
-                    android:buttonTint="@color/colorPrimary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ผล3"
-                    android:id="@+id/fruit3RadioButton"
-                    android:textColor="#000000"
-                    android:checked="false"
-                    android:layout_columnWeight="1"
-                    android:textSize="@dimen/radio_font_size"/>
+                <!--<com.appdever.foody.searchPage.DeselectableRadioButton-->
+                    <!--android:buttonTint="@color/colorPrimary"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="ผล3"-->
+                    <!--android:id="@+id/fruit3RadioButton"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:checked="false"-->
+                    <!--android:layout_columnWeight="1"-->
+                    <!--android:textSize="@dimen/radio_font_size"/>-->
 
-            </GridLayout>
+            <!--</GridLayout>-->
 
             <TextView
                 android:id="@+id/otherSideText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_subCat_sideIng"
-                android:layout_marginTop="@dimen/margin_from_top"
-                android:text="วัตถุดิบอื่นๆ"
-                android:textSize="@dimen/header2_font_size"
+                android:layout_marginTop="@dimen/margin_top_condiment_button"
+                android:text="รายการวัตถุดิบ"
+                android:textSize="@dimen/radio_font_size"
                 android:textColor="#000000"/>
 
             <View
@@ -495,18 +560,22 @@
 
             </View>
 
-
-
-            <EditText
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_enter_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:layout_marginRight="@dimen/margin_subCat_sideIng"
-                android:background="@drawable/other_text_file"
-                android:layout_marginTop="@dimen/margin_food_type_radios"
-                android:lines="5"
-                android:textColor="#000000"
-                />
+                android:scrollbars="vertical"/>
+
+            <!--<EditText-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="60dp"-->
+                <!--android:layout_marginRight="@dimen/margin_subCat_sideIng"-->
+                <!--android:background="@drawable/other_text_file"-->
+                <!--android:layout_marginTop="@dimen/margin_food_type_radios"-->
+                <!--android:lines="5"-->
+                <!--android:textColor="#000000"-->
+                <!--/>-->
             <Button
                 android:layout_width="@dimen/button_width_size_medium"
                 android:layout_height="@dimen/button_size_large"

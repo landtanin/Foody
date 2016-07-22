@@ -33,6 +33,7 @@
     <dimen name="margin_from_sides">20dp</dimen>
     <dimen name="margin_from_top_searchIng">76dp</dimen>
     <dimen name="margin_subCat_sideIng">40dp</dimen>
+    <dimen name="margin_top_condiment_button">18dp</dimen>
 
     <dimen name="home_banner_height">150dp</dimen>
 

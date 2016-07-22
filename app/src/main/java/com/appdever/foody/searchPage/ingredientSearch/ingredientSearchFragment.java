@@ -1,5 +1,6 @@
-package com.appdever.foody.searchPage;
+package com.appdever.foody.searchPage.ingredientSearch;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -8,20 +9,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.appdever.foody.R;
 import com.appdever.foody.databinding.FragmentIngredientSearchBinding;
 import com.appdever.foody.searchPage.enterSearch.EnterSearchActivity;
 
-///**
-// * A simple {@link Fragment} subclass.
-// * Activities that contain this fragment must implement the
-// * {@link ingredientSearchFragment.OnFragmentInteractionListener} interface
-// * to handle interaction events.
-// * Use the {@link ingredientSearchFragment#newInstance} factory method to
-// * create an instance of this fragment.
-// */
+
 
 public class ingredientSearchFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -77,15 +72,33 @@ public class ingredientSearchFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        FragmentIngredientSearchBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_ingredient_search, container, false);
+        final FragmentIngredientSearchBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_ingredient_search, container, false);
 
         final View rootView = binding.getRoot();
 
-//        pigRadioButton = (DeselectableRadioButton) rootView.findViewById(R.id.pigRadioButton);
-//        chickenRadioButton = (DeselectableRadioButton) rootView.findViewById(R.id.chickenRadioButton);
-//        cowRadioButton = (DeselectableRadioButton) rootView.findViewById(R.id.cowRadioButton);
-//        fishRadioButton = (DeselectableRadioButton) rootView.findViewById(R.id.fishRadioButton);
-//        shrimpRadioButton = (DeselectableRadioButton) rootView.findViewById(R.id.fishRadioButton);
+        binding.chooseOtherResource.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final Dialog dialog = new Dialog(getContext());
+
+                dialog.setContentView(R.layout.other_resource);
+
+                dialog.setTitle("Custom Dialog");
+
+                dialog.show();
+
+                Button okButton = (Button) dialog.findViewById(R.id.okButtonInOtherResource);
+
+                okButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+            }
+        });
 
         binding.pigRadioButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,42 +127,4 @@ public class ingredientSearchFragment extends Fragment {
     }
 
 
-//    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onFragmentInteraction(uri);
-//        }
-//    }
-//
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
-
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mListener = null;
-//    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-//    public interface OnFragmentInteractionListener {
-//        // TODO: Update argument type and name
-//        void onFragmentInteraction(Uri uri);
-//    }
 }

@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.appdever.foody.R;
 import com.appdever.foody.manager.SmartFragmentStatePagerAdapter;
+import com.appdever.foody.searchPage.ingredientSearch.ingredientSearchFragment;
 
 /**
  * A simple {@link Fragment} subclass.
