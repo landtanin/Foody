@@ -4,8 +4,11 @@
     <color name="colorPrimaryDark">#606060</color>
     <color name="colorAccent">#FF4081</color>
 
+    #41303030
+    <color name="colorBgEdtRegis">#41303030</color>
     <color name="colorFontTitle">#FFFFFF</color>
     <color name="colorLine">#FFFFFF</color>
+    <color name="colorBG">#FFFFFF</color>
 
 
 </resources>

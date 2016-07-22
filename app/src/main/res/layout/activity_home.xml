@@ -131,6 +131,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true">
 
+        <!--BeforeLogin-->
         <LinearLayout
             android:id="@+id/hbgBeforeLogin"
             android:layout_width="match_parent"
@@ -146,6 +147,7 @@
                 android:paddingTop="@dimen/space_x4"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:visibility="invisible"
                 android:orientation="vertical">
 
                 <ImageView
@@ -219,9 +221,9 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/imgLogo"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_height="180dp"
                     android:padding="@dimen/padding_logo_x2"
                     android:src="@drawable/logo_foody_white" />
 
@@ -233,22 +235,146 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/web"
+                        android:id="@+id/web_link"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:src="@drawable/ic_link" />
 
                     <ImageView
-                        android:id="@+id/facebook"
+                        android:id="@+id/facebook_link"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_facebook" />
+                        android:src="@drawable/facebook_circle" />
 
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+        <!--End BeforeLogin-->
+
+        <!--AfterLogin-->
+        <LinearLayout
+            android:id="@+id/hbgAfterLogin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:gravity="top"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:padding="@dimen/padding_size_x4"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:paddingTop="@dimen/space_x4"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imgProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingTop="@dimen/space_x4"
+                    android:src="@android:drawable/sym_def_app_icon" />
+
+                <TextView
+                    android:id="@+id/txtProfileName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/space_x4"
+                    android:text="Name" />
+
+                <TextView
+                    android:id="@+id/txtProfileEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Email" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.8"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/colorFontTitle"/>
+
+                <Button
+                    android:id="@+id/btnLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/space_x2"
+                    android:background="@android:color/transparent"
+                    android:text="แก้ไขข้อมูล"
+                    android:textSize="@dimen/font_size_x5"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/colorFontTitle"/>
+
+                <Button
+                    android:id="@+id/btnLogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/space_x2"
+                    android:background="@android:color/transparent"
+                    android:text="ออกจากระบบ"
+                    android:textSize="@dimen/font_size_x5"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/colorFontTitle"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.2"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imgLogo"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:padding="@dimen/padding_logo_x2"
+                    android:src="@drawable/logo_foody_white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:weightSum="2"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/web_link"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_link" />
+
+                    <ImageView
+                        android:id="@+id/facebook_link"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:src="@drawable/facebook_circle" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <!--End AfterLogin-->
 
 
     </android.support.design.widget.NavigationView>

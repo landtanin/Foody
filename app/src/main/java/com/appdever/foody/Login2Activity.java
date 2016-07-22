@@ -145,7 +145,7 @@ public class Login2Activity extends AppCompatActivity {
         String strMemberID = "0";
         String strError = "Unknow Status!";
 
-        JSONObject c;
+        JSONObject c = null;
         try {
             c = new JSONObject(resultServer);
             strStatusID = c.getString("StatusID");
@@ -176,6 +176,7 @@ public class Login2Activity extends AppCompatActivity {
             Toast.makeText(Login2Activity.this, "Login OK", Toast.LENGTH_SHORT).show();
             Intent newActivity = new Intent(Login2Activity.this,MainActivity.class);
             newActivity.putExtra("MemberID","");
+            Log.e("ShowLogin",String.valueOf(c));
             startActivity(newActivity);
         }
         return true;

@@ -73,7 +73,7 @@ public class signupActivity extends AppCompatActivity {
 
 //    private ProgressBar spinner;
 
-    private EditText username, email, password, verifyPass;
+    private EditText name, username, email, password, verifyPass;
 
     private AlertDialog.Builder ad = null;
 
@@ -157,7 +157,7 @@ public class signupActivity extends AppCompatActivity {
 
                                             Toast.makeText(signupActivity.this, "Saved successfully", Toast.LENGTH_SHORT).show();
 
-                                            Intent objIntent = new Intent(signupActivity.this, editProfileActivity.class);
+                                            Intent objIntent = new Intent(signupActivity.this, HomeActivity.class);
                                             objIntent.putExtra("userIntent", myUsername);
                                             startActivity(objIntent);
                                         }
@@ -508,6 +508,7 @@ public class signupActivity extends AppCompatActivity {
         addImageButton = (ImageButton) findViewById(R.id.addImageButton);
 
 //        spinner = (ProgressBar)findViewById(R.id.progressBar1);
+        name = (EditText) findViewById(R.id.edtName);
         username = (EditText) findViewById(R.id.usernameTextField);
         email = (EditText) findViewById(R.id.emailTextField);
         password = (EditText) findViewById(R.id.passwordTextField);
@@ -528,6 +529,7 @@ public class signupActivity extends AppCompatActivity {
         String url = "http://foodyth.azurewebsites.net/foody/saveADDData.php";
 
         List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("sName", name.getText().toString()));
         params.add(new BasicNameValuePair("sUsername", username.getText().toString()));
         params.add(new BasicNameValuePair("sPassword", password.getText().toString()));
         params.add(new BasicNameValuePair("sEmail", email.getText().toString()));
@@ -565,6 +567,7 @@ public class signupActivity extends AppCompatActivity {
         }
         else
         {
+            name.setText("");
             username.setText("");
             password.setText("");
             verifyPass.setText("");
