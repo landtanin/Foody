@@ -22,7 +22,7 @@ public class EnterSearchRecyclerAdapter
 
     private List<EnterSearchMenu> newList;
     Context context;
-    public int ListNumber;
+//    public int ListNumber;
     abc mAbc;
 
     public EnterSearchRecyclerAdapter(Activity context, List<EnterSearchMenu> newList, abc mAbc) {

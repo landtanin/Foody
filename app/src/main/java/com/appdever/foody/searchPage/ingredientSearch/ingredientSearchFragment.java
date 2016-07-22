@@ -3,33 +3,46 @@ package com.appdever.foody.searchPage.ingredientSearch;
 import android.app.Dialog;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.appdever.foody.R;
 import com.appdever.foody.databinding.FragmentIngredientSearchBinding;
+import com.appdever.foody.manager.JSONObtained;
 import com.appdever.foody.searchPage.enterSearch.EnterSearchActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import okhttp3.HttpUrl;
+import okhttp3.Response;
 
 
 public class ingredientSearchFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//    private static final String ARG_PARAM1 = "param1";
-//    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-//    private String mParam1;
-//    private String mParam2;
+    private RecyclerView rvDialog;
+    private DialogItemRecyclerAdapter dialogRecyclerAdapter;
+    List<DialogItem> dialogNewsList = new ArrayList<>();
 
-//    private OnFragmentInteractionListener mListener;
+    private String dialogResultServer;
 
+    private String strIdMaterial, strNameMaterial, strIdTypeMaterial;
 
 //    private DeselectableRadioButton pigRadioButton, chickenRadioButton, cowRadioButton,
 //            fishRadioButton, shrimpRadioButton, squidRadioButton, eggRadioButton;
@@ -40,15 +53,7 @@ public class ingredientSearchFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-//     * @param param1 Parameter 1.
-//     * @param param2 Parameter 2.
-     * @return A new instance of fragment ingredientSearchFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static ingredientSearchFragment newInstance() {
         ingredientSearchFragment fragment = new ingredientSearchFragment();
         Bundle args = new Bundle();
@@ -80,11 +85,26 @@ public class ingredientSearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                //for recyclerView
+                StaggeredGridLayoutManager dialogGridLayout = new StaggeredGridLayoutManager(1, 1);
+
                 final Dialog dialog = new Dialog(getContext());
 
                 dialog.setContentView(R.layout.other_resource);
 
-                dialog.setTitle("Custom Dialog");
+                //for recyclerView
+                rvDialog = (RecyclerView) dialog.findViewById(R.id.rv_other_resource);
+                rvDialog.setLayoutManager(dialogGridLayout);
+                dialogRecyclerAdapter = new DialogItemRecyclerAdapter(getContext(), dialogNewsList);
+                rvDialog.setAdapter(dialogRecyclerAdapter);
+                rvDialog.setHasFixedSize(true);
+
+                dialogConnectDatabase();
+
+//                dialog.setTitle("Custom Dialog");
+
+                Window window = dialog.getWindow();
+                window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
 
                 dialog.show();
 
@@ -117,7 +137,7 @@ public class ingredientSearchFragment extends Fragment {
 //                objIntent.putExtra("user", pilotName);
                 startActivity(objIntent);
 
-                Log.d("Enter Button","test");
+                Log.d("Enter Button", "test");
 
 
             }
@@ -126,5 +146,72 @@ public class ingredientSearchFragment extends Fragment {
         return rootView;
     }
 
+    private void dialogConnectDatabase() {
+
+//        int getSendKey = getIntent().getExtras().getInt(KeyStore.SELECT_FOOD_SEND_KEY);
+
+        final HttpUrl myurl = HttpUrl.parse(JSONObtained.getAbsoluteUrl("getIngredients.php")).newBuilder().build();
+
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... params) {
+
+
+                Response response = null;
+                try {
+                    response = JSONObtained.getInstance().newCall(JSONObtained.getRequest(myurl)).execute();
+
+
+                    if (response.isSuccessful())
+
+                    {
+
+                        dialogResultServer = response.body().string();
+
+//                        Log.d("xxxxxx", resultServer);
+
+                        JSONArray ingJSONArray;
+                        JSONObject ingJSONObject = null;
+
+                        try {
+                            ingJSONArray = new JSONArray(dialogResultServer);
+                            Log.d("CHECKJSON", ingJSONArray.toString());
+
+                            for (int i = 0; i < ingJSONArray.length(); i++) {
+
+                                ingJSONObject = ingJSONArray.getJSONObject(i);
+                                strIdMaterial = ingJSONObject.getString("id_material");
+                                strNameMaterial = ingJSONObject.getString("name_material");
+                                strIdTypeMaterial = ingJSONObject.getString("id_typematerial");
+
+                                // update data to ArrayList in recycler adapter
+                                dialogNewsList.add(new DialogItem(strNameMaterial));
+
+                            }
+
+                        } catch (JSONException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+
+                dialogRecyclerAdapter.notifyDataSetChanged();
+
+                super.onPostExecute(s);
+            }
+
+        }.execute();
+
+    }
 
 }
+

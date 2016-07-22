@@ -21,6 +21,7 @@
     <dimen name="button_size_small">32dp</dimen>
     <dimen name="button_size_medium">40dp</dimen>
     <dimen name="button_width_size_medium">150dp</dimen>
+    <dimen name="button_width_size_large">250dp</dimen>
     <dimen name="button_size_large">60dp</dimen>
     <dimen name="button_padding">8dp</dimen>
 

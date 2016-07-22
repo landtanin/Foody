@@ -1,20 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+                android:minWidth="260dp"
+              android:layout_height="wrap_content"
+                android:background="#ffffff">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_enter_search"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical"/>
+        android:orientation="vertical"
+        android:id="@+id/rvCover"
+        android:layout_above="@+id/okButtonInOtherResource"
+        >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_other_resource"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"/>
+
+    </LinearLayout>
+
 
     <Button
-        android:layout_width="@dimen/button_width_size_medium"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/button_width_size_large"
+        android:layout_height="@dimen/button_size_large"
         android:text="ตกลง"
-        android:layout_gravity="center"
-        android:id="@+id/okButtonInOtherResource"/>
+        android:layout_centerHorizontal="true"
+        android:id="@+id/okButtonInOtherResource"
+        android:layout_above="@+id/belowOtherResourceSpace"
+        android:background="@color/colorPrimary"
+        />
 
-</LinearLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:id="@+id/belowOtherResourceSpace"
+        android:layout_alignParentBottom="true"
+        />
+
+</RelativeLayout>
