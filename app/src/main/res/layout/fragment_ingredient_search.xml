@@ -547,7 +547,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_subCat_sideIng"
                 android:layout_marginTop="@dimen/margin_top_condiment_button"
-                android:text="รายการวัตถุดิบ"
+                android:text="รายการวัตถุดิบเสริม"
                 android:textSize="@dimen/radio_font_size"
                 android:textColor="#000000"/>
 
@@ -561,7 +561,7 @@
             </View>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_enter_search"
+                android:id="@+id/rv_total_resource"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="vertical"/>

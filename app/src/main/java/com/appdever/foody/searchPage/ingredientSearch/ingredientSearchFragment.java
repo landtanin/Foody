@@ -36,15 +36,19 @@ import okhttp3.Response;
 
 public class ingredientSearchFragment extends Fragment {
 
-    private RecyclerView rvDialog;
+    private RecyclerView rvDialog, rvTotal;
     private DialogItemRecyclerAdapter dialogRecyclerAdapter;
+    private TotalItemRecyclerAdapter totalItemRecyclerAdapter;
     private boolean checkBoxStatus;
 
     List<DialogItem> dialogNewsList = new ArrayList<>();
+    List<TotalItem> totalNewsList = new ArrayList<>();
 
     private String dialogResultServer;
 
     private String strIdMaterial, strNameMaterial, strIdTypeMaterial;
+
+    private String ingList = "";
 
 //    private DeselectableRadioButton pigRadioButton, chickenRadioButton, cowRadioButton,
 //            fishRadioButton, shrimpRadioButton, squidRadioButton, eggRadioButton;
@@ -77,11 +81,22 @@ public class ingredientSearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
 
         final FragmentIngredientSearchBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_ingredient_search, container, false);
 
         final View rootView = binding.getRoot();
+
+        // total recyclerView
+        final StaggeredGridLayoutManager totalList = new StaggeredGridLayoutManager(1, 1);
+        rvTotal = (RecyclerView) rootView.findViewById(R.id.rv_total_resource);
+        rvTotal.setLayoutManager(totalList);
+        totalItemRecyclerAdapter = new TotalItemRecyclerAdapter(getContext(), totalNewsList);
+        rvTotal.setAdapter(totalItemRecyclerAdapter);
+        rvTotal.setHasFixedSize(true);
+
+        // end total recyclerView
 
         binding.chooseOtherResource.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,13 +116,47 @@ public class ingredientSearchFragment extends Fragment {
                     @Override
                     public void dialogOnClickListener(DialogItem dialogItem) {
 
-                        Log.d("DIALOG", dialogItem.getIngName());
+//                        Log.d("DIALOG", dialogItem.getIngName());
                         Log.d("CHECKBOX", String.valueOf(dialogItem.getIngSelect()));
 
-                        checkBoxStatus = dialogItem.getIngSelect();
+
+//                        ingList = dialogItem.getIngName();
+                        // TODO: GET THE CHECKED ITEMS
+                        if (dialogItem.getIngSelect()) {
+
+                            totalNewsList.add(new TotalItem(dialogItem.getIngName()));
+                            Log.d("OBJECT", String.valueOf(new TotalItem(dialogItem.getIngName())));
+                            Log.d("MEMBER", String.valueOf(totalNewsList.get(0).getTotalFoodName()));
+
+                        } else if (!dialogItem.getIngSelect()) {
+//                            totalNewsList.remove(dialogItem.getIngName());
+
+//                            int a;
+//                            Object object = dialogItem.getIngName();
+//                            a = totalNewsList.indexOf(new TotalItem(dialogItem.getIngName()));
+//                            Log.d("OBJECT2", String.valueOf(new TotalItem(dialogItem.getIngName())));
+//                            Log.d("INDEX", String.valueOf(a));
+                            boolean done = false;
+                            for (int i = 0; i<totalNewsList.size()&&!done; i++) {
+
+                                String strContain = totalNewsList.get(i).getTotalFoodName();
+                                if (strContain.equals(dialogItem.getIngName())) {
+                                    totalNewsList.remove(i);
+                                    done = true;
+                                }
+
+                            }
+
+//                            totalNewsList.remove(totalNewsList.contains(totalList.equals(dialogItem.getIngName())));
+//                            totalNewsList.remove(a);
+                        }
+
+                        Log.d("TOTAL", String.valueOf(totalNewsList.size()));
+                        totalItemRecyclerAdapter.notifyDataSetChanged();
 
                     }
                 });
+
                 rvDialog.setAdapter(dialogRecyclerAdapter);
                 rvDialog.setHasFixedSize(true);
 
@@ -126,6 +175,7 @@ public class ingredientSearchFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
+
                     }
                 });
 
@@ -154,6 +204,12 @@ public class ingredientSearchFragment extends Fragment {
 
             }
         });
+
+//        for(int i = 0; i<4;i++) {
+//            totalNewsList.add(new TotalItem(String.valueOf(i)));
+//        }
+//        if(!ingList.equals(""))  totalNewsList.add(new TotalItem(ingList));
+
 
         return rootView;
     }
