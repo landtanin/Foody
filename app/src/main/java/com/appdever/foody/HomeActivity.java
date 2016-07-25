@@ -13,10 +13,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.appdever.foody.HomePage.HomeFragment;
@@ -237,21 +235,21 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         }
 
 
-        public View getTabView(int position) {
-
-            View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.tabmenu_main, null);
-//            TextView txt_menu = (TextView) view.findViewById(R.id.txt_menu);
-//            txt_menu.setText(text_menu[position]);
+//        public View getTabView(int position) {
 //
-//            Font.setFontFace(txt_menu,0);
-
-
-
-            ImageView img_menu = (ImageView) view.findViewById(R.id.img_menu);
-            img_menu.setImageResource(image_menu[position]);
-
-            return view;
-        }
+//            View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.tabmenu_main, null);
+////            TextView txt_menu = (TextView) view.findViewById(R.id.txt_menu);
+////            txt_menu.setText(text_menu[position]);
+////
+////            Font.setFontFace(txt_menu,0);
+//
+//
+//
+//            ImageView img_menu = (ImageView) view.findViewById(R.id.img_menu);
+//            img_menu.setImageResource(image_menu[position]);
+//
+//            return view;
+//        }
 
 
 

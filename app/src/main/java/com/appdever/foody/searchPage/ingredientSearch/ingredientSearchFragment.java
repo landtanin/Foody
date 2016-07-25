@@ -38,6 +38,8 @@ public class ingredientSearchFragment extends Fragment {
 
     private RecyclerView rvDialog;
     private DialogItemRecyclerAdapter dialogRecyclerAdapter;
+    private boolean checkBoxStatus;
+
     List<DialogItem> dialogNewsList = new ArrayList<>();
 
     private String dialogResultServer;
@@ -95,7 +97,17 @@ public class ingredientSearchFragment extends Fragment {
                 //for recyclerView
                 rvDialog = (RecyclerView) dialog.findViewById(R.id.rv_other_resource);
                 rvDialog.setLayoutManager(dialogGridLayout);
-                dialogRecyclerAdapter = new DialogItemRecyclerAdapter(getContext(), dialogNewsList);
+                dialogRecyclerAdapter = new DialogItemRecyclerAdapter(getContext(), dialogNewsList, new DialogItemRecyclerAdapter.dialogListCarrier() {
+                    @Override
+                    public void dialogOnClickListener(DialogItem dialogItem) {
+
+                        Log.d("DIALOG", dialogItem.getIngName());
+                        Log.d("CHECKBOX", String.valueOf(dialogItem.getIngSelect()));
+
+                        checkBoxStatus = dialogItem.getIngSelect();
+
+                    }
+                });
                 rvDialog.setAdapter(dialogRecyclerAdapter);
                 rvDialog.setHasFixedSize(true);
 
@@ -185,7 +197,7 @@ public class ingredientSearchFragment extends Fragment {
                                 strIdTypeMaterial = ingJSONObject.getString("id_typematerial");
 
                                 // update data to ArrayList in recycler adapter
-                                dialogNewsList.add(new DialogItem(strNameMaterial));
+                                dialogNewsList.add(new DialogItem(strNameMaterial, checkBoxStatus));
 
                             }
 
