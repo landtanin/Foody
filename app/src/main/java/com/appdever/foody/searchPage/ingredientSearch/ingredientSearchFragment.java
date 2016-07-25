@@ -19,8 +19,8 @@ import android.widget.Toast;
 
 import com.appdever.foody.R;
 import com.appdever.foody.databinding.FragmentIngredientSearchBinding;
+import com.appdever.foody.ingEnterSearch.IngEnterSearchActivity;
 import com.appdever.foody.manager.JSONObtained;
-import com.appdever.foody.searchPage.enterSearch.EnterSearchActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -125,21 +125,17 @@ public class ingredientSearchFragment extends Fragment {
                         if (dialogItem.getIngSelect()) {
 
                             totalNewsList.add(new TotalItem(dialogItem.getIngName()));
-                            Log.d("OBJECT", String.valueOf(new TotalItem(dialogItem.getIngName())));
-                            Log.d("MEMBER", String.valueOf(totalNewsList.get(0).getTotalFoodName()));
+
+//                            Log.d("OBJECT", String.valueOf(new TotalItem(dialogItem.getIngName())));
+//                            Log.d("MEMBER", String.valueOf(totalNewsList.get(0).getTotalFoodName()));
 
                         } else if (!dialogItem.getIngSelect()) {
-//                            totalNewsList.remove(dialogItem.getIngName());
 
-//                            int a;
-//                            Object object = dialogItem.getIngName();
-//                            a = totalNewsList.indexOf(new TotalItem(dialogItem.getIngName()));
-//                            Log.d("OBJECT2", String.valueOf(new TotalItem(dialogItem.getIngName())));
-//                            Log.d("INDEX", String.valueOf(a));
                             boolean done = false;
                             for (int i = 0; i<totalNewsList.size()&&!done; i++) {
 
                                 String strContain = totalNewsList.get(i).getTotalFoodName();
+
                                 if (strContain.equals(dialogItem.getIngName())) {
                                     totalNewsList.remove(i);
                                     done = true;
@@ -147,8 +143,6 @@ public class ingredientSearchFragment extends Fragment {
 
                             }
 
-//                            totalNewsList.remove(totalNewsList.contains(totalList.equals(dialogItem.getIngName())));
-//                            totalNewsList.remove(a);
                         }
 
                         Log.d("TOTAL", String.valueOf(totalNewsList.size()));
@@ -182,6 +176,16 @@ public class ingredientSearchFragment extends Fragment {
             }
         });
 
+        // clearTotalListButton
+        binding.clearTotalListBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                totalNewsList.clear();
+                totalItemRecyclerAdapter.notifyDataSetChanged();
+            }
+        });
+
+
         binding.pigRadioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -195,7 +199,7 @@ public class ingredientSearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent objIntent = new Intent(getActivity(), EnterSearchActivity.class);
+                Intent objIntent = new Intent(getActivity(), IngEnterSearchActivity.class);
 //                objIntent.putExtra("user", pilotName);
                 startActivity(objIntent);
 
@@ -204,12 +208,6 @@ public class ingredientSearchFragment extends Fragment {
 
             }
         });
-
-//        for(int i = 0; i<4;i++) {
-//            totalNewsList.add(new TotalItem(String.valueOf(i)));
-//        }
-//        if(!ingList.equals(""))  totalNewsList.add(new TotalItem(ingList));
-
 
         return rootView;
     }
@@ -223,7 +221,6 @@ public class ingredientSearchFragment extends Fragment {
         new AsyncTask<Void, Void, String>() {
             @Override
             protected String doInBackground(Void... params) {
-
 
                 Response response = null;
                 try {
