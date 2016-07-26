@@ -6,10 +6,14 @@ package com.appdever.foody.searchPage.ingredientSearch;
 public class TotalItem {
 
     private String totalFoodName;
+    private String idMat;
+    private String idTypeMat;
 
-    public TotalItem(String totalFoodName) {
+    public TotalItem(String totalFoodName, String idMat, String idTypeMat) {
 
         this.totalFoodName = totalFoodName;
+        this.idMat = idMat;
+        this.idTypeMat = idTypeMat;
 
     }
 
@@ -17,7 +21,24 @@ public class TotalItem {
         return totalFoodName;
     }
 
+    public String getIdMat() {
+        return idMat;
+    }
+
+    public String getIdTypeMat() {
+        return idTypeMat;
+    }
+
     public void setTotalFoodName(String totalFoodName) {
         this.totalFoodName = totalFoodName;
+    }
+
+    public void setIdMat(String idMat) {
+
+        this.idMat = idMat;
+    }
+
+    public void setIdTypeMat(String idTypeMat) {
+        this.idTypeMat = idTypeMat;
     }
 }

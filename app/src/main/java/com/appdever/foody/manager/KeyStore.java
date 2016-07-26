@@ -1,4 +1,4 @@
-package com.appdever.foody;
+package com.appdever.foody.manager;
 
 /**
  * Created by landtanin on 7/12/2016 AD.
@@ -13,5 +13,9 @@ public class KeyStore {
     public static final String FOODIMG_DETAIL_SEND_KEY = "FOODIMG_DETAIL_SEND_KEY";
     public static final String FOOD_INGREDIENT_SEND_KEY = "FOOD_INGREDIENT_SEND_KEY";
     public static final String FOOD_DESCRIPTION_SEND_KEY = "FOOD_DESCRIPTION_SEND_KEY";
+
+//    public static final String ING_FOOD_NAME_SEND_KEY = "ING_FOOD_NAME_SEND_KEY";
+    public static final String ING_MAT_ID_SEND_KEY = "ING_MAT_ID_SEND_KEY";
+    public static final String ING_MAT_TYPE_ID_SEND_KEY = "ING_MAT_TYPE_ID_SEND_KEY";
 
 }

@@ -38,7 +38,7 @@
         </activity>
         <activity android:name=".FoodDetailActivity">
         </activity>
-        <activity android:name=".ingEnterSearch.IngEnterSearchActivity">
+        <activity android:name=".searchPage.ingEnterSearch.IngEnterSearchActivity">
         </activity>
     </application>
 

@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.appdever.foody.KeyStore;
+import com.appdever.foody.manager.KeyStore;
 import com.appdever.foody.R;
 import com.appdever.foody.searchPage.enterSearch.EnterSearchActivity;
 import com.bumptech.glide.Glide;

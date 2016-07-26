@@ -6,10 +6,10 @@ package com.appdever.foody.manager;
 
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.FormBody;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 
 /**
  * Created by Belle on 15/1/2559.
@@ -37,10 +37,10 @@ public class JSONObtained {
                 .build();
         return request;
     }
-    public static Request postRequest(String url, RequestBody formBody){
+    public static Request postRequest(HttpUrl url, FormBody formBody){
 
         Request request = new Request.Builder()
-                .url(getAbsoluteUrl(url))
+                .url(url)
                 .post(formBody)
                 .build();
         return request;

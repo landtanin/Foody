@@ -30,7 +30,7 @@
                     android:id="@+id/txtPageName"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="@string/spinner_title"
+                    android:text="เลือกจากวัตถุดิบ"
                     android:gravity="center"
                     android:textColor="@color/colorFontTitle"
                     android:textSize="@dimen/text_big"
@@ -45,13 +45,13 @@
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="@dimen/spinner_text_size"
-            android:id="@+id/enter_search_spinner"
+            android:id="@+id/ingEnter_search_spinner"
             android:backgroundTint="@color/cardview_dark_background"
             android:layout_marginTop="10dp"
             />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_enter_search"
+            android:id="@+id/rv_ingEnter_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="vertical"/>

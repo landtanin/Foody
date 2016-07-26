@@ -3,17 +3,12 @@ package com.appdever.foody;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.appdever.foody.searchPage.enterSearch.EnterSearchMenu;
+import com.appdever.foody.manager.KeyStore;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
-import java.util.List;
 
 public class FoodDetailActivity extends AppCompatActivity {
 
@@ -36,9 +31,6 @@ public class FoodDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_detail);
 
-
-
-
         Bundle foodDetail = getIntent().getExtras();
         setfoodID = foodDetail.getString( KeyStore.FOODID_DETAIL_SEND_KEY ) ;
         setFoodTypeID = foodDetail.getString(KeyStore.FOODTYOEID_DETAIL_SEND_KEY ) ;
@@ -47,8 +39,6 @@ public class FoodDetailActivity extends AppCompatActivity {
         setImg = foodDetail.getString( KeyStore.FOODIMG_DETAIL_SEND_KEY ) ;
         setPrepareIngredient  = foodDetail.getString(KeyStore.FOOD_INGREDIENT_SEND_KEY ) ;
         setFoodDescription = foodDetail.getString(KeyStore.FOOD_DESCRIPTION_SEND_KEY ) ;
-
-
 
         nameFood = (TextView) findViewById(R.id.nameFood);
         nameFood.setText(setNameFood);
@@ -67,15 +57,6 @@ public class FoodDetailActivity extends AppCompatActivity {
         foodCooking =(TextView) findViewById(R.id.cookingMethod) ;
         foodCooking.setText(setCookingMethod);
         foodCooking.setMovementMethod(new ScrollingMovementMethod());
-
-
-
-
-
-
-
-
-
 
     }
 }

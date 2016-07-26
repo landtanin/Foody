@@ -10,7 +10,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 
 import com.appdever.foody.FoodDetailActivity;
-import com.appdever.foody.KeyStore;
+import com.appdever.foody.manager.KeyStore;
 import com.appdever.foody.R;
 import com.appdever.foody.databinding.ActivityEnterSearchBinding;
 import com.appdever.foody.manager.JSONObtained;
@@ -51,14 +51,6 @@ public class EnterSearchActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_enter_search);
-
-        // -----------------Spinner-------------------------------------
-//        binding.enterSearchSpinner.setOnItemSelectedListener(this);
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-//                R.array.hard_code_menus, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        binding.enterSearchSpinner.setAdapter(adapter);
-        //---------------Spinner-end------------------------------------
 
         StaggeredGridLayoutManager aaa = new StaggeredGridLayoutManager(1,1);
         rv = (RecyclerView) findViewById(R.id.rv_enter_search);

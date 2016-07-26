@@ -15,12 +15,12 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.appdever.foody.R;
 import com.appdever.foody.databinding.FragmentIngredientSearchBinding;
-import com.appdever.foody.ingEnterSearch.IngEnterSearchActivity;
 import com.appdever.foody.manager.JSONObtained;
+import com.appdever.foody.manager.KeyStore;
+import com.appdever.foody.searchPage.ingEnterSearch.IngEnterSearchActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,7 +48,9 @@ public class ingredientSearchFragment extends Fragment {
 
     private String strIdMaterial, strNameMaterial, strIdTypeMaterial;
 
-    private String ingList = "";
+//    private int[] foodIdArray = new int[100];
+
+    List<String> foodIdArray = new ArrayList<String>();
 
 //    private DeselectableRadioButton pigRadioButton, chickenRadioButton, cowRadioButton,
 //            fishRadioButton, shrimpRadioButton, squidRadioButton, eggRadioButton;
@@ -117,17 +119,29 @@ public class ingredientSearchFragment extends Fragment {
                     public void dialogOnClickListener(DialogItem dialogItem) {
 
 //                        Log.d("DIALOG", dialogItem.getIngName());
-                        Log.d("CHECKBOX", String.valueOf(dialogItem.getIngSelect()));
+//                        Log.d("CHECKBOX", String.valueOf(dialogItem.getIngSelect()));
 
 
 //                        ingList = dialogItem.getIngName();
-                        // TODO: GET THE CHECKED ITEMS
                         if (dialogItem.getIngSelect()) {
 
-                            totalNewsList.add(new TotalItem(dialogItem.getIngName()));
+                            totalNewsList.add(new TotalItem(dialogItem.getIngName(), dialogItem.getIdMat(), dialogItem.getIdTypeMat()));
 
 //                            Log.d("OBJECT", String.valueOf(new TotalItem(dialogItem.getIngName())));
 //                            Log.d("MEMBER", String.valueOf(totalNewsList.get(0).getTotalFoodName()));
+//                            Log.d("ArrayNo", String.valueOf(totalNewsList.size()));
+
+//                            if (String.valueOf(totalNewsList.size()).equals("")) {
+//
+//                                foodIdArray[0] = Integer.parseInt(dialogItem.getIdMat());
+//                            } else {
+//                                foodIdArray[totalNewsList.size()] = new int[totalNewsList.size()];
+//                                Integer.parseInt(dialogItem.getIdMat());
+//                            }
+
+//                            foodIdArray = new int[totalNewsList.size()];
+//                            foodIdArray[totalNewsList.size()-1] = Integer.parseInt(dialogItem.getIdMat());
+                            foodIdArray.add(dialogItem.getIdMat());
 
                         } else if (!dialogItem.getIngSelect()) {
 
@@ -138,6 +152,8 @@ public class ingredientSearchFragment extends Fragment {
 
                                 if (strContain.equals(dialogItem.getIngName())) {
                                     totalNewsList.remove(i);
+                                    foodIdArray.remove(i);
+
                                     done = true;
                                 }
 
@@ -145,7 +161,8 @@ public class ingredientSearchFragment extends Fragment {
 
                         }
 
-                        Log.d("TOTAL", String.valueOf(totalNewsList.size()));
+//                        Log.d("TOTAL", String.valueOf(totalNewsList.get(0)));
+
                         totalItemRecyclerAdapter.notifyDataSetChanged();
 
                     }
@@ -168,6 +185,7 @@ public class ingredientSearchFragment extends Fragment {
                 okButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         dialog.dismiss();
 
                     }
@@ -190,21 +208,113 @@ public class ingredientSearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getContext(), "test", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getContext(), "test", Toast.LENGTH_LONG).show();
+                foodIdArray.add("2");
 
             }
         });
 
+        binding.chickenRadioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                foodIdArray.add("1");
+            }
+        });
+
+//        binding.chickenRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//
+//            }
+//        });
+
+        binding.cowRadioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                foodIdArray.add("3");
+            }
+        });
+
+        binding.fishRadioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                foodIdArray.add("272");
+            }
+        });
+
+        binding.shrimpRadioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                foodIdArray.add("11");
+            }
+        });
+
+        binding.sqiudRadioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                foodIdArray.add("10");
+
+            }
+        });
+
+        binding.shellRadioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                foodIdArray.add("12");
+            }
+        });
+
+        binding.crabRadioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                foodIdArray.add("300");
+            }
+        });
+
+        binding.hamRadioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                foodIdArray.add("297");
+            }
+        });
+
+        binding.sausageRadioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                foodIdArray.add("301");
+            }
+        });
+
+        binding.eggRadioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                foodIdArray.add("255");
+
+            }
+        });
+
+        binding.vegRadioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                foodIdArray.add("302");
+
+            }
+        });
         binding.searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+
+
+//                Log.d("ARRAYCHECK", String.valueOf(newFoodIdArray[0]));
+
                 Intent objIntent = new Intent(getActivity(), IngEnterSearchActivity.class);
-//                objIntent.putExtra("user", pilotName);
+
+//                Bundle ingExtras = new Bundle();
+//                ingExtras.putIntegerArrayList(KeyStore.ING_MAT_ID_SEND_KEY, (ArrayList<Integer>) foodIdArray);
+
+                objIntent.putStringArrayListExtra(KeyStore.ING_MAT_ID_SEND_KEY, (ArrayList<String>) foodIdArray);
                 startActivity(objIntent);
-
-                Log.d("Enter Button", "test");
-
 
             }
         });
@@ -250,7 +360,7 @@ public class ingredientSearchFragment extends Fragment {
                                 strIdTypeMaterial = ingJSONObject.getString("id_typematerial");
 
                                 // update data to ArrayList in recycler adapter
-                                dialogNewsList.add(new DialogItem(strNameMaterial, checkBoxStatus));
+                                dialogNewsList.add(new DialogItem(strNameMaterial, checkBoxStatus, strIdMaterial, strIdTypeMaterial));
 
                             }
 
