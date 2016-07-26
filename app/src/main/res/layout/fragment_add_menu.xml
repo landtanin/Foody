@@ -37,30 +37,39 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp">
+                    android:layout_height="100dp"
+                    android:background="#f58383">
 
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:src="@drawable/plus_onclick"
                         android:id="@+id/addImage_Button"/>
-                    <Space
-                        android:layout_width="0dp"
-                        android:layout_height="20px"
-                        android:layout_weight="2" />
 
-                    <EditText
+                    <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:id="@+id/namefood_field"
-                        android:layout_marginTop="25dp"
-                        android:layout_weight="15"
-                        android:background="#41303030"
-                        android:textSize="25dp"
-                        android:hint="ชื่ออาหาร"
-                        android:textColor="#f7751e"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginLeft="5dp" />
+                        android:layout_height="match_parent">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:id="@+id/namefood_field"
+                            android:background="#41303030"
+                            android:textSize="25dp"
+                            android:hint="ชื่ออาหาร"
+                            android:textColor="#f7751e"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:layout_weight=".5" />
+
+                        <Spinner
+                            android:layout_width="fill_parent"
+                            android:layout_height="0dp"
+                            android:id="@+id/type_spiner"
+                            android:layout_weight=".4" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -80,10 +89,9 @@
                     <EditText
                         android:id="@+id/about_field"
                         android:inputType="textMultiLine"
-                        android:lines="5"
+                        android:lines="3"
                         android:minLines="3"
                         android:gravity="top|left"
-                        android:maxLines="10"
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:scrollbars="vertical"
@@ -98,12 +106,221 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="วัตถุดิบ"
+                        android:text="วัตถุดิบหลัก"
                         android:textSize="20dp"
                         android:textColor="#f7751e"
                         android:layout_marginTop="10dp" />
+
                 </LinearLayout>
+
                 <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#f16363">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5">
+
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5">
+
+
+                                <CheckBox
+                                    android:id="@+id/radio0"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="40dp"
+                                    android:checked="true"
+                                    android:text="ggggg" />
+
+                                <CheckBox
+                                    android:id="@+id/radio1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="40dp"
+                                    android:text="ggggg" />
+
+                                <CheckBox
+                                    android:id="@+id/radio2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="40dp"
+                                    android:text="ggggg" />
+                                <CheckBox
+                                    android:id="@+id/radio3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="40dp"
+                                    android:text="ggggg" />
+
+                                <CheckBox
+                                    android:id="@+id/radio4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="40dp"
+                                    android:text="ggggg" />
+                                <CheckBox
+                                    android:id="@+id/radio5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="40dp"
+                                    android:text="ggggg" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight=".5">
+                            <EditText
+                                android:id="@+id/editText1"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:imeOptions="actionNext"
+                                android:singleLine="true">
+
+                                <requestFocus />
+                            </EditText>
+
+                            <EditText
+                                android:id="@+id/editText2"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:imeOptions="actionNext"
+                                android:singleLine="true"/>
+
+                            <EditText
+                                android:id="@+id/editText3"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:imeOptions="actionNext"
+                                android:singleLine="true" />
+                            <EditText
+                                android:id="@+id/editText4"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:imeOptions="actionNext"
+                                android:singleLine="true" />
+
+                            <EditText
+                                android:id="@+id/editText5"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:imeOptions="actionNext"
+                                android:singleLine="true" />
+
+                            <EditText
+                                android:id="@+id/editText6"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:imeOptions="actionNext"
+                                android:singleLine="true" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".5">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight=".5">
+
+                            <CheckBox
+                                android:id="@+id/radio6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:text="ggggg" />
+
+                            <CheckBox
+                                android:id="@+id/radio7"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:text="ggggg" />
+
+                            <CheckBox
+                                android:id="@+id/radio8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:text="ggggg" />
+                            <CheckBox
+                                android:id="@+id/radio9"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:text="ggggg" />
+
+                            <CheckBox
+                                android:id="@+id/radio10"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:text="ggggg" />
+                            <CheckBox
+                                android:id="@+id/radio11"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:text="ggggg" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight=".5">
+                            <EditText
+                                android:id="@+id/editText7"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:imeOptions="actionNext"
+                                android:singleLine="true" />
+
+                            <EditText
+                                android:id="@+id/editText8"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:imeOptions="actionNext"
+                                android:singleLine="true" />
+
+                            <EditText
+                                android:id="@+id/editText9"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:imeOptions="actionNext"
+                                android:singleLine="true" />
+                            <EditText
+                                android:id="@+id/editText10"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:imeOptions="actionNext"
+                                android:singleLine="true" />
+
+                            <EditText
+                                android:id="@+id/editText11"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:imeOptions="actionNext"
+                                android:singleLine="true"/>
+
+                            <EditText
+                                android:id="@+id/editText12"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:imeOptions="actionNext"
+                                android:singleLine="true" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:fitsSystemWindows="true"
                     android:id="@+id/material_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -179,10 +396,8 @@
                 <EditText
                     android:id="@+id/process_field"
                     android:inputType="textMultiLine"
-                    android:lines="8"
-                    android:minLines="6"
+                    android:lines="5"
                     android:gravity="top|left"
-                    android:maxLines="10"
                     android:layout_height="wrap_content"
                     android:layout_width="fill_parent"
                     android:scrollbars="vertical"

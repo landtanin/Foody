@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
+        android:theme="@style/Theme.AppCompat.NoActionBar" >
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
@@ -30,9 +30,11 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".editProfileActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".HomeActivity"/>
-        <activity android:name=".searchPage.enterSearch.EnterSearchActivity">
+            android:screenOrientation="portrait" />
+        <activity android:name=".HomeActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
+        <activity android:name=".searchPage.enterSearch.EnterSearchActivity" >
         </activity>
         <activity android:name=".FoodDetailActivity">
         </activity>

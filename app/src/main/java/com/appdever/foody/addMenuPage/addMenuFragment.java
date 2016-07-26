@@ -1,5 +1,6 @@
 package com.appdever.foody.addMenuPage;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -15,13 +16,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +45,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -51,12 +60,16 @@ public class addMenuFragment extends Fragment {
     private ImageView selectimage;
     private EditText field_meterial,field_namefood,field_process,field_about,count_field;
     private LinearLayout addfield_layout;
+    private Spinner type;
 
     private Bitmap image_food;
     private List<AutoCompleteTextView> fieldlist = new ArrayList<AutoCompleteTextView>();
     private List<AutoCompleteTextView> countlist = new ArrayList<AutoCompleteTextView>();
-    private static final int RESULT_SELECT_IMAGE = 1;
+    private ArrayList<String> mattlist = new ArrayList<String>();
+    private ArrayList<String> typefoodlist = new ArrayList<String>();
+    private ArrayList<LoremItem> checklist = new ArrayList<LoremItem>();
 
+    private static final int RESULT_SELECT_IMAGE = 1;
     //private CropImageView mCropView;
     private LinearLayout mRootLayout;
 
@@ -87,45 +100,84 @@ public class addMenuFragment extends Fragment {
 
     }
 
-    private List<String> matt = new ArrayList<String>();
 
     void getmaterial() {
-        new AsyncTask<Void, Void, String>() {
+        /*new AsyncTask<Void, Void, String>() {
             @Override
             protected String doInBackground(Void... voids) {
                 getHttp http = new getHttp();
                 String response = null;
                 try {
                     response = http.run("http://foodyth.azurewebsites.net/testAPI/getmaterial.php");
+                    return  response;
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
+                    return  null;
                 }
-                return  response;
+
             }
 
             @Override
             protected void onPostExecute(String string) {
                 super.onPostExecute(string);
-
                 try {
-                    JSONArray data = new JSONArray(string);
+                        JSONArray data = new JSONArray(string);
 
-                    for (int i = 0; i < data.length(); i++) {
-                        JSONObject c = null;
-                        c = data.getJSONObject(i);
+                        for (int i = 0; i < data.length(); i++) {
+                            JSONObject c = null;
+                            c = data.getJSONObject(i);
 
-                        matt.add(c.getString("name_material"));
+                            mattlist.add(c.getString("name_material"));
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
+
+        }.execute();*/
+        getHttp http = new getHttp();
+        String response = null;
+        try {
+            response = http.run("http://foodyth.azurewebsites.net/testAPI/getmaterial.php");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            JSONObject getrespon = new JSONObject(response);
+
+            JSONArray getmatt = getrespon.getJSONArray("material");
+
+            for (int i = 0; i < getmatt.length(); i++) {
+                JSONObject c = null;
+                c = getmatt.getJSONObject(i);
+
+                mattlist.add(c.getString("name_material"));
+                LoremItem loremItem = new LoremItem();
+                loremItem.setLoremText(c.getString("name_material"));
+                //loremItem.setLoremCheck(i == 0);
+                checklist.add(loremItem);
             }
-        }.execute();
+
+            JSONArray gettypefood = getrespon.getJSONArray("typefood");
+            for (int i = 0; i < gettypefood.length(); i++) {
+                JSONObject c = null;
+                c = gettypefood.getJSONObject(i);
+
+                typefoodlist.add(c.getString("typefood"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+
 
 
 
     }
+
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
@@ -134,8 +186,34 @@ public class addMenuFragment extends Fragment {
 
         getmaterial();
 
+
+        type = (Spinner) rootview.findViewById(R.id.type_spiner);
+
+        ArrayAdapter<String> adapterThai = new ArrayAdapter<String>(this.getContext(),
+                android.R.layout.simple_dropdown_item_1line, typefoodlist);
+        type.setAdapter(adapterThai);
+
+        /*type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getActivity(),
+                        "Select : " + mattlist.get(position),
+                        Toast.LENGTH_SHORT).show();
+                Log.e("gg", "onItemSelected: " );
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });*/
+
         setviewid(rootview);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line, matt);
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line, mattlist);
         AutoCompleteTextView textView = (AutoCompleteTextView)
                 rootview.findViewById(R.id.material_field);
         textView.setAdapter(adapter);
@@ -146,7 +224,8 @@ public class addMenuFragment extends Fragment {
         selectimage.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                selectImage();
+                //selectImage();
+                Log.e( "onClick: GGGG",String.valueOf(checklist.size()));
                 //getActivity().setContentView(R.layout.fragment_editimage);
 
                 //mRootLayout = (LinearLayout) getActivity().findViewById(R.id.layout_root);
@@ -161,31 +240,68 @@ public class addMenuFragment extends Fragment {
 
 
         add_meterial.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View arg0) {
-                LayoutInflater layoutInflater =
-                        (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                final View addView = layoutInflater.inflate(R.layout.addmenu_row, null);
-                final AutoCompleteTextView field = (AutoCompleteTextView)addView.findViewById(R.id.field);
-                final AutoCompleteTextView countfield = (AutoCompleteTextView) addView.findViewById(R.id.count);
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line, matt);
-                field.setAdapter(adapter);
+            @Override
+            public void onClick(View v) {
+                final Dialog dialog = new Dialog(getContext());
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_addmenu);
+                dialog.setCancelable(true);
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                    field.setId(View.generateViewId());
-                }
-                fieldlist.add(field);
-                countlist.add(countfield);
+                Log.e( "onClick: ", String.valueOf(checklist.size()));
+                final CustomAdapter adapter = new CustomAdapter(getContext(),checklist);
 
-                final ImageButton buttonRemove = (ImageButton)addView.findViewById(R.id.delete_field);
-                buttonRemove.setOnClickListener(new View.OnClickListener(){
+
+                final ListView listView = (ListView) dialog.findViewById(R.id.listView);
+                listView.setAdapter(adapter);
+
+                final SearchView searchView = (SearchView) dialog.findViewById(R.id.searchView1);
+                searchView.setFocusable(true);
+                searchView.setIconified(false);
+                searchView.requestFocusFromTouch();
+                dialog.show();
+                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                     @Override
-                    public void onClick(View v) {
-                        ((LinearLayout)addView.getParent()).removeView(addView);
-                        fieldlist.remove(field);
-                        countlist.remove(countlist);
+                    public boolean onQueryTextSubmit(String query) {
+                        return false;
                     }
+                    @Override
+                    public boolean onQueryTextChange(String searchQuery) {
+                        adapter.filter(searchQuery.toString().trim());
+                        //listView.invalidate();
+                        //listView.setAdapter(adapter);
+                        return true;
+                    }
+
                 });
-                addfield_layout.addView(addView);
+/*
+                Button button1 = (Button)dialog.findViewById(R.id.button1);
+                button1.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        Toast.makeText(getContext()
+                                , "Close dialog", Toast.LENGTH_SHORT);
+                        dialog.cancel();
+                    }
+                });*/
+
+
+
+                /*if(field_meterial.getText().length()==0){
+                    field_meterial.setError("ใส่ข้อมูล");
+                    field_meterial.requestFocus();
+                }
+                else{
+                    if(fieldlist.size()!=0){
+                        if(fieldlist.get(fieldlist.size()-1).getText().length()>0)
+                            addmaterialfield();
+                        else
+                            fieldlist.get(fieldlist.size()-1).setError("ใส่ข้อมูล");
+                    }
+                    else {
+                        addmaterialfield();
+                    }
+                }*/
+
+
 
             }});
         save.setOnClickListener(new View.OnClickListener(){
@@ -204,7 +320,7 @@ public class addMenuFragment extends Fragment {
                     count[i] = countlist.get(i-1).getText().toString();
                 }
 
-                if(image_food!=null){
+                if(checkfield()){
                     new Upload(
                             image_food,
                             field_namefood.getText().toString(),
@@ -222,8 +338,60 @@ public class addMenuFragment extends Fragment {
 
         return rootview;
     }
+    private void addmaterialfield(){
+        LayoutInflater layoutInflater =
+                (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View addView = layoutInflater.inflate(R.layout.addmenu_row, null);
+        final AutoCompleteTextView field = (AutoCompleteTextView)addView.findViewById(R.id.field);
+        final AutoCompleteTextView countfield = (AutoCompleteTextView) addView.findViewById(R.id.count);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line, mattlist);
+        field.setAdapter(adapter);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            field.setId(View.generateViewId());
+        }
+        fieldlist.add(field);
+        countlist.add(countfield);
 
+        final ImageButton buttonRemove = (ImageButton)addView.findViewById(R.id.delete_field);
+        buttonRemove.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                ((LinearLayout)addView.getParent()).removeView(addView);
+                fieldlist.remove(field);
+                countlist.remove(countlist);
+            }
+        });
+        addfield_layout.addView(addView);
+    }
+    private boolean checkfield(){
+        if(field_namefood.getText().length()==0){
+            field_namefood.setError("ใส่ชื่ออาหาร");
+            field_namefood.requestFocus();
+            return false;
+        }
+        if(field_about.getText().length()==0){
+            field_about.setError("ใส่ข้อมูล");
+            field_about.requestFocus();
+            return false;
+        }
+        if(field_meterial.getText().length()==0){
+            field_meterial.setError("ใส่ข้อมูล");
+            field_meterial.requestFocus();
+            return false;
+        }
+        if (field_process.getText().length()==0) {
+            field_process.setError("ใส่วิธีการทำ");
+            field_process.requestFocus();
+            return false;
+        }
+        if(image_food==null){
+            Toast.makeText(getContext(), "เลือกรูปภาพ", Toast.LENGTH_SHORT).show();
+            selectimage.requestFocus();
+            return false;
+        }
+        return true;
+    }
     private void setviewid(View rootview){
         add_meterial = (Button) rootview.findViewById(R.id.addmaterial_button);
         field_meterial = (EditText) rootview.findViewById(R.id.material_field);
@@ -234,8 +402,8 @@ public class addMenuFragment extends Fragment {
         selectimage = (ImageView) rootview.findViewById(R.id.addImage_Button);
         save = (Button) rootview.findViewById(R.id.ok_Button);
         field_about = (EditText) rootview.findViewById(R.id.about_field);
-    }
 
+    }
     private void selectImage() {
         Intent gallaryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(gallaryIntent, RESULT_SELECT_IMAGE);
@@ -260,7 +428,6 @@ public class addMenuFragment extends Fragment {
 
         }
     }
-
     private class Upload extends AsyncTask<Void, Void, String> {
         private Bitmap image;
         private String namefood;
@@ -346,7 +513,6 @@ public class addMenuFragment extends Fragment {
         }
 
     }
-
     public class postHttp {
         OkHttpClient client = new OkHttpClient();
 
@@ -371,16 +537,6 @@ public class addMenuFragment extends Fragment {
         }
     }
 
-
-
-
-
-
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
     @Override
     public void onDetach() {
         super.onDetach();
@@ -390,25 +546,105 @@ public class addMenuFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-    /*@Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }*/
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
+}
+class CustomAdapter extends BaseAdapter {
+    Context mContext;
+    ArrayList<LoremItem> strName;
+    ArrayList<LoremItem> arraylist;
 
+    public CustomAdapter(Context context, ArrayList<LoremItem> strName) {
+        Log.e( " strName  ", String.valueOf(strName.size()));
+        this.mContext= context;
+        this.strName = strName;
+        arraylist = new ArrayList<LoremItem>();
+        arraylist.addAll(strName);
+    }
+
+    public int getCount() {
+        return strName.size();
+    }
+    public Object getItem(int position) {
+        return position;
+    }
+    public long getItemId(int position) {
+        return position;
+    }
+    public View getView(final int position, View view, ViewGroup parent) {
+        ViewHolder viewHolder;
+        if (view == null) {
+            view = LayoutInflater.from(mContext).inflate(R.layout.dialog_listview_addmenu, null);
+            viewHolder = new ViewHolder(view);
+            view.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) view.getTag();
+        }
+        viewHolder.item_check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                strName.get(position).setLoremCheck(isChecked);
+            }
+        });
+
+        viewHolder.item_text.setText(strName.get(position).getLoremText());
+        viewHolder.item_check.setChecked(strName.get(position).getLoremCheck());
+
+        return view;
+    }
+    public void filter(String charText) {
+        Log.e( "filter: arraylist  ", String.valueOf(arraylist.size()));
+        Log.e( "filter: strName    ", String.valueOf(strName.size()));
+
+        charText = charText.toLowerCase(Locale.getDefault());
+        strName.clear();
+        //strName.addAll(arraylist);
+        if (charText.length() == 0) {
+            strName.addAll(arraylist);
+        } else {
+            strName.clear();
+            for (LoremItem postDetail : arraylist) {
+                if (charText.length() != 0 && postDetail.getLoremText().toLowerCase(Locale.getDefault()).contains(charText)) {
+                    strName.add(postDetail);
+                } else if (charText.length() != 0 && postDetail.getLoremText().toLowerCase(Locale.getDefault()).contains(charText)) {
+                    strName.add(postDetail);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+    private class ViewHolder {
+        public TextView item_text;
+        public CheckBox item_check;
+
+        public ViewHolder(View convertView) {
+            item_text  = (TextView) convertView.findViewById(R.id.textView3);
+            item_check = (CheckBox) convertView.findViewById(R.id.checkmatt);
+        }
+    }
+
+}
+class LoremItem {
+
+    private String loremText;
+    private Boolean loremCheck;
+
+    public LoremItem() {
+        this.loremText = "";
+        loremCheck = false;
+    }
+
+    public String getLoremText() {
+        return loremText;
+    }
+
+    public void setLoremText(String loremText) {
+        this.loremText = loremText;
+    }
+
+    public Boolean getLoremCheck() {
+        return loremCheck;
+    }
+
+    public void setLoremCheck(Boolean loremCheck) {
+        this.loremCheck = loremCheck;
+    }
 }
