@@ -50,6 +50,15 @@
             android:layout_marginTop="10dp"
             />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ไม่พบข้อมูล"
+            android:gravity="center_horizontal"
+            android:id="@+id/dataNotFoundTxt"
+            android:visibility="invisible"
+            android:textColor="#000000"/>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_ingEnter_search"
             android:layout_width="match_parent"
