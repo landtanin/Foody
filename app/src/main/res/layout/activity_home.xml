@@ -226,7 +226,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
                     android:padding="@dimen/padding_logo_x2"
-                    android:src="@drawable/logo_foody_white" />
+                    android:src="@drawable/logo_foody2" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -247,7 +247,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:src="@drawable/facebook_circle" />
+                        android:src="@drawable/facebookcircle" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -350,9 +350,9 @@
                 <ImageView
                     android:id="@+id/imgLogo"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="130dp"
                     android:padding="@dimen/padding_logo_x2"
-                    android:src="@drawable/logo_foody_white" />
+                    android:src="@drawable/logo_foody2" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -373,7 +373,7 @@
                         android:layout_width="46dp"
                         android:layout_height="46dp"
                         android:layout_weight="1"
-                        android:src="@drawable/facebook_circle" />
+                        android:src="@drawable/facebookcircle" />
 
                 </LinearLayout>
             </LinearLayout>
