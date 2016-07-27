@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.appdever.foody.FoodDetailActivity;
 import com.appdever.foody.R;
@@ -33,7 +34,7 @@ public class IngEnterSearchActivity extends AppCompatActivity {
 
     ActivityIngEnterSearchBinding binding;
 
-//    private RecyclerView rv;
+    //    private RecyclerView rv;
     private IngEnterSearchRecyclerAdapter mRecyclerAdapter;
     List<IngEnterSearchMenu> newsList = new ArrayList<>();
 
@@ -79,13 +80,13 @@ public class IngEnterSearchActivity extends AppCompatActivity {
 
                 Intent objIntent = new Intent(IngEnterSearchActivity.this, FoodDetailActivity.class);
                 Bundle extras = new Bundle();
-                extras.putString(KeyStore.FOODID_DETAIL_SEND_KEY,ingEnterSearchMenu.getFoodID());
-                extras.putString(KeyStore.FOODTYOEID_DETAIL_SEND_KEY,ingEnterSearchMenu.getFoodTypeID());
-                extras.putString(KeyStore.NAMEFOOD_DETAIL_SEND_KEY,ingEnterSearchMenu.getNameFood());
-                extras.putString(KeyStore.FOODMETHOD_DETAIL_SEND_KEY,ingEnterSearchMenu.getCookingMethod());
-                extras.putString(KeyStore.FOODIMG_DETAIL_SEND_KEY,ingEnterSearchMenu.getImg());
-                extras.putString(KeyStore.FOOD_INGREDIENT_SEND_KEY,ingEnterSearchMenu.getPrepareIngredient());
-                extras.putString(KeyStore.FOOD_DESCRIPTION_SEND_KEY,ingEnterSearchMenu.getFoodDescription());
+                extras.putString(KeyStore.FOODID_DETAIL_SEND_KEY, ingEnterSearchMenu.getFoodID());
+                extras.putString(KeyStore.FOODTYOEID_DETAIL_SEND_KEY, ingEnterSearchMenu.getFoodTypeID());
+                extras.putString(KeyStore.NAMEFOOD_DETAIL_SEND_KEY, ingEnterSearchMenu.getNameFood());
+                extras.putString(KeyStore.FOODMETHOD_DETAIL_SEND_KEY, ingEnterSearchMenu.getCookingMethod());
+                extras.putString(KeyStore.FOODIMG_DETAIL_SEND_KEY, ingEnterSearchMenu.getImg());
+                extras.putString(KeyStore.FOOD_INGREDIENT_SEND_KEY, ingEnterSearchMenu.getPrepareIngredient());
+                extras.putString(KeyStore.FOOD_DESCRIPTION_SEND_KEY, ingEnterSearchMenu.getFoodDescription());
                 objIntent.putExtras(extras);
                 startActivity(objIntent);
 
@@ -96,30 +97,51 @@ public class IngEnterSearchActivity extends AppCompatActivity {
         binding.rvIngEnterSearch.setHasFixedSize(true);
 
         connectDatabase();
+
+//        binding.dataNotFoundTxt.setVisibility(View.VISIBLE);
+//        Log.w("SIZE", String.valueOf(connectDatabase()));
+
     }
+
 
     private void connectDatabase() {
 
+
         List<String> getArrayList = getIntent().getStringArrayListExtra(KeyStore.ING_MAT_ID_SEND_KEY);
 
-        final HttpUrl myurl = HttpUrl.parse(JSONObtained.getAbsoluteUrl("food_filter.php")).newBuilder()
-               .build();
-
+        // postRequest technique
         final FormBody.Builder formBody = new FormBody.Builder();
-
-        for (int i=0;i<getArrayList.size();i++){
-            formBody.add("material["+i+"]",getArrayList.get(i));
+        for (int i = 0; i < getArrayList.size(); i++) {
+            formBody.add("material[" + i + "]", getArrayList.get(i));
         }
 
-      //  Log.d("ARRAYID",String.valueOf(myurl.query()));
+        final HttpUrl myurl = HttpUrl.parse(JSONObtained.getAbsoluteUrl("food_filter.php")).newBuilder()
+                .build();
 
-        new AsyncTask<Void, Void, String>() {
+        //  Log.d("ARRAYID",String.valueOf(myurl.query()));
+
+
+        new AsyncTask<String, Integer, Boolean>() {
+
             @Override
-            protected String doInBackground(Void... params) {
+            protected void onProgressUpdate(Integer... values) {
+                super.onProgressUpdate(values);
+
+                //TODO: progress update
+
+            }
+
+
+
+            @Override
+            protected Boolean doInBackground(String... s) {
+                boolean checkVoid = false;
                 try {
 
                     Response response = JSONObtained.getInstance()
-                            .newCall(JSONObtained.postRequest(myurl,formBody.build())).execute();
+                            .newCall(JSONObtained.postRequest(myurl, formBody.build())).execute();
+
+//                    Log.w("API", String.valueOf(myurl));
 
                     if (response.isSuccessful()) {
 
@@ -132,21 +154,31 @@ public class IngEnterSearchActivity extends AppCompatActivity {
                         try {
                             foodJSONStr = new JSONObject(resultServer);
                             JSONArray foods = foodJSONStr.getJSONArray("foods");
+                            if (foods.length() > 0) {
 
-                            for (int i = 0; i<foods.length(); i++) {
+                                for (int i = 0; i < foods.length(); i++) {
 
-                                ID_food = foods.getJSONObject(i);
-                                strFoodID = ID_food.getString("id_food");
-                                strFoodTypeID = ID_food.getString("id_typefood");
-                                strNameFood = ID_food.getString("name_food");
-                                strCookingMethod = ID_food.getString("cooking_method");
-                                strImg = ID_food.getString("img");
-                                strPrepareIngredient = ID_food.getString("prepare_ingredient");
-                                strFoodDescription = ID_food.getString("description");
+                                    ID_food = foods.getJSONObject(i);
+                                    strFoodID = ID_food.getString("id_food");
+                                    strFoodTypeID = ID_food.getString("id_typefood");
+                                    strNameFood = ID_food.getString("name_food");
+                                    strCookingMethod = ID_food.getString("cooking_method");
+                                    strImg = ID_food.getString("img");
+                                    strPrepareIngredient = ID_food.getString("prepare_ingredient");
+                                    strFoodDescription = ID_food.getString("description");
 
-                                // update data to ArrayList in recycler adapter
-                                newsList.add(new IngEnterSearchMenu(strFoodID, strFoodTypeID, strNameFood,
-                                        strCookingMethod,strImg, strPrepareIngredient, strFoodDescription));
+                                    // update data to ArrayList in recycler adapter
+                                    newsList.add(new IngEnterSearchMenu(strFoodID, strFoodTypeID, strNameFood,
+                                            strCookingMethod, strImg, strPrepareIngredient, strFoodDescription));
+
+                                    publishProgress(i);
+                                    //TODO: progress update sender
+
+                                }
+
+                            } else {
+
+                                checkVoid = true;
 
                             }
 
@@ -154,18 +186,25 @@ public class IngEnterSearchActivity extends AppCompatActivity {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
-                    }else {
-                        Log.d("failed",response.toString());
+                    } else {
+                        Log.d("failed", response.toString());
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                return null;
+
+
+
+                return checkVoid;
             }
 
-            @Override
-            protected void onPostExecute(String s) {
 
+
+            @Override
+            protected void onPostExecute(Boolean s) {
+                if (s){
+                    alertNoData();
+                }
                 mRecyclerAdapter.notifyDataSetChanged();
 
                 super.onPostExecute(s);
@@ -173,13 +212,21 @@ public class IngEnterSearchActivity extends AppCompatActivity {
 
         }.execute();
 
+    }
+
+    private void alertNoData() {
+
+
+
+        TextView dataNotFound = (TextView) findViewById(R.id.dataNotFoundTxt);
+        dataNotFound.setVisibility(View.VISIBLE);
 
     }
 
     private String[] convertToNormalArray(ArrayList<String> arrayList) {
 
         String[] newFoodIdArray = new String[arrayList.size()];
-        for (int i = 0; i<arrayList.size();i++){
+        for (int i = 0; i < arrayList.size(); i++) {
 
             newFoodIdArray[i] = arrayList.get(i);
 

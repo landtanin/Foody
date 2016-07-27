@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import com.appdever.foody.R;
 import com.appdever.foody.databinding.FragmentIngredientSearchBinding;
@@ -51,6 +53,7 @@ public class ingredientSearchFragment extends Fragment {
 //    private int[] foodIdArray = new int[100];
 
     List<String> foodIdArray = new ArrayList<String>();
+    List<String> vegArray = new ArrayList<String>();
 
 //    private DeselectableRadioButton pigRadioButton, chickenRadioButton, cowRadioButton,
 //            fishRadioButton, shrimpRadioButton, squidRadioButton, eggRadioButton;
@@ -122,7 +125,6 @@ public class ingredientSearchFragment extends Fragment {
 //                        Log.d("CHECKBOX", String.valueOf(dialogItem.getIngSelect()));
 
 
-//                        ingList = dialogItem.getIngName();
                         if (dialogItem.getIngSelect()) {
 
                             totalNewsList.add(new TotalItem(dialogItem.getIngName(), dialogItem.getIdMat(), dialogItem.getIdTypeMat()));
@@ -141,28 +143,17 @@ public class ingredientSearchFragment extends Fragment {
 
 //                            foodIdArray = new int[totalNewsList.size()];
 //                            foodIdArray[totalNewsList.size()-1] = Integer.parseInt(dialogItem.getIdMat());
+
                             foodIdArray.add(dialogItem.getIdMat());
 
                         } else if (!dialogItem.getIngSelect()) {
 
-                            boolean done = false;
-                            for (int i = 0; i<totalNewsList.size()&&!done; i++) {
-
-                                String strContain = totalNewsList.get(i).getTotalFoodName();
-
-                                if (strContain.equals(dialogItem.getIngName())) {
-                                    totalNewsList.remove(i);
-                                    foodIdArray.remove(i);
-
-                                    done = true;
-                                }
-
-                            }
+                            removeFromList(dialogItem.getIngName());
 
                         }
 
 //                        Log.d("TOTAL", String.valueOf(totalNewsList.get(0)));
-
+                        Log.d("AMOUNT", String.valueOf(totalNewsList.size()));
                         totalItemRecyclerAdapter.notifyDataSetChanged();
 
                     }
@@ -204,122 +195,293 @@ public class ingredientSearchFragment extends Fragment {
         });
 
 
-        binding.pigRadioButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-//                Toast.makeText(getContext(), "test", Toast.LENGTH_LONG).show();
-                foodIdArray.add("2");
-
-            }
-        });
-
-        binding.chickenRadioButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                foodIdArray.add("1");
-            }
-        });
-
-//        binding.chickenRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        //-----radio-button------
+//        binding.pigRadioButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//            public void onClick(View v) {
+//
+//                foodIdArray.add("2");
 //
 //            }
 //        });
 
-        binding.cowRadioButton.setOnClickListener(new View.OnClickListener() {
+        binding.pigRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                foodIdArray.add("3");
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    foodIdArray.add("2");
+                } else {
+                    removeMainFromList("2");
+                }
             }
         });
 
-        binding.fishRadioButton.setOnClickListener(new View.OnClickListener() {
+        binding.chickenRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                foodIdArray.add("272");
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    foodIdArray.add("1");
+                } else {
+                    removeMainFromList("1");
+                }
             }
         });
 
-        binding.shrimpRadioButton.setOnClickListener(new View.OnClickListener() {
+        binding.cowRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                foodIdArray.add("11");
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    foodIdArray.add("3");
+                } else {
+                    removeMainFromList("3");
+                }
             }
         });
 
-        binding.sqiudRadioButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                foodIdArray.add("10");
+//        binding.cowRadioButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                foodIdArray.add("3");
+//            }
+//        });
 
+//        binding.fishRadioButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                foodIdArray.add("272");
+//            }
+//        });
+
+        binding.fishRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    foodIdArray.add("272");
+                } else {
+                    removeMainFromList("272");
+                }
             }
         });
 
-        binding.shellRadioButton.setOnClickListener(new View.OnClickListener() {
+        binding.shrimpRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                foodIdArray.add("12");
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    foodIdArray.add("11");
+                } else {
+                    removeMainFromList("11");
+                }
             }
         });
 
-        binding.crabRadioButton.setOnClickListener(new View.OnClickListener() {
+//        binding.shrimpRadioButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                foodIdArray.add("11");
+//            }
+//        });
+
+        binding.sqiudRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                foodIdArray.add("300");
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    foodIdArray.add("10");
+                } else {
+                    removeMainFromList("10");
+                }
             }
         });
 
-        binding.hamRadioButton.setOnClickListener(new View.OnClickListener() {
+//        binding.sqiudRadioButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                foodIdArray.add("10");
+//
+//            }
+//        });
+
+        binding.shellRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                foodIdArray.add("297");
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    foodIdArray.add("12");
+                } else {
+                    removeMainFromList("12");
+                }
             }
         });
 
-        binding.sausageRadioButton.setOnClickListener(new View.OnClickListener() {
+//        binding.shellRadioButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                foodIdArray.add("12");
+//            }
+//        });
+
+        binding.crabRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                foodIdArray.add("301");
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    foodIdArray.add("300");
+                } else {
+                    removeMainFromList("300");
+                }
+            }
+        });
+//
+//        binding.crabRadioButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                foodIdArray.add("300");
+//            }
+//        });
+
+        binding.hamRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    foodIdArray.add("297");
+                } else {
+                    removeMainFromList("297");
+                }
             }
         });
 
-        binding.eggRadioButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                foodIdArray.add("255");
+//        binding.hamRadioButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                foodIdArray.add("297");
+//            }
+//        });
 
+        binding.sausageRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    foodIdArray.add("301");
+                } else {
+                    removeMainFromList("301");
+                }
+            }
+        });
+//        binding.sausageRadioButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                foodIdArray.add("301");
+//            }
+//        });
+
+        binding.eggRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    foodIdArray.add("255");
+                } else {
+                    removeMainFromList("255");
+                }
             }
         });
 
-        binding.vegRadioButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                foodIdArray.add("302");
+//        binding.eggRadioButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                foodIdArray.add("255");
+//
+//            }
+//        });
 
+        binding.vegRadioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                Log.w("VEGCHECK", "YEAH");
+
+                if (isChecked) {
+
+                    for(int i=0; i<vegArray.size(); i++) {
+                        foodIdArray.add(vegArray.get(i));
+                    }
+
+                } else {
+//                    removeMainFromList("302");
+
+                    for(int i=0; i<vegArray.size(); i++) {
+                        removeMainFromList(vegArray.get(i));
+                    }
+
+                }
             }
         });
+
+//        binding.vegRadioButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                foodIdArray.add("302");
+//
+//            }
+//        });
+
         binding.searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
+                if (foodIdArray.size()==0) {
 
-//                Log.d("ARRAYCHECK", String.valueOf(newFoodIdArray[0]));
+                    Toast.makeText(getContext(), "กรุณาเลือกวัตถุดิบที่ต้องการ", Toast.LENGTH_SHORT).show();
 
-                Intent objIntent = new Intent(getActivity(), IngEnterSearchActivity.class);
+                }else {
+                    Intent objIntent = new Intent(getActivity(), IngEnterSearchActivity.class);
 
-//                Bundle ingExtras = new Bundle();
-//                ingExtras.putIntegerArrayList(KeyStore.ING_MAT_ID_SEND_KEY, (ArrayList<Integer>) foodIdArray);
+                    objIntent.putStringArrayListExtra(KeyStore.ING_MAT_ID_SEND_KEY, (ArrayList<String>) foodIdArray);
+                    startActivity(objIntent);
 
-                objIntent.putStringArrayListExtra(KeyStore.ING_MAT_ID_SEND_KEY, (ArrayList<String>) foodIdArray);
-                startActivity(objIntent);
+                    Log.d("SEARCHFIRST", String.valueOf(foodIdArray.get(0)));
+                }
+
+                Log.d("SEARCHSIZE", String.valueOf(foodIdArray.size()));
+
 
             }
         });
 
         return rootView;
+    }
+
+    private void removeFromList(String foodResName) {
+
+        boolean done = false;
+        for (int i = 0; i < totalNewsList.size() && !done; i++) {
+
+            String strTarget = totalNewsList.get(i).getTotalFoodName();
+
+            if (strTarget.equals(foodResName)) {
+                totalNewsList.remove(i);
+                foodIdArray.remove(i);
+
+                done = true;
+            }
+
+        }
+
+    }
+
+    private void removeMainFromList(String idRes) {
+
+        boolean done = false;
+        for (int i = 0; i < foodIdArray.size() && !done; i++) {
+
+            String strTarget = foodIdArray.get(i);
+
+            if (strTarget.equals(idRes)) {
+
+                foodIdArray.remove(i);
+
+                done = true;
+            }
+
+        }
+
     }
 
     private void dialogConnectDatabase() {
@@ -361,6 +523,10 @@ public class ingredientSearchFragment extends Fragment {
 
                                 // update data to ArrayList in recycler adapter
                                 dialogNewsList.add(new DialogItem(strNameMaterial, checkBoxStatus, strIdMaterial, strIdTypeMaterial));
+
+                                if (strIdTypeMaterial.equals("2")) {
+                                    vegArray.add(strIdMaterial);
+                                }
 
                             }
 
