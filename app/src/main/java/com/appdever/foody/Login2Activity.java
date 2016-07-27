@@ -1,16 +1,23 @@
 package com.appdever.foody;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.appdever.foody.database.Member;
+import com.appdever.foody.manager.SharedPreference;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -32,10 +39,16 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Realm;
+
 public class Login2Activity extends AppCompatActivity {
 
     private Button loginButton;
     private EditText username, password;
+
+
+//    SharedPreferences sp;
+//    SharedPreferences.Editor editor;
 
 
     @Override
@@ -82,8 +95,6 @@ public class Login2Activity extends AppCompatActivity {
 
     private boolean checkEmpty() {
 
-//        String strUsername = username.getText().toString().trim();
-//        String strPassword = password.getText().toString().trim();
 
         if (password.getText().length() == 0 && username.getText().length() == 0){
 
@@ -116,6 +127,7 @@ public class Login2Activity extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.loginButton);
 
     }
+
 
     public boolean LoginData()
     {
@@ -173,10 +185,45 @@ public class Login2Activity extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(Login2Activity.this, "Login OK", Toast.LENGTH_SHORT).show();
+
+            try {
+                Realm realm = Realm.getDefaultInstance();
+                realm.beginTransaction();
+                Member member = new Member();
+                member.setMemberID(c.getString("MemberID"));
+                member.setUserName(c.getString("Username"));
+                member.setName(c.getString("Name"));
+                member.setEmail(c.getString("Email"));
+                member.setPic(c.getString("Pic"));
+
+                realm.copyToRealmOrUpdate(member);
+//                realm.createOrUpdateObjectFromJson(Member.class,c);
+                realm.commitTransaction();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.e("member data",e.toString());
+            }
+
+
+
+
+            Toast.makeText(Login2Activity.this,"Login OK", Toast.LENGTH_SHORT).show();
             Intent newActivity = new Intent(Login2Activity.this,HomeActivity.class);
             newActivity.putExtra("MemberID","");
+
+
+
+//            sp = getSharedPreferences("Name_Status", Context.MODE_PRIVATE);
+//            editor = sp.edit();
+//            editor.putString("My_Status",strStatusID );
+//
+            SharedPreference sharedPreference = new SharedPreference(this);
+            sharedPreference.setStatus(strStatusID);
+
             Log.e("ShowLogin",String.valueOf(c));
+            Log.e("ShowStatus",String.valueOf(strStatusID));
+
             startActivity(newActivity);
         }
         return true;

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.appdever.foody.database.Member;
 import com.appdever.foody.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,9 +59,13 @@ public class MainActivity extends AppCompatActivity {
                 Intent objIntent = new Intent(MainActivity.this, HomeActivity.class);
 //                objIntent.putExtra("user", pilotName);
                 startActivity(objIntent);
+                finish();
 
             }
         });
+
+
+
 
     }
 //

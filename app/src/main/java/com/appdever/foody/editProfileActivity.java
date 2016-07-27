@@ -82,7 +82,7 @@ public class editProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent objIntent = new Intent(editProfileActivity.this, MainActivity.class);
+                Intent objIntent = new Intent(editProfileActivity.this, HomeActivity.class);
 //                objIntent.putExtra("user", pilotName);
                 startActivity(objIntent);
 //                finish();

@@ -138,6 +138,7 @@
             android:layout_height="match_parent"
             android:background="@color/colorPrimary"
             android:gravity="top"
+            android:visibility="gone"
             android:orientation="vertical"
             android:padding="@dimen/padding_size_x4"
             android:weightSum="3">
@@ -221,7 +222,7 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/imgLogo"
+                    android:id="@+id/imgLogo1"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
                     android:padding="@dimen/padding_logo_x2"
@@ -235,14 +236,14 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/web_link"
+                        android:id="@+id/web_link1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:src="@drawable/ic_link" />
 
                     <ImageView
-                        android:id="@+id/facebook_link"
+                        android:id="@+id/facebook_link1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -261,7 +262,7 @@
             android:background="@color/colorPrimary"
             android:gravity="top"
             android:orientation="vertical"
-            android:visibility="gone"
+            android:visibility="visible"
             android:padding="@dimen/padding_size_x4"
             android:weightSum="3">
 
@@ -269,23 +270,26 @@
                 android:layout_width="match_parent"
                 android:paddingTop="@dimen/space_x4"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="1.1"
                 android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/imgProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
                     android:layout_gravity="center"
-                    android:paddingTop="@dimen/space_x4"
-                    android:src="@android:drawable/sym_def_app_icon" />
+                    android:paddingTop="@dimen/space_x5"
+                    android:paddingBottom="@dimen/space_x5"
+                    android:src="@android:drawable/sym_def_app_icon"/>
 
                 <TextView
                     android:id="@+id/txtProfileName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:paddingTop="@dimen/space_x4"
+                    android:paddingTop="@dimen/space_x6"
                     android:text="Name" />
 
                 <TextView
@@ -308,7 +312,7 @@
                     android:background="@color/colorFontTitle"/>
 
                 <Button
-                    android:id="@+id/btnLogin"
+                    android:id="@+id/btnEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -346,7 +350,7 @@
                 <ImageView
                     android:id="@+id/imgLogo"
                     android:layout_width="match_parent"
-                    android:layout_height="180dp"
+                    android:layout_height="150dp"
                     android:padding="@dimen/padding_logo_x2"
                     android:src="@drawable/logo_foody_white" />
 
@@ -359,15 +363,15 @@
 
                     <ImageView
                         android:id="@+id/web_link"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
                         android:layout_weight="1"
                         android:src="@drawable/ic_link" />
 
                     <ImageView
                         android:id="@+id/facebook_link"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
                         android:layout_weight="1"
                         android:src="@drawable/facebook_circle" />
 

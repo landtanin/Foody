@@ -17,9 +17,11 @@ import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
 import com.appdever.foody.FoodDetailActivity;
-import com.appdever.foody.manager.KeyStore;
+
+
 import com.appdever.foody.R;
 import com.appdever.foody.manager.JSONObtained;
+import com.appdever.foody.manager.KeyStore;
 
 import org.json.JSONArray;
 import org.json.JSONException;

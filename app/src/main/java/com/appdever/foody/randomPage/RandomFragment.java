@@ -22,8 +22,10 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.appdever.foody.FoodDetailActivity;
-import com.appdever.foody.manager.KeyStore;
+
+
 import com.appdever.foody.R;
+import com.appdever.foody.manager.KeyStore;
 import com.bumptech.glide.Glide;
 
 import org.apache.http.HttpEntity;
