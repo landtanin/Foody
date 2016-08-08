@@ -7,6 +7,7 @@ import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.ColorInt;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -49,7 +50,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     public TextView txtPageName,txtProfileName,txtProfileEmail;
     public DrawerLayout drawerLayout;
     public Toolbar toolbar;
-    public ImageView imgProfile;
+    public ImageView imgProfile,web_link,web_link1;
     public ActionBarDrawerToggle actionBarDrawerToggle;
     public Button btnLogin, btnRegister,btnLogout,btnEdit;
     public LinearLayout hbgBeforeLogin, hbgAfterLogin;
@@ -63,6 +64,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
 
         initInstance();
         CheckStatus();
@@ -100,7 +102,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         imgProfile = (ImageView) findViewById(R.id.imgProfile) ;
 
-
+        imgProfile.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
         btnLogout.setOnClickListener(this);
         btnRegister.setOnClickListener(this);
@@ -363,8 +365,15 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 dialog.show();
 
                 break;
+//            case R.id.btnLogn:
+//                startActivity(new Intent(HomeActivity.this, Login2Activity.class));
+//                break;
+            case R.id.imgProfile:
+                startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
+                break;
             default:
         }
+
     }
     //-----------------------Hamburger-onPostCreate-end--------------------------
 
@@ -416,20 +425,20 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         }
 
 
-        public View getTabView(int position) {
-
-            View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.tabmenu_main, null);
-//            TextView txt_menu = (TextView) view.findViewById(R.id.txt_menu);
-//            txt_menu.setText(text_menu[position]);
+//        public View getTabView(int position) {
 //
-//            Font.setFontFace(txt_menu,0);
-
-
-            ImageView img_menu = (ImageView) view.findViewById(R.id.img_menu);
-            img_menu.setImageResource(image_menu[position]);
-
-            return view;
-        }
+//            View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.tabmenu_main, null);
+////            TextView txt_menu = (TextView) view.findViewById(R.id.txt_menu);
+////            txt_menu.setText(text_menu[position]);
+////
+////            Font.setFontFace(txt_menu,0);
+//
+//
+//            ImageView img_menu = (ImageView) view.findViewById(R.id.img_menu);
+//            img_menu.setImageResource(image_menu[position]);
+//
+//            return view;
+//        }
 
 
 
