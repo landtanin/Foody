@@ -1,8 +1,7 @@
 package com.appdever.foody;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,18 +11,18 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 public class FoodDetailActivity extends AppCompatActivity {
 
-    String setfoodID;
-    String setFoodTypeID;
-    String setNameFood;
-    String setCookingMethod ;
-    String setImg ;
-    String setPrepareIngredient ;
-    String setFoodDescription;
-    ImageView imgFood;
-    TextView nameFood;
-    TextView foodDes;
-    TextView foodIngredient;
-    TextView foodCooking;
+    private String setfoodID;
+    private String setFoodTypeID;
+    private String setNameFood;
+    private String setCookingMethod ;
+    private String setImg ;
+    private String setPrepareIngredient ;
+    private String setFoodDescription;
+    private ImageView imgFood;
+    private TextView nameFood;
+    private TextView foodDes;
+    private TextView foodIngredient;
+    private TextView foodCooking;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -43,20 +42,25 @@ public class FoodDetailActivity extends AppCompatActivity {
         nameFood = (TextView) findViewById(R.id.nameFood);
         nameFood.setText(setNameFood);
         imgFood = (ImageView)  findViewById(R.id.imgFood);
-        Glide.with(getApplicationContext()).load(setImg).centerCrop().diskCacheStrategy
+        Glide.with(getApplicationContext()).load(setImg).diskCacheStrategy
                 (DiskCacheStrategy.ALL).placeholder(R.drawable.home).crossFade().into(imgFood);
 
-        foodDes = (TextView) findViewById(R.id.foodDescription) ;
+        foodDes = (TextView) findViewById(R.id.foodDescription);
         foodDes.setText(setFoodDescription);
-        foodDes.setMovementMethod(new ScrollingMovementMethod());
 
-        foodIngredient =(TextView) findViewById(R.id.prepareIngredient) ;
-        foodIngredient.setText(setPrepareIngredient);
-        foodIngredient.setMovementMethod(new ScrollingMovementMethod());
+//        foodDes.setMovementMethod(new ScrollingMovementMethod());
+
+        foodIngredient = (TextView)findViewById(R.id.prepareIngredient) ;
+        String strUl=setPrepareIngredient.replace("<ul>","").trim();
+        String strLi=strUl.replaceAll("<li>","");
+        String closeLi=strLi.replaceAll("</li>","");
+        String closeUl=closeLi.replace("</ul>","");
+        foodIngredient.setText(closeUl);
+//        foodIngredient.setMovementMethod(new ScrollingMovementMethod());
 
         foodCooking =(TextView) findViewById(R.id.cookingMethod) ;
         foodCooking.setText(setCookingMethod);
-        foodCooking.setMovementMethod(new ScrollingMovementMethod());
+//        foodCooking.setMovementMethod(new ScrollingMovementMethod());
 
     }
 }

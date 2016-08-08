@@ -93,7 +93,7 @@ public class HomeFragment extends Fragment {
 
                         resultServer = response.body().string();
 
-                        Log.d("HOMESERVERCONNECT", resultServer);
+//                        Log.d("HOMESERVERCONNECT", resultServer);
 
                         JSONObject foodJSONStr, ID_food = null;
 
@@ -182,6 +182,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void homeOnClickListener(HomeListItem homeListItem) {
 
+                Log.d("HOMECHECK",homeListItem.getHomePrepareIngredient());
+                Log.d("HOMECHECK22222","Whatt");
+
                 Intent objIntent = new Intent(getActivity(), FoodDetailActivity.class);
                 Bundle extras = new Bundle();
                 extras.putString(KeyStore.FOODID_DETAIL_SEND_KEY,homeListItem.getHomeFoodId());
@@ -242,7 +245,5 @@ public class HomeFragment extends Fragment {
         homeFoodBanner2.setImageResource(R.drawable.m2);
 
     }
-
-
 
 }
