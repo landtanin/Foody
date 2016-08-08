@@ -256,7 +256,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             if (sharedPreference.getStatus().equals("1")) {
                 AlertDialog.Builder dialog = new AlertDialog.Builder(this);
                 dialog.setTitle("ออกจากระบบ?");
-                dialog.setIcon(R.drawable.ic_facebook);
+                dialog.setIcon(R.drawable.ic_close);
                 dialog.setCancelable(true);
                 dialog.setMessage("คุณต้องการออกจากระบบ หรือ ไม่?");
                 dialog.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
@@ -281,7 +281,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             } else {
                 AlertDialog.Builder dialog = new AlertDialog.Builder(this);
                 dialog.setTitle("ปิดโปรแกรม?");
-                dialog.setIcon(R.drawable.ic_facebook);
+                dialog.setIcon(R.drawable.ic_close);
                 dialog.setCancelable(true);
                 dialog.setMessage("คุณต้องปิดโปรแกรม หรือ ไม่?");
                 dialog.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
@@ -329,7 +329,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnLogout:
                 AlertDialog.Builder dialog = new AlertDialog.Builder(this);
                 dialog.setTitle("ออกจากระบบ?");
-                dialog.setIcon(R.drawable.ic_facebook);
+                dialog.setIcon(R.drawable.ic_close);
                 dialog.setCancelable(true);
                 dialog.setMessage("คุณต้องการออกจากระบบ หรือ ไม่?");
                 dialog.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
