@@ -46,9 +46,9 @@ public class JSONObtained {
         return request;
     }
 
-
     public static String getAbsoluteUrl(String relativeUrl) {
 
         return BASE_URL + relativeUrl;
     }
+
 }

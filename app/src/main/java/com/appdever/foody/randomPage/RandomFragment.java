@@ -275,7 +275,7 @@ public class RandomFragment extends Fragment {
 
                     ImageView image = (ImageView) dialog.findViewById(R.id.randomDialogImage);
                     Bitmap icon = BitmapFactory.decodeResource(getActivity().getResources(),
-                            R.drawable.whygoprodialogimage);
+                            R.drawable.home);
                     float imageWidthInPX = (float)image.getWidth();
 
                     LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(Math.round(imageWidthInPX),

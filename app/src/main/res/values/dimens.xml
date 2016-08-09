@@ -38,7 +38,9 @@
     <dimen name="margin_subCat_sideIng">40dp</dimen>
     <dimen name="margin_top_condiment_button">18dp</dimen>
 
-    <dimen name="home_banner_height">150dp</dimen>
+    <dimen name="home_banner_height">300dp</dimen>
+    <dimen name="home_item_height">185.41dp</dimen>
+    <dimen name="select_food_banner_height">150dp</dimen>
 
     <dimen name="header1_font_size">29sp</dimen>
     <dimen name="header2_font_size">25sp</dimen>

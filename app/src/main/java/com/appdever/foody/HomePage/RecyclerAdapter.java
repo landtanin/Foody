@@ -41,7 +41,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
         final HomeListItem homeListItem = newList.get(position);
 
-        holder.homeNameFood.setText(homeListItem.getHomeNameFood());
+        holder.homeNameFood.setText(" "+homeListItem.getHomeNameFood());
         Glide.with(context).load(homeListItem.getImgTest01()).into(holder.homeImgFood);
 
         holder.homeGridView.setOnClickListener(new View.OnClickListener() {

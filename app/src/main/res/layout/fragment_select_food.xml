@@ -12,6 +12,4 @@
         android:layout_marginTop="@dimen/tabbar_height"
         android:scrollbars="vertical"/>
 
-
-
 </RelativeLayout>

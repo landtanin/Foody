@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+              android:padding="@dimen/padding_logo_x2"
     android:orientation="vertical">
 
     <ImageView
@@ -9,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:src="@drawable/whygoprodialogimage" />
-
+        />
 
 </LinearLayout>

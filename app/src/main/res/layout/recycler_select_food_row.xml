@@ -8,7 +8,7 @@
     <RelativeLayout
         android:id="@+id/btnMenuType"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/home_banner_height">
+        android:layout_height="@dimen/select_food_banner_height">
 
         <ImageView
             android:id="@+id/imgTitle"

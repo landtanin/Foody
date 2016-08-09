@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +16,6 @@ import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
 import com.appdever.foody.FoodDetailActivity;
-
-
 import com.appdever.foody.R;
 import com.appdever.foody.manager.JSONObtained;
 import com.appdever.foody.manager.KeyStore;
@@ -39,7 +36,6 @@ import okhttp3.Response;
  */
 public class HomeFragment extends Fragment {
     private static final String LOG_TAG = HomeFragment.class.getSimpleName();
-
 
 //    private String foodGenres;
 
@@ -78,7 +74,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void homeConnectDatabase() {
-
 
         final HttpUrl myurl = HttpUrl.parse(JSONObtained.getAbsoluteUrl("food.php")).newBuilder().build();
 
@@ -182,8 +177,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void homeOnClickListener(HomeListItem homeListItem) {
 
-                Log.d("HOMECHECK",homeListItem.getHomePrepareIngredient());
-                Log.d("HOMECHECK22222","Whatt");
 
                 Intent objIntent = new Intent(getActivity(), FoodDetailActivity.class);
                 Bundle extras = new Bundle();
