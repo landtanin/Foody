@@ -58,8 +58,9 @@ public class FoodDetailActivity extends AppCompatActivity {
         foodIngredient.setText(closeUl);
 //        foodIngredient.setMovementMethod(new ScrollingMovementMethod());
 
-        foodCooking =(TextView) findViewById(R.id.cookingMethod) ;
-        foodCooking.setText(setCookingMethod);
+        foodCooking =(TextView) findViewById(R.id.cookingMethod);
+        String strCookbr = setCookingMethod.replaceAll("<br>", "");
+        foodCooking.setText(strCookbr);
 //        foodCooking.setMovementMethod(new ScrollingMovementMethod());
 
     }

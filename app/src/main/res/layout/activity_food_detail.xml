@@ -93,31 +93,13 @@
                     android:textSize="@dimen/header1_font_size"
                     />
 
-                <TextView
-                    android:id="@+id/about"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_from_sides"
-                    android:layout_marginTop="10dp"
-                    android:text="เกี่ยวกับ"
-                    android:textColor="#000000"
-                    android:textSize="@dimen/header2_font_size"/>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/line_width"
-                    android:layout_marginLeft="@dimen/margin_from_sides"
-                    android:layout_marginRight="@dimen/margin_from_sides"
-                    android:background="#000000">
-
-                </View>
 
                 <TextView
                     android:id="@+id/foodDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="test about"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="@dimen/margin_subCat_sideIng"
                     android:textSize="@dimen/radio_font_size"
                     android:textColor="#000000"/>
@@ -156,7 +138,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/margin_from_sides"
-                    android:layout_marginTop="10dp"
                     android:text="วิธีทำ"
                     android:textColor="#000000"
                     android:textSize="@dimen/header2_font_size"/>

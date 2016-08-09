@@ -127,7 +127,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="อชิรญา  "
+        android:text="อชิรญาณ์ กลิ่นพิพัฒน์"
         android:id="@+id/textView14"
         android:textSize="25dp"
         android:layout_below="@+id/textView13"
