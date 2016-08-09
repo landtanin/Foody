@@ -17,6 +17,7 @@ import java.util.List;
  * Created by landtanin on 7/4/2016 AD.
  */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder> {
+
     private List<HomeListItem> newList;
     Context context;
     homeListCarrier mHomeListCarrier;
