@@ -1,15 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-              android:padding="@dimen/padding_logo_x2"
-    android:orientation="vertical">
+    android:background="@drawable/rounded_square_dialog"
+>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/randomName"
+        android:text="ขื่อเมนูอาหาร"
+        android:textColor="#000000"
+        android:textSize="@dimen/header2_font_size"/>
+
 
     <ImageView
         android:id="@+id/randomDialogImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
+        android:src="@drawable/chef"
+        android:layout_below="@id/randomName"
+        android:padding="@dimen/padding_logo_x1"
         />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/randomDialogOkButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/randomDialogImage"
+        android:text="ตกลง"
+        android:backgroundTint="@color/colorPrimary"/>
+
+    <Button
+        android:id="@+id/randomDialogCancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/randomDialogOkButton"
+        android:layout_alignTop="@id/randomDialogOkButton"
+        android:text="ยกเลิก"/>
+
+</RelativeLayout>

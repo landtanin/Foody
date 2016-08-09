@@ -192,7 +192,7 @@ public class SearchFragment extends Fragment {
         //        private int[] text_menu = {R.string.tabmenu_course, R.string.tabmenu_register, R.string.tabmenu_news, R.string.tabmenu_activity, R.string.tabmenu_contact};
 //        public int[] image_menu = {R.drawable.home, R.drawable.plus, R.drawable.dice, R.drawable.chef};
 
-        public String[] tabString = {"ค้นหาด้วยวัตถุดิบ","เลือกประเภทอาหาร"};
+        public String[] tabString = {"เลือกประเภทอาหาร","ค้นหาด้วยวัตถุดิบ"};
 
         public SearchMainMenuPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -206,10 +206,10 @@ public class SearchFragment extends Fragment {
             switch (position) {
 
                 case 0:
-                    return ingredientSearchFragment.newInstance();
+                    return selectFoodFragment.newInstance();
 
                 case 1:
-                    return selectFoodFragment.newInstance();
+                    return ingredientSearchFragment.newInstance();
 
                 default:
                     return SearchFragment.newInstance();

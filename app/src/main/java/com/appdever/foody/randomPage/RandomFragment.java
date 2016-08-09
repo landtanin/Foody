@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,14 +18,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appdever.foody.FoodDetailActivity;
-
-
 import com.appdever.foody.R;
 import com.appdever.foody.manager.KeyStore;
 import com.bumptech.glide.Glide;
@@ -153,16 +155,6 @@ public class RandomFragment extends Fragment {
         }
     }
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
 
     @Override
     public void onDetach() {
@@ -226,17 +218,60 @@ public class RandomFragment extends Fragment {
 
         if(strFoodID != null)
         {
-            // Dialog
-          /*  ad.setTitle("อาหารที่ถูกสุ่ม");
-            //      ad.setIcon(android.R.drawable.btn_star_big_on);
-            ad.setPositiveButton("Close", null);
-            //ad.setMessage(strFoodID);
-            ad.setMessage(strFoodName);
 
-            ad.show();*/
-            builder.setPositiveButton("ดูรายละเอียด", new DialogInterface.OnClickListener() {
+//            builder.setPositiveButton("ดูรายละเอียด", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    Intent objIntent = new Intent(getContext(), FoodDetailActivity.class);
+//                    Bundle extras = new Bundle();
+//                    extras.putString(KeyStore.FOODID_DETAIL_SEND_KEY,strFoodID);
+//                    extras.putString(KeyStore.FOODTYOEID_DETAIL_SEND_KEY,strFoodTypefood);
+//                    extras.putString(KeyStore.NAMEFOOD_DETAIL_SEND_KEY,strFoodName);
+//                    extras.putString(KeyStore.FOODMETHOD_DETAIL_SEND_KEY,strFoodCooking);
+//                    extras.putString(KeyStore.FOODIMG_DETAIL_SEND_KEY,strFoodPic);
+//                    extras.putString(KeyStore.FOOD_INGREDIENT_SEND_KEY,strFoodPrepare);
+//                    extras.putString(KeyStore.FOOD_DESCRIPTION_SEND_KEY,strFoodDescription);
+//                    objIntent.putExtras(extras);
+//                    startActivity(objIntent);
+//
+//                    /*Intent i=new Intent(getActivity(), FoodDetailActivity.class);
+//                    startActivity(i);*/
+//                }
+//            }).setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+//
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//
+//                }
+//            });
+
+            final AlertDialog dialog = builder.create();
+
+            LayoutInflater inflater = getActivity().getLayoutInflater();
+            View dialogLayout = inflater.inflate(R.layout.random_menu_popup, null);
+
+            ImageView randomDialogImage= (ImageView) dialogLayout.findViewById(R.id.randomDialogImage);
+            Glide.with(getContext()).load(strFoodPic).placeholder(R.drawable.chef).into(randomDialogImage);
+
+            dialog.setView(dialogLayout);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+            // set dialog title
+            TextView randomName = (TextView) dialogLayout.findViewById(R.id.randomName);
+            randomName.setText(strFoodName);
+//            dialog.setTitle(strFoodName);
+//            dialog.setMessage(strFoodPic);
+
+            // set button action
+            Button okBtn = (Button) dialogLayout.findViewById(R.id.randomDialogOkButton);
+            Button cancelBtn = (Button) dialogLayout.findViewById(R.id.randomDialogCancelButton);
+
+            // ok button action
+            okBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialog, int which) {
+                public void onClick(View v) {
+
                     Intent objIntent = new Intent(getContext(), FoodDetailActivity.class);
                     Bundle extras = new Bundle();
                     extras.putString(KeyStore.FOODID_DETAIL_SEND_KEY,strFoodID);
@@ -249,26 +284,20 @@ public class RandomFragment extends Fragment {
                     objIntent.putExtras(extras);
                     startActivity(objIntent);
 
-                    /*Intent i=new Intent(getActivity(), FoodDetailActivity.class);
-                    startActivity(i);*/
-                }
-            }).setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
                 }
             });
-            final AlertDialog dialog = builder.create();
-            LayoutInflater inflater = getActivity().getLayoutInflater();
-            View dialogLayout = inflater.inflate(R.layout.random_menu_popup, null);
-            ImageView randomDialogImage= (ImageView) dialogLayout.findViewById(R.id.randomDialogImage);
-            Glide.with(getContext()).load(strFoodPic).into(randomDialogImage);
-            dialog.setView(dialogLayout);
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            dialog.setTitle(strFoodName);
-//            dialog.setMessage(strFoodPic);
+
+            // cancel button action
+            cancelBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
 
             dialog.show();
 
+            // TODO: FOR WHATTT!!!
             dialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface d) {
