@@ -30,7 +30,7 @@
                 android:id="@+id/txtPageName"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:text="@string/spinner_title"
+                android:text="@string/enter_search_toolbar_title"
                 android:gravity="center"
                 android:textColor="@color/colorFontTitle"
                 android:textSize="@dimen/text_big"

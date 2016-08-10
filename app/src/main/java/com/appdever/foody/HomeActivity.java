@@ -22,7 +22,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.appdever.foody.HomePage.HomeFragment;
 import com.appdever.foody.addMenuPage.addMenuFragment;
@@ -58,22 +57,51 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        facebookBtn();
+
+        infoToolbar();
+
         initInstance();
+
         CheckStatus();
 
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        return super.onCreateOptionsMenu(menu);
-//    }
+    private void infoToolbar() {
+
+        ImageView info_toolbar = (ImageView) findViewById(R.id.info_toolbar);
+        info_toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent objIntent = new Intent(HomeActivity.this, about.class);
+//                objIntent.putExtra("user", pilotName);
+                startActivity(objIntent);
+//                finish();
+            }
+        });
+
+    }
+
+    private void facebookBtn() {
+
+        ImageView facebook_link = (ImageView) findViewById(R.id.facebook_link);
+        facebook_link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //TODO: intent to facebook page
+
+            }
+        });
+
+    }
+
 
     // TODO: create menu
 
     public void initInstance() {
 
         //-----------Hamburger-start----------
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -214,8 +242,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
 //          Start OnlyCall Member Realm
             member= Realm.getDefaultInstance().where(Member.class).findFirst();
+
 //          End OnlyCall Member Realm
-            Toast.makeText(this,member.getName(),Toast.LENGTH_LONG).show();
+            AlertDialog.Builder welcomeDialog = new AlertDialog.Builder(this);
+            welcomeDialog.setTitle(R.string.greeting_title)
+                    .setMessage(R.string.greeting_text)
+                    .show();
+
+//            Toast.makeText(this,member.getName(),Toast.LENGTH_LONG).show();
             txtProfileName.setText(member.getName());
             txtProfileEmail.setText(member.getEmail());
 
@@ -231,7 +265,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 //            });
 
 //          Start การใช้ Glide transformations ทำภาพให้เป็นวงกลม
-            Glide.with(this).load(Uri.parse(member.getPic())).bitmapTransform(new CropCircleTransformation(this)).into(imgProfile);
+            Glide.with(this).load(Uri.parse(member.getPic())).placeholder(R.drawable.ic_account_circle).bitmapTransform(new CropCircleTransformation(this)).into(imgProfile);
 //          End การใช้ Glide transformations ทำภาพให้เป็นวงกลม
         }
         else

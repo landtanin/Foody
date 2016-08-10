@@ -1,17 +1,35 @@
 <resources>
     <string name="app_name">Foody</string>
 
-    <string name="page_home">Home</string>
-    <string name="page_create">CreateMenu</string>
-    <string name="page_random">Random</string>
-    <string name="page_search">Search</string>
+    <string name="page_home">เมนูแนะนำ</string>
+    <string name="page_create">เพิ่มเมนูที่คุณต้องการ</string>
+    <string name="page_random">กินอะไรดี?</string>
+    <string name="page_search">ค้นหาอาหาร</string>
     <string name="food_detail_activity">เมนูอาหาร</string>
 
+    <string name="greeting_title">ยินดีต้อนรับคุณ</string>
+    <string name="greeting_text">ยินดีต้อนรับเข้าสู่แอพ Foody ศูนย์รวมเมนูอาหารของคุณ เพียงเลือกเมนูที่ต้องการผ่านช่องทางหน้าแนะนำ หน้าสุ่มอาหาร หรือหน้าค้นหาอาหาร ท่านก็จะสามารถเห็นรายละเอียดของและวิธีทำของเมนูนั้นๆอย่างคร่าวๆ หรือหากเมนูที่คุณต้องการยังไม่มีในระบบของเรา ท่านก็สามารถเพิ่มเมนูที่ต้องการเข้าระบบได้เอง</string>
 
-    <string name="spinner_title">เลือกประเภทอาหาร</string>
+
+    <string name="enter_search_toolbar_title">เลือกประเภทอาหาร</string>
+    <string name="about_toolbar_title">เกี่ยวกับแอพ</string>
 
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Close</string>
+
+    <string name="app_creator_names"> กมลวรรณ สุวรรณ์เวียง
+        \n กษิรา ภฏภูริญ
+        \n ณัฐภัทร แว่นแก้ว
+        \n ธนิน โรจนเพียรสถิต
+        \n ปฐมาวดี  อินทร์ศักดิ์
+        \n ประกายพร นักผูก
+        \n สิรารมย์ พรไกรเนตร
+        \n สุธานนท์ พวงยุ้ง
+        \n อนุษรา ต่อคุ้มิ์
+        \n อภิสิทธิ์ สีหามาตร
+        \n อชิรญาณ์ กลิ่นพิพัฒน
+
+</string>
 
     <string-array name="hard_code_menus">
         <item>ต้ม</item>

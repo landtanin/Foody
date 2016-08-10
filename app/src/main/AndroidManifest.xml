@@ -48,6 +48,8 @@
         </activity>
         <activity android:name=".searchPage.ingEnterSearch.IngEnterSearchActivity">
         </activity>
+        <activity android:name=".about">
+        </activity>
     </application>
 
 </manifest>

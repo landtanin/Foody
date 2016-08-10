@@ -201,7 +201,7 @@ public class Login2Activity extends AppCompatActivity {
                 Log.e("member data",e.toString());
             }
 
-            Toast.makeText(Login2Activity.this,"Login OK", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(Login2Activity.this,"", Toast.LENGTH_SHORT).show();
             Intent newActivity = new Intent(Login2Activity.this,HomeActivity.class);
             newActivity.putExtra("MemberID","");
 

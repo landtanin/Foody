@@ -156,7 +156,7 @@ public class signupActivity extends AppCompatActivity {
                                         if (SaveData()) {
                                             progress.dismiss();
 
-                                            Toast.makeText(signupActivity.this, "Saved successfully", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(signupActivity.this, "Saved successfully", Toast.LENGTH_SHORT).show();
 
                                             Intent objIntent = new Intent(signupActivity.this, HomeActivity.class);
                                             objIntent.putExtra("userIntent", myUsername);
@@ -529,7 +529,7 @@ public class signupActivity extends AppCompatActivity {
         String url = "http://foodyth.azurewebsites.net/foody/saveADDData.php";
 
         List<NameValuePair> params = new ArrayList<NameValuePair>();
-//        params.add(new BasicNameValuePair("sName", name.getText().toString()));
+        params.add(new BasicNameValuePair("sName", name.getText().toString()));
         params.add(new BasicNameValuePair("sUsername", username.getText().toString()));
         params.add(new BasicNameValuePair("sPassword", password.getText().toString()));
         params.add(new BasicNameValuePair("sEmail", email.getText().toString()));
