@@ -10,7 +10,7 @@
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
-        android:icon="@drawable/icon_foody_circle"
+        android:icon="@drawable/logo_foody01"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"

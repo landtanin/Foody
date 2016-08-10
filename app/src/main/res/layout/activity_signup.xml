@@ -23,21 +23,23 @@
        <ScrollView
            android:layout_width="match_parent"
            android:layout_height="match_parent"
-           android:background="@color/colorBG">
+           android:layout_gravity="center_horizontal|top"
+           android:background="@color/colorBG"
+           >
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:weightSum="3">
+                >
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0pt"
-                    android:orientation="horizontal"
-                    android:layout_weight="1">
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="0dp"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:layout_weight="1">-->
 
 
                     <ImageButton
@@ -48,9 +50,11 @@
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
                         android:src="@drawable/addpicture2"
-                        android:padding="@dimen/space_x4"/>
+                        android:padding="@dimen/space_x4"
 
-                </LinearLayout>
+                        android:layout_weight="1"/>
+
+                <!--</LinearLayout>-->
 
 
                 <LinearLayout

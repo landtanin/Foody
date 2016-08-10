@@ -3,6 +3,7 @@ package com.appdever.foody;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -160,6 +161,8 @@ public class signupActivity extends AppCompatActivity {
                                             Intent objIntent = new Intent(signupActivity.this, HomeActivity.class);
                                             objIntent.putExtra("userIntent", myUsername);
                                             startActivity(objIntent);
+                                        } else {
+                                            Toast.makeText(signupActivity.this, "Sign up error", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
@@ -303,8 +306,7 @@ public class signupActivity extends AppCompatActivity {
         ad = new AlertDialog.Builder(this);
 
         ad.setTitle("Error! ");
-        ad.setIcon(android.R.drawable.btn_star_big_on);
-        ad.setPositiveButton("Close", null);
+
 
 
         // Check Username
@@ -522,14 +524,12 @@ public class signupActivity extends AppCompatActivity {
 
 //        Log.e("base64", encoded);
 
-
-
         myUsername = username.getText().toString();
 
         String url = "http://foodyth.azurewebsites.net/foody/saveADDData.php";
 
         List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("sName", name.getText().toString()));
+//        params.add(new BasicNameValuePair("sName", name.getText().toString()));
         params.add(new BasicNameValuePair("sUsername", username.getText().toString()));
         params.add(new BasicNameValuePair("sPassword", password.getText().toString()));
         params.add(new BasicNameValuePair("sEmail", email.getText().toString()));
@@ -547,9 +547,10 @@ public class signupActivity extends AppCompatActivity {
 
         /*** Default Value ***/
         String strStatusID = "0";
-        String strError = "Unknow Status!";
+        String strError = "Unknown Status!";
 
         JSONObject c;
+
         try {
             c = new JSONObject(resultServer);
             strStatusID = c.getString("StatusID");
@@ -563,7 +564,23 @@ public class signupActivity extends AppCompatActivity {
         if(strStatusID.equals("0"))
         {
             ad.setMessage(strError);
+            ad.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    progress.dismiss();
+                }
+            }).create();
             ad.show();
+
+//        }).setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+//
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//
+//                }
+//            });
+
+            return false;
         }
         else
         {
@@ -572,10 +589,10 @@ public class signupActivity extends AppCompatActivity {
             password.setText("");
             verifyPass.setText("");
             email.setText("");
+            return true;
         }
 
 
-        return true;
     }
 
 

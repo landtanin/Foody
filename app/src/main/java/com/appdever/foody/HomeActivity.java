@@ -58,11 +58,17 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
         initInstance();
         CheckStatus();
 
     }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        return super.onCreateOptionsMenu(menu);
+//    }
+
+    // TODO: create menu
 
     public void initInstance() {
 
