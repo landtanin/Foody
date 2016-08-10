@@ -1,6 +1,7 @@
 package com.appdever.foody.addMenuPage;
 
 import android.app.Dialog;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +12,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,11 +31,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.SearchView;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appdever.foody.MainActivity;
 import com.appdever.foody.R;
 import com.squareup.picasso.Picasso;
 //import com.isseiaoki.simplecropview.CropImageView;
@@ -44,6 +50,7 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -58,20 +65,31 @@ public class addMenuFragment extends Fragment {
 
     private Button add_meterial,save;
     private ImageView selectimage;
-    private EditText field_meterial,field_namefood,field_process,field_about,count_field;
-    private LinearLayout addfield_layout;
+    private EditText field_meterial,field_namefood,field_process,field_about,count_field,
+            Qmain1, Qmain2, Qmain3, Qmain4, Qmain5, Qmain6, Qmain7, Qmain8, Qmain9, Qmain10, Qmain11, Qmain12;
+    private CheckBox radio0, radio1, radio2, radio3, radio4, radio5, radio6, radio7, radio8,
+                        radio9, radio10, radio11;
+    //private LinearLayout addfield_layout;
     private Spinner type;
 
     private Bitmap image_food;
-    private List<AutoCompleteTextView> fieldlist = new ArrayList<AutoCompleteTextView>();
-    private List<AutoCompleteTextView> countlist = new ArrayList<AutoCompleteTextView>();
+    /*private List<AutoCompleteTextView> fieldlist = new ArrayList<AutoCompleteTextView>();
+    private List<AutoCompleteTextView> countlist = new ArrayList<AutoCompleteTextView>();*/
     private ArrayList<String> mattlist = new ArrayList<String>();
     private ArrayList<String> typefoodlist = new ArrayList<String>();
     private ArrayList<LoremItem> checklist = new ArrayList<LoremItem>();
+    private ArrayList<LoremItem> checklist55 = new ArrayList<LoremItem>();
+
+    ArrayList<String> mainNameMaterial ;
+    ArrayList<String> mainQuantityMaterial ;
 
     private static final int RESULT_SELECT_IMAGE = 1;
     //private CropImageView mCropView;
     private LinearLayout mRootLayout;
+
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     public addMenuFragment() {
         // Required empty public constructor
@@ -100,8 +118,48 @@ public class addMenuFragment extends Fragment {
 
     }
 
+    private void setviewid(View rootview){
+        add_meterial = (Button) rootview.findViewById(R.id.addmaterial_button);
+        //field_meterial = (EditText) rootview.findViewById(R.id.material_field);
+        //count_field = (EditText) rootview.findViewById(R.id.count_field);
+        field_namefood = (EditText) rootview.findViewById(R.id.namefood_field);
+        field_process = (EditText) rootview.findViewById(R.id.process_field);
+        //addfield_layout = (LinearLayout) rootview.findViewById(R.id.addfield_layout);
+        selectimage = (ImageView) rootview.findViewById(R.id.addImage_Button);
+        save = (Button) rootview.findViewById(R.id.ok_Button);
+        field_about = (EditText) rootview.findViewById(R.id.about_field);
 
-    void getmaterial() {
+        //setradio mat main
+        radio0 = (CheckBox) rootview.findViewById(R.id.radio0);
+        radio1 = (CheckBox) rootview.findViewById(R.id.radio1);
+        radio2 = (CheckBox) rootview.findViewById(R.id.radio2);
+        radio3 = (CheckBox) rootview.findViewById(R.id.radio3);
+        radio4 = (CheckBox) rootview.findViewById(R.id.radio4);
+        radio5 = (CheckBox) rootview.findViewById(R.id.radio5);
+        radio6 = (CheckBox) rootview.findViewById(R.id.radio6);
+        radio7 = (CheckBox) rootview.findViewById(R.id.radio7);
+        radio8 = (CheckBox) rootview.findViewById(R.id.radio8);
+        radio9 = (CheckBox) rootview.findViewById(R.id.radio9);
+        radio10 = (CheckBox) rootview.findViewById(R.id.radio10);
+        //radio11 = (CheckBox) rootview.findViewById(R.id.radio11);
+        //set mat main quantity
+        Qmain1 = (EditText) rootview.findViewById(R.id.editText1);
+        Qmain2 = (EditText) rootview.findViewById(R.id.editText2);
+        Qmain3 = (EditText) rootview.findViewById(R.id.editText3);
+        Qmain4 = (EditText) rootview.findViewById(R.id.editText4);
+        Qmain5 = (EditText) rootview.findViewById(R.id.editText5);
+        Qmain6 = (EditText) rootview.findViewById(R.id.editText6);
+        Qmain7 = (EditText) rootview.findViewById(R.id.editText7);
+        Qmain8 = (EditText) rootview.findViewById(R.id.editText8);
+        Qmain9 = (EditText) rootview.findViewById(R.id.editText9);
+        Qmain10 = (EditText) rootview.findViewById(R.id.editText10);
+        Qmain11 = (EditText) rootview.findViewById(R.id.editText11);
+        //Qmain12 = (EditText) rootview.findViewById(R.id.editText12);
+
+
+    }
+
+    void getmaterial(int time) {
         /*new AsyncTask<Void, Void, String>() {
             @Override
             protected String doInBackground(Void... voids) {
@@ -153,91 +211,46 @@ public class addMenuFragment extends Fragment {
                 c = getmatt.getJSONObject(i);
 
                 mattlist.add(c.getString("name_material"));
+
                 LoremItem loremItem = new LoremItem();
                 loremItem.setLoremText(c.getString("name_material"));
                 //loremItem.setLoremCheck(i == 0);
                 checklist.add(loremItem);
+                checklist55.add(loremItem);
             }
 
             JSONArray gettypefood = getrespon.getJSONArray("typefood");
             for (int i = 0; i < gettypefood.length(); i++) {
                 JSONObject c = null;
                 c = gettypefood.getJSONObject(i);
-
                 typefoodlist.add(c.getString("typefood"));
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
-
-
-
-
-
     }
-
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootview = inflater.inflate(R.layout.fragment_add_menu, container, false);
 
-        getmaterial();
+        final int[] countmatt = {0};
 
+        getmaterial(0);
 
         type = (Spinner) rootview.findViewById(R.id.type_spiner);
 
         ArrayAdapter<String> adapterThai = new ArrayAdapter<String>(this.getContext(),
-                android.R.layout.simple_dropdown_item_1line, typefoodlist);
+                R.layout.spinner_item, typefoodlist);
         type.setAdapter(adapterThai);
-
-        /*type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity(),
-                        "Select : " + mattlist.get(position),
-                        Toast.LENGTH_SHORT).show();
-                Log.e("gg", "onItemSelected: " );
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
-
         setviewid(rootview);
-
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line, mattlist);
-        AutoCompleteTextView textView = (AutoCompleteTextView)
-                rootview.findViewById(R.id.material_field);
-        textView.setAdapter(adapter);
-
-
-
 
         selectimage.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //selectImage();
-                Log.e( "onClick: GGGG",String.valueOf(checklist.size()));
-                //getActivity().setContentView(R.layout.fragment_editimage);
-
-                //mRootLayout = (LinearLayout) getActivity().findViewById(R.id.layout_root);
-                //mCropView = (CropImageView) getActivity().findViewById(R.id.cropImageView);
-
-
-                //if (mCropView.getImageBitmap() == null) {
-                //mCropView.setImageResource(R.drawable.sample5);
-                //}
-
+                selectImage();
             }});
-
 
         add_meterial.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -248,7 +261,8 @@ public class addMenuFragment extends Fragment {
                 dialog.setCancelable(true);
 
                 Log.e( "onClick: ", String.valueOf(checklist.size()));
-                final CustomAdapter adapter = new CustomAdapter(getContext(),checklist);
+                Log.e( "onClick555: ", String.valueOf(checklist55.size()));
+                final CustomAdapter adapter = new CustomAdapter(getContext(),checklist55,checklist);
 
 
                 final ListView listView = (ListView) dialog.findViewById(R.id.listView);
@@ -259,6 +273,8 @@ public class addMenuFragment extends Fragment {
                 searchView.setIconified(false);
                 searchView.requestFocusFromTouch();
                 dialog.show();
+                adapter.filter("");
+
                 searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                     @Override
                     public boolean onQueryTextSubmit(String query) {
@@ -267,24 +283,46 @@ public class addMenuFragment extends Fragment {
                     @Override
                     public boolean onQueryTextChange(String searchQuery) {
                         adapter.filter(searchQuery.toString().trim());
-                        //listView.invalidate();
-                        //listView.setAdapter(adapter);
+                        listView.invalidate();
+                        listView.setAdapter(adapter);
                         return true;
                     }
 
                 });
-/*
-                Button button1 = (Button)dialog.findViewById(R.id.button1);
+
+                final Button button1 = (Button)dialog.findViewById(R.id.button);
                 button1.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        Toast.makeText(getContext()
-                                , "Close dialog", Toast.LENGTH_SHORT);
+                        ArrayList<String> listmatt = new ArrayList<String>();
+
+
+                        for (LoremItem getmat: checklist55) {
+                            if(getmat.getLoremCheck()==true){
+                                Log.e( "BUTTOn: ", String.valueOf(getmat.getLoremText()));
+                                listmatt.add(getmat.getLoremText());
+
+                            }
+
+                        }
+
+                        mRecyclerView = (RecyclerView) rootview.findViewById(R.id.recycler_view);
+
+                        mRecyclerView.setHasFixedSize(true);
+
+                        mLayoutManager = new LinearLayoutManager(getContext());
+                        mRecyclerView.setLayoutManager(mLayoutManager);
+
+                        mAdapter = new RecMat(getContext(), listmatt);
+                        mRecyclerView.setAdapter(mAdapter);
+
+                        countmatt[0]  = mAdapter.getItemCount();
+
+
+
+
                         dialog.cancel();
                     }
-                });*/
-
-
-
+                });
                 /*if(field_meterial.getText().length()==0){
                     field_meterial.setError("ใส่ข้อมูล");
                     field_meterial.requestFocus();
@@ -300,46 +338,207 @@ public class addMenuFragment extends Fragment {
                         addmaterialfield();
                     }
                 }*/
-
-
-
             }});
+
+
         save.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String material[] = new String[fieldlist.size()+1];
-                material[0] = field_meterial.getText().toString();
 
-                String count[] = new String[fieldlist.size()+1];
-                count[0] = count_field.getText().toString();
-
-                for (int i = 1; i <= fieldlist.size(); i++) {
-                    //Log.e("field", String.valueOf(fieldlist.get(i).getText().toString()));
-                    //Log.e("fieldID", String.valueOf(fieldlist.get(i).getId()));
-                    material[i] = fieldlist.get(i-1).getText().toString();
-                    count[i] = countlist.get(i-1).getText().toString();
-                }
 
                 if(checkfield()){
-                    new Upload(
-                            image_food,
-                            field_namefood.getText().toString(),
-                            field_process.getText().toString(),
-                            field_about.getText().toString(),
-                            material,
-                            count
-                    ).execute();
+                    if(addMainMaterial()){
+                        boolean check = true;
+                        if(countmatt[0]!=0){
+                            int count = mRecyclerView.getAdapter().getItemCount();
+                            for (int i = 0; i < count; i++) {
+                                LinearLayout itemLayout = (LinearLayout)mRecyclerView.getChildAt(i); // Find by under LinearLayout
+                                EditText txtInput = (EditText)itemLayout.findViewById(R.id.quantity);
+                                String Country = txtInput.getText().toString();
+
+                                if(Country.length()==0){
+                                    txtInput.setError("ใส่จำนวน");
+                                    txtInput.requestFocus();
+                                    check = false;
+
+                                }
+                                else{
+                                    TextView ddd = (TextView)itemLayout.findViewById(R.id.name_mat);
+                                    String ssss = ddd.getText().toString();
+                                    mainNameMaterial.add(ssss);
+                                    mainQuantityMaterial.add(Country);
+
+                                }
+                            }
+                        }
+                        if(check){
+                            String NameMaterial[] = new String[mainNameMaterial.size()];
+                            String QuantityMaterial[] = new String[mainQuantityMaterial.size()];
+
+                            for (int i = 0; i < mainNameMaterial.size(); i++) {
+                                NameMaterial[i] = mainNameMaterial.get(i);
+                                QuantityMaterial[i] = mainQuantityMaterial.get(i);
+                            }
+                            new Upload(
+                                    image_food,
+                                    type.getSelectedItem().toString(),
+                                    field_namefood.getText().toString(),
+                                    field_process.getText().toString(),
+                                    field_about.getText().toString(),
+                                    NameMaterial,
+                                    QuantityMaterial
+                            ).execute();
+                            mainNameMaterial.clear();
+                            mainQuantityMaterial.clear();
+                        /*getActivity().finish();
+                        getActivity().startActivity(getActivity().getIntent());*/
+                        }
+                    }
                 }
-
-
             }});
-
-
 
         return rootview;
     }
+
+    boolean addMainMaterial(){
+        mainNameMaterial = new ArrayList<>();
+        mainQuantityMaterial = new ArrayList<>();
+        if(radio0.isChecked()){
+            if(Qmain1.getText().length()==0){
+                Qmain1.setError("ใส่จำนวน");
+                Qmain1.requestFocus();
+                return false;
+            }
+            else{
+                mainQuantityMaterial.add(Qmain1.getText().toString());
+                mainNameMaterial.add(radio0.getText().toString());
+            }
+        }
+        if(radio1.isChecked()){
+            if(Qmain2.getText().length()==0){
+                Qmain2.setError("ใส่จำนวน");
+                Qmain2.requestFocus();
+                return false;
+            }
+            else {
+                mainQuantityMaterial.add(Qmain2.getText().toString());
+                mainNameMaterial.add(radio1.getText().toString());
+            }
+        }
+        if(radio2.isChecked()){
+            if(Qmain3.getText().length()==0){
+                Qmain3.setError("ใส่จำนวน");
+                Qmain3.requestFocus();
+                return false;
+            }
+            else {
+                mainQuantityMaterial.add(Qmain3.getText().toString());
+                mainNameMaterial.add(radio2.getText().toString());
+            }
+        }
+        if(radio3.isChecked()){
+            if(Qmain4.getText().length()==0){
+                Qmain4.setError("ใส่จำนวน");
+                Qmain4.requestFocus();
+                return false;
+            }
+            else {
+                mainQuantityMaterial.add(Qmain4.getText().toString());
+                mainNameMaterial.add(radio3.getText().toString());
+            }
+        }
+        if(radio4.isChecked()){
+            if(Qmain5.getText().length()==0){
+                Qmain5.setError("ใส่จำนวน");
+                Qmain5.requestFocus();
+                return false;
+            }
+            else {
+                mainQuantityMaterial.add(Qmain5.getText().toString());
+                mainNameMaterial.add(radio4.getText().toString());
+            }
+        }
+        if(radio5.isChecked()){
+            if(Qmain6.getText().length()==0){
+                Qmain6.setError("ใส่จำนวน");
+                Qmain6.requestFocus();
+                return false;
+            }
+            else {
+                mainQuantityMaterial.add(Qmain6.getText().toString());
+                mainNameMaterial.add(radio5.getText().toString());
+            }
+        }
+        if(radio6.isChecked()){
+            if(Qmain7.getText().length()==0){
+                Qmain7.setError("ใส่จำนวน");
+                Qmain7.requestFocus();
+                return false;
+            }
+            else {
+                mainQuantityMaterial.add(Qmain7.getText().toString());
+                mainNameMaterial.add(radio6.getText().toString());
+            }
+        }
+        if(radio7.isChecked()){
+            if(Qmain8.getText().length()==0){
+                Qmain8.setError("ใส่จำนวน");
+                Qmain8.requestFocus();
+                return false;
+            }
+            else {
+                mainQuantityMaterial.add(Qmain8.getText().toString());
+                mainNameMaterial.add(radio7.getText().toString());
+            }
+        }
+        if(radio8.isChecked()){
+            if(Qmain9.getText().length()==0){
+                Qmain9.setError("ใส่จำนวน");
+                Qmain9.requestFocus();
+                return false;
+            }
+            else {
+            mainQuantityMaterial.add(Qmain9.getText().toString());
+            mainNameMaterial.add(radio8.getText().toString());
+            }
+        }
+        if(radio9.isChecked()){
+            if(Qmain10.getText().length()==0){
+                Qmain10.setError("ใส่จำนวน");
+                Qmain10.requestFocus();
+                return false;
+            }
+            else {
+                mainQuantityMaterial.add(Qmain10.getText().toString());
+                mainNameMaterial.add(radio9.getText().toString());
+            }
+        }
+        if(radio10.isChecked()){
+            if(Qmain11.getText().length()==0){
+                Qmain11.setError("ใส่จำนวน");
+                Qmain11.requestFocus();
+                return false;
+            }
+            else {
+                mainQuantityMaterial.add(Qmain11.getText().toString());
+                mainNameMaterial.add(radio10.getText().toString());
+            }
+        }
+        /*if(radio11.isChecked()){
+            if(Qmain12.getText().length()==0){
+                Qmain12.setError("ใส่จำนวน");
+                Qmain12.requestFocus();
+                return false;
+            }
+            else {
+                mainQuantityMaterial.add(Qmain12.getText().toString());
+                mainNameMaterial.add(radio11.getText().toString());
+            }
+        }*/
+        return true;
+    }
     private void addmaterialfield(){
-        LayoutInflater layoutInflater =
+        /*LayoutInflater layoutInflater =
                 (LayoutInflater) getActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View addView = layoutInflater.inflate(R.layout.addmenu_row, null);
         final AutoCompleteTextView field = (AutoCompleteTextView)addView.findViewById(R.id.field);
@@ -362,15 +561,20 @@ public class addMenuFragment extends Fragment {
                 countlist.remove(countlist);
             }
         });
-        addfield_layout.addView(addView);
+        addfield_layout.addView(addView);*/
     }
     private boolean checkfield(){
+        if(image_food==null){
+            Toast.makeText(getContext(), "เลือกรูปภาพ", Toast.LENGTH_SHORT).show();
+            selectimage.requestFocus();
+            return false;
+        }
         if(field_namefood.getText().length()==0){
             field_namefood.setError("ใส่ชื่ออาหาร");
             field_namefood.requestFocus();
             return false;
         }
-        if(field_about.getText().length()==0){
+/*        if(field_about.getText().length()==0){
             field_about.setError("ใส่ข้อมูล");
             field_about.requestFocus();
             return false;
@@ -379,31 +583,16 @@ public class addMenuFragment extends Fragment {
             field_meterial.setError("ใส่ข้อมูล");
             field_meterial.requestFocus();
             return false;
-        }
+        }*/
         if (field_process.getText().length()==0) {
             field_process.setError("ใส่วิธีการทำ");
             field_process.requestFocus();
             return false;
         }
-        if(image_food==null){
-            Toast.makeText(getContext(), "เลือกรูปภาพ", Toast.LENGTH_SHORT).show();
-            selectimage.requestFocus();
-            return false;
-        }
+
         return true;
     }
-    private void setviewid(View rootview){
-        add_meterial = (Button) rootview.findViewById(R.id.addmaterial_button);
-        field_meterial = (EditText) rootview.findViewById(R.id.material_field);
-        count_field = (EditText) rootview.findViewById(R.id.count_field);
-        field_namefood = (EditText) rootview.findViewById(R.id.namefood_field);
-        field_process = (EditText) rootview.findViewById(R.id.process_field);
-        addfield_layout = (LinearLayout) rootview.findViewById(R.id.addfield_layout);
-        selectimage = (ImageView) rootview.findViewById(R.id.addImage_Button);
-        save = (Button) rootview.findViewById(R.id.ok_Button);
-        field_about = (EditText) rootview.findViewById(R.id.about_field);
 
-    }
     private void selectImage() {
         Intent gallaryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(gallaryIntent, RESULT_SELECT_IMAGE);
@@ -431,16 +620,20 @@ public class addMenuFragment extends Fragment {
     private class Upload extends AsyncTask<Void, Void, String> {
         private Bitmap image;
         private String namefood;
+        private String type;
         private String process;
         private String about;
-        private String material[] = new String[fieldlist.size()];
+        /*private String material[] = new String[fieldlist.size()];
         private String count[] = new String[countlist.size()];
-
+*/
+        private String material[] = new String[mainNameMaterial.size()];
+        private String count[] = new String[mainQuantityMaterial.size()];
         ProgressDialog loading;
 
-        public Upload(Bitmap image, String namefood, String process,String about,String[] material,String[] count) {
+        public Upload(Bitmap image, String type, String namefood, String process,String about,String[] material,String[] count) {
             this.image = image;
             this.namefood = namefood;
+            this.type = type;
             this.process = process;
             this.material = material;
             this.count = count;
@@ -451,7 +644,7 @@ public class addMenuFragment extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            loading = ProgressDialog.show(getActivity(), "Uploading Image", "Please wait...",true,true);
+            loading = ProgressDialog.show(getActivity(), "Uploading", "Please wait...",true,true);
             loading.setCanceledOnTouchOutside(false);
         }
 
@@ -481,9 +674,10 @@ public class addMenuFragment extends Fragment {
                 count_json.put(i);
             }
 
-
+            Log.e( "doInBackground: ", type);
             RequestBody formBody = new FormBody.Builder()
                     .add("namefood", namefood)
+                    .add("type", type)
                     .add("process", process)
                     .add("image", encodeImage)
                     .add("about",about)
@@ -495,7 +689,7 @@ public class addMenuFragment extends Fragment {
             try {
                 response = http.run("http://foodyth.azurewebsites.net/testAPI/testadd.php", formBody);
                 Log.e("sendd", "GG");
-                Log.e("sendd", String.valueOf(String.valueOf(response)));
+                Log.e("response", String.valueOf(String.valueOf(response)));
 
                 return response;
             } catch (IOException e) {
@@ -509,7 +703,7 @@ public class addMenuFragment extends Fragment {
         protected void onPostExecute(String s) {
             //show image uploaded
             loading.dismiss();
-            Toast.makeText(getActivity().getApplicationContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity().getApplicationContext(), "Uploaded", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -547,17 +741,66 @@ public class addMenuFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 }
+
+
+
+class RecMat extends RecyclerView.Adapter<RecMat.ViewHolder> {
+
+    ArrayList<String> listmatt = new ArrayList<String>();
+    private Context mContext;
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView mName;
+        public EditText mQuantity;
+        public ImageButton delete;
+
+        public ViewHolder(View view) {
+            super(view);
+
+            mName = (TextView) view.findViewById(R.id.name_mat);
+            mQuantity = (EditText) view.findViewById(R.id.quantity);
+            delete = (ImageButton) view.findViewById(R.id.delete_item);
+        }
+    }
+    public RecMat(Context context, ArrayList<String> listmatt) {
+        mContext = context;
+        this.listmatt = listmatt;
+    }
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(mContext)
+                .inflate(R.layout.addmaterial_row, parent, false);
+        ViewHolder viewHolder = new ViewHolder(view);
+        return viewHolder;
+    }
+    @Override
+    public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
+        viewHolder.mName.setText(listmatt.get(position));
+        viewHolder.delete.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                listmatt.remove(position);
+                notifyItemRemoved(position);
+                notifyDataSetChanged();
+            }});
+    }
+    @Override
+    public int getItemCount() {
+        return listmatt.size();
+    }
+}
+
 class CustomAdapter extends BaseAdapter {
     Context mContext;
     ArrayList<LoremItem> strName;
     ArrayList<LoremItem> arraylist;
 
-    public CustomAdapter(Context context, ArrayList<LoremItem> strName) {
+    public CustomAdapter(Context context, ArrayList<LoremItem> strName,ArrayList<LoremItem> WP) {
         Log.e( " strName  ", String.valueOf(strName.size()));
         this.mContext= context;
         this.strName = strName;
-        arraylist = new ArrayList<LoremItem>();
-        arraylist.addAll(strName);
+        arraylist = new ArrayList<>();
+        arraylist.addAll(WP);
     }
 
     public int getCount() {
@@ -622,6 +865,7 @@ class CustomAdapter extends BaseAdapter {
     }
 
 }
+
 class LoremItem {
 
     private String loremText;
