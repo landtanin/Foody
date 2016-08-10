@@ -42,7 +42,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/space_x1"
+        android:layout_height="@dimen/line_width"
         android:background="@color/colorLine"
         />
 </LinearLayout>

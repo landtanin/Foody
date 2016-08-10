@@ -42,13 +42,13 @@
             </LinearLayout>
         </android.support.design.widget.AppBarLayout>
 
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/spinner_text_size"
-            android:id="@+id/ingEnter_search_spinner"
-            android:backgroundTint="@color/cardview_dark_background"
-            android:layout_marginTop="10dp"
-            />
+        <!--<Spinner-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/spinner_text_size"-->
+            <!--android:id="@+id/ingEnter_search_spinner"-->
+            <!--android:backgroundTint="@color/cardview_dark_background"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--/>-->
 
         <TextView
             android:layout_width="match_parent"

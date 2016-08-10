@@ -8,8 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.appdever.foody.FoodDetailActivity;
@@ -55,21 +53,21 @@ public class IngEnterSearchActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_ing_enter_search);
 
         // -----------------Spinner-------------------------------------
-        binding.ingEnterSearchSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.hard_code_menus, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        binding.ingEnterSearchSpinner.setAdapter(adapter);
+//        binding.ingEnterSearchSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+//                R.array.hard_code_menus, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        binding.ingEnterSearchSpinner.setAdapter(adapter);
         //---------------Spinner-end------------------------------------
 
         StaggeredGridLayoutManager ingEnterSearchGrid = new StaggeredGridLayoutManager(1, 1);
