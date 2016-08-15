@@ -267,16 +267,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             hbgAfterLogin.setVisibility(View.VISIBLE);
 
 //          Start OnlyCall Member Realm
-            member= Realm.getDefaultInstance().where(Member.class).findFirst();
-
+            member = Realm.getDefaultInstance().where(Member.class).findFirst();
 //          End OnlyCall Member Realm
+
+            // Greeting dialog
             AlertDialog.Builder welcomeDialog = new AlertDialog.Builder(this);
 
-//            LayoutInflater inflater = this.getLayoutInflater();
-//            View dialogLayout = inflater.inflate(R.drawable.rounded_square_dialog, null);
-
             String greetingTitleStr = getResources().getString(R.string.greeting_title);
-
             String concatGreetingTitleStr = greetingTitleStr + " " + member.getName();
 
             Log.d("greeting name", member.getName());
@@ -290,8 +287,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     })
                     .show();
+            // End greeting dialog
 
-//            Toast.makeText(this,member.getName(),Toast.LENGTH_LONG).show();
             txtProfileName.setText(member.getName());
             txtProfileEmail.setText(member.getEmail());
 
@@ -310,6 +307,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             Glide.with(this).load(Uri.parse(member.getPic())).placeholder(R.drawable.ic_account_circle).bitmapTransform(new CropCircleTransformation(this)).into(imgProfile);
 //          End การใช้ Glide transformations ทำภาพให้เป็นวงกลม
         }
+
+        // if user didn't login
         else
         {
             hbgBeforeLogin.setVisibility(View.VISIBLE);

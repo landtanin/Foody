@@ -107,7 +107,7 @@ public class EnterSearchActivity extends AppCompatActivity{
 
                         resultServer = response.body().string();
 
-                        Log.d("xxxxxx", resultServer);
+                        Log.d("EnterSearchResultServer", resultServer);
 
                         JSONObject foodJSONStr, ID_food = null;
 

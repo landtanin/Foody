@@ -178,6 +178,7 @@ public class Login2Activity extends AppCompatActivity {
             ad.show();
             username.setText("");
             password.setText("");
+
         }
         else
         {
@@ -198,14 +199,11 @@ public class Login2Activity extends AppCompatActivity {
 
             } catch (Exception e) {
                 e.printStackTrace();
-                Log.e("member data",e.toString());
+                Log.e("member data error",e.toString());
             }
 
-//            Toast.makeText(Login2Activity.this,"", Toast.LENGTH_SHORT).show();
-            Intent newActivity = new Intent(Login2Activity.this,HomeActivity.class);
-            newActivity.putExtra("MemberID","");
-
-
+            Intent intentObj = new Intent(Login2Activity.this,HomeActivity.class);
+            intentObj.putExtra("MemberID","");
 
 //            sp = getSharedPreferences("Name_Status", Context.MODE_PRIVATE);
 //            editor = sp.edit();
@@ -215,10 +213,11 @@ public class Login2Activity extends AppCompatActivity {
             sharedPreference.setStatus(strStatusID);
 
             Log.e("ShowLogin",String.valueOf(c));
-            Log.e("ShowStatus",String.valueOf(strStatusID));
+            Log.d("ShowStatusXXXXX",String.valueOf(strStatusID));
 
-            startActivity(newActivity);
+            startActivity(intentObj);
         }
+
         return true;
     }
 
@@ -230,6 +229,7 @@ public class Login2Activity extends AppCompatActivity {
 
         try {
             httpPost.setEntity(new UrlEncodedFormEntity(params));
+
             HttpResponse response = client.execute(httpPost);
             StatusLine statusLine = response.getStatusLine();
             int statusCode = statusLine.getStatusCode();
@@ -242,7 +242,7 @@ public class Login2Activity extends AppCompatActivity {
                     str.append(line);
                 }
             } else {
-                Log.e("Log", "Failed to download result..");
+                Log.e("Log", "Failed to download result");
             }
         } catch (ClientProtocolException e) {
             e.printStackTrace();
@@ -251,9 +251,7 @@ public class Login2Activity extends AppCompatActivity {
         }
         return str.toString();
 
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

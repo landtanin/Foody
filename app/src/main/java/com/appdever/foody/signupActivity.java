@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.appdever.foody.database.Member;
 import com.bumptech.glide.Glide;
 
 import org.apache.http.HttpEntity;
@@ -48,19 +49,15 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Realm;
+
 
 public class signupActivity extends AppCompatActivity {
 
 
     private Button cancelButton, okButton;
     private ImageButton addImageButton;
-    /*private EditText username, email, password, verifyPass;*/
 
-    /*private TextView alertUser, alertEmail, alertPass, alertRepass;*/
-
-//    private ImageView test;
-
-    //    private static final int SELECT_PICTURE = m1;
     private static final int REQUEST_IMAGE_SELECTOR = 1;
 //    private String selectedImagePath;
 
@@ -113,8 +110,8 @@ public class signupActivity extends AppCompatActivity {
 //                intent.setAction(Intent.ACTION_GET_CONTENT);
 //                startActivityForResult(Intent.createChooser(intent,
 //                        "Select Picture"), SELECT_PICTURE);
-                dispatchPhotoSelectionIntent();
 
+                dispatchPhotoSelectionIntent();
 
             }
         });
@@ -180,108 +177,6 @@ public class signupActivity extends AppCompatActivity {
                     });
                     t.start();
 
-/*
-                String strUsername = username.getText().toString().trim();
-                String strEmail = email.getText().toString().trim();
-                String strPassword = password.getText().toString().trim();
-                String strVerifyPass = verifyPass.getText().toString().trim();
-                TextView alertUser = (TextView)findViewById(R.id.alertUser);
-                alertUser.setTextColor(Color.RED);
-                TextView alertEmail = (TextView)findViewById(R.id.alertEmail);
-                alertEmail.setTextColor(Color.RED);
-                TextView alertPass = (TextView)findViewById(R.id.alertPass);
-                alertPass.setTextColor(Color.RED);
-                TextView alertRepass = (TextView)findViewById(R.id.alertRepass);
-                alertRepass.setTextColor(Color.RED);
-
-                *//*if (strUsername.equals("") || strEmail.equals("") || strPassword.equals("") || strVerifyPass.equals("")) {
-
-                    Toast.makeText(signupActivity.this, "กรุณากรอกข้อมูลให้ครบถ้วน", Toast.LENGTH_SHORT).show();
-
-                }*//*
-                if(strUsername.equals (""))
-                {
-                    alertUser.setText("กรุณากรอกชื่อผู้ใช้");
-                }
-                else
-                {
-                    Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
-                    Matcher m = p.matcher(strUsername);
-                    boolean b = m.find();
-
-                    if (b)
-                    {
-                        alertUser.setText("ชื่อผู้ใช้ต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น");
-                    }
-                    else if(strUsername.length() > 15)
-                    {
-                        alertUser.setText("ชื่อผู้ใช้ต้องไม่เกิน 15 ตัวอักษร");
-                    }
-                    else
-                    {
-                        alertUser.setText("");
-                    }
-
-                }
-                if(strEmail.equals ("")) {
-                    alertEmail.setText("กรุณากรอกอีเมล");
-                }
-                else if(!(strEmail.equals ("")))
-                {
-                    try {
-                        String mydomain = strEmail;
-                        String emailregex = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
-                        Boolean b = mydomain.matches(emailregex);
-
-                        if (b == false) {
-                            alertEmail.setText("อีเมลไม่ถูกต้อง");
-                        }else if(b == true){
-                            alertEmail.setText("");
-                        }
-                    }
-                    catch (Exception e) {
-                        e.printStackTrace();
-                        System.out.println(e.getMessage());
-                    }
-                }
-                else
-                {
-                    alertEmail.setText("");
-                    //check email
-                }
-                if(strPassword.equals (""))
-                {
-                    alertPass.setText("กรุณากรอกรหัสผ่าน");
-                }
-                else {
-                    Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
-                    Matcher m = p.matcher(strUsername);
-                    boolean b = m.find();
-
-                    if (b) {
-                        alertPass.setText("รหัสผ่านต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น");
-                    }
-                    else if (strPassword.length() > 15) {
-                        alertPass.setText("รหัสผ่านต้องมีความยาวระหว่าง 6 - 15 ตัวอักษร");
-                    }
-                    else if (strPassword.length() < 6) {
-                        alertPass.setText("รหัสผ่านต้องมีความยาวระหว่าง 6 - 15 ตัวอักษร");
-                    }
-                    else
-                    {
-                        alertPass.setText("");
-                    }
-                }
-
-                if (!(strPassword.equals (strVerifyPass)))
-                {
-                    alertRepass.setText ("รหัสผ่านไม่ตรงกัน");
-                }
-                else
-                {
-                    alertRepass.setText ("");
-                }
-            }*/
                 } else {
 
                     Toast.makeText(signupActivity.this, "Please select picture", Toast.LENGTH_SHORT).show();
@@ -295,7 +190,7 @@ public class signupActivity extends AppCompatActivity {
 
         progress = new ProgressDialog(this);
         progress.setTitle("Loading");
-        progress.setMessage("Wait while loading...");
+        progress.setMessage("Loading...");
         progress.show();
 
     }
@@ -306,8 +201,6 @@ public class signupActivity extends AppCompatActivity {
         ad = new AlertDialog.Builder(this);
 
         ad.setTitle("Error! ");
-
-
 
         // Check Username
         if(username.getText().length() == 0)
@@ -345,9 +238,6 @@ public class signupActivity extends AppCompatActivity {
     }
 
     private void dispatchPhotoSelectionIntent() {
-//        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-//                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//        this.startActivityForResult(galleryIntent, REQUEST_IMAGE_SELECTOR);
 
         Intent intent = new Intent(Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -408,14 +298,6 @@ public class signupActivity extends AppCompatActivity {
         } else {
             mCurrentPhoto = null;
         }
-//                break;
-//            case REQUEST_IMAGE_CAPTURE:
-//                if (resultCode != Activity.RESULT_OK) {
-//                    mCurrentPhoto = null;
-//                }
-//                break;
-//        }
-//        super.onActivityResult(requestCode, resultCode, data);
 
 
     }
@@ -469,33 +351,6 @@ public class signupActivity extends AppCompatActivity {
         }
 
     }
-    //    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (resultCode == RESULT_OK) {
-//            if (requestCode == SELECT_PICTURE) {
-//                Uri selectedImageUri = data.getData();
-//                selectedImagePath = getPath(selectedImageUri);
-//            }
-//        }
-//    }
-
-//    public String getPath(Uri uri) {
-//        // just some safety built in
-//        if( uri == null ) {
-//            return null;
-//        }
-//        // try to retrieve the image from the media store first
-//        // this will only work for images selected from gallery
-//        String[] projection = { MediaStore.Images.Media.DATA };
-//        Cursor cursor = managedQuery(uri, projection, null, null, null);
-//        if( cursor != null ){
-//            int column_index = cursor
-//                    .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-//            cursor.moveToFirst();
-//            return cursor.getString(column_index);
-//        }
-//        // this is our fallback here
-//        return uri.getPath();
-//    }
 
     private void bindWidget() {
 
@@ -522,8 +377,6 @@ public class signupActivity extends AppCompatActivity {
     public boolean SaveData()
     {
 
-//        Log.e("base64", encoded);
-
         myUsername = username.getText().toString();
 
         String url = "http://foodyth.azurewebsites.net/foody/saveADDData.php";
@@ -549,7 +402,7 @@ public class signupActivity extends AppCompatActivity {
         String strStatusID = "0";
         String strError = "Unknown Status!";
 
-        JSONObject c;
+        JSONObject c = null;
 
         try {
             c = new JSONObject(resultServer);
@@ -572,26 +425,38 @@ public class signupActivity extends AppCompatActivity {
             }).create();
             ad.show();
 
-//        }).setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
-//
-//                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//
-//                }
-//            });
-
             return false;
         }
         else
         {
+
+            try {
+                Realm realm = Realm.getDefaultInstance();
+                realm.beginTransaction();
+                Member member = new Member();
+                member.setMemberID(c.getString("MemberID"));
+                member.setUserName(c.getString("Username"));
+                member.setName(c.getString("Name"));
+                member.setEmail(c.getString("Email"));
+                member.setPic(c.getString("Pic"));
+
+                realm.copyToRealmOrUpdate(member);
+//                realm.createOrUpdateObjectFromJson(Member.class,c);
+                realm.commitTransaction();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.e("member data error",e.toString());
+            }
+
             name.setText("");
             username.setText("");
             password.setText("");
             verifyPass.setText("");
             email.setText("");
+
             return true;
         }
-
 
     }
 
