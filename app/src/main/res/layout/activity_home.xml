@@ -259,7 +259,8 @@
                         android:id="@+id/web_link1"
                         android:layout_width="40dp"
                         android:layout_height="match_parent"
-                       android:scaleType="centerInside"
+                        android:scaleType="centerInside"
+                        android:clickable="true"
                         android:src="@drawable/link" />
                     </LinearLayout>
 
@@ -271,7 +272,7 @@
                         android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/facebook_link"
+                        android:id="@+id/facebook_link1"
                         android:layout_width="40dp"
                         android:layout_height="match_parent"
                         android:scaleType="centerInside"
@@ -400,7 +401,7 @@
                         android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/web_link"
+                        android:id="@+id/web_link2"
                         android:layout_width="40dp"
                         android:layout_height="match_parent"
                         android:scaleType="centerInside"
@@ -414,7 +415,7 @@
                         android:layout_weight="1"
                         android:orientation="horizontal">
                     <ImageView
-                        android:id="@+id/facebook_link"
+                        android:id="@+id/facebook_link2"
                         android:layout_width="40dp"
                         android:layout_height="match_parent"
                         android:scaleType="centerInside"

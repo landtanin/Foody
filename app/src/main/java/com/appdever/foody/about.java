@@ -12,6 +12,7 @@ public class about extends AppCompatActivity {
         setContentView(R.layout.activity_about);
 
         TextView creator_names = (TextView) findViewById(R.id.creator_name);
-        creator_names.setText(R.string.app_creator_names);
+        String showCreatorNames = getResources().getString(R.string.app_creator_names).trim();
+        creator_names.setText(showCreatorNames);
     }
 }

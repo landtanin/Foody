@@ -219,32 +219,6 @@ public class RandomFragment extends Fragment {
         if(strFoodID != null)
         {
 
-//            builder.setPositiveButton("ดูรายละเอียด", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//                    Intent objIntent = new Intent(getContext(), FoodDetailActivity.class);
-//                    Bundle extras = new Bundle();
-//                    extras.putString(KeyStore.FOODID_DETAIL_SEND_KEY,strFoodID);
-//                    extras.putString(KeyStore.FOODTYOEID_DETAIL_SEND_KEY,strFoodTypefood);
-//                    extras.putString(KeyStore.NAMEFOOD_DETAIL_SEND_KEY,strFoodName);
-//                    extras.putString(KeyStore.FOODMETHOD_DETAIL_SEND_KEY,strFoodCooking);
-//                    extras.putString(KeyStore.FOODIMG_DETAIL_SEND_KEY,strFoodPic);
-//                    extras.putString(KeyStore.FOOD_INGREDIENT_SEND_KEY,strFoodPrepare);
-//                    extras.putString(KeyStore.FOOD_DESCRIPTION_SEND_KEY,strFoodDescription);
-//                    objIntent.putExtras(extras);
-//                    startActivity(objIntent);
-//
-//                    /*Intent i=new Intent(getActivity(), FoodDetailActivity.class);
-//                    startActivity(i);*/
-//                }
-//            }).setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
-//
-//                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//
-//                }
-//            });
-
             final AlertDialog dialog = builder.create();
 
             LayoutInflater inflater = getActivity().getLayoutInflater();

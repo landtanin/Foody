@@ -17,19 +17,22 @@
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Close</string>
 
-    <string name="app_creator_names"> กมลวรรณ สุวรรณ์เวียง
-        \n กษิรา ภฏภูริญ
-        \n ณัฐภัทร แว่นแก้ว
-        \n ธนิน โรจนเพียรสถิต
-        \n ปฐมาวดี  อินทร์ศักดิ์
-        \n ประกายพร นักผูก
-        \n สิรารมย์ พรไกรเนตร
-        \n สุธานนท์ พวงยุ้ง
-        \n อนุษรา ต่อคุ้มิ์
-        \n อภิสิทธิ์ สีหามาตร
-        \n อชิรญาณ์ กลิ่นพิพัฒน
+    <string name="app_creator_names">
+        \n กมลวรรณ สุวรรณ์เวียง
+        \nกษิรา ภฏภูริญ
+        \nณัฐภัทร แว่นแก้ว
+        \nธนิน โรจนเพียรสถิต
+        \nปฐมาวดี  อินทร์ศักดิ์
+        \nประกายพร นักผูก
+        \nสิรารมย์ พรไกรเนตร
+        \nสุธานนท์ พวงยุ้ง
+        \nอนุษรา ต่อคุ้มิ์
+        \nอภิสิทธิ์ สีหามาตร
+        \nอชิรญาณ์ กลิ่นพิพัฒน
 
-</string>
+    </string>
+
+    <string name="web_address">http://facebook.com/landtanin</string>
 
     <string-array name="hard_code_menus">
         <item>ต้ม</item>

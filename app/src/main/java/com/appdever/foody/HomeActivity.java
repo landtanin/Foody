@@ -42,7 +42,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     public TextView txtPageName,txtProfileName,txtProfileEmail;
     public DrawerLayout drawerLayout;
     public Toolbar toolbar;
-    public ImageView imgProfile,web_link,web_link1;
+    public ImageView imgProfile,web_link1, web_link2;
     public ActionBarDrawerToggle actionBarDrawerToggle;
     public Button btnLogin, btnRegister,btnLogout,btnEdit;
     public LinearLayout hbgBeforeLogin, hbgAfterLogin;
@@ -80,11 +80,35 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        web_link2 = (ImageView) findViewById(R.id.web_link2);
+        web_link2.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+//                Toast.makeText(HomeActivity.this, "Link clecked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse(getString(R.string.web_address)));
+                startActivity(intent);
+            }
+        });
+
+        web_link1 = (ImageView) findViewById(R.id.web_link1);
+        web_link1.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+//                Toast.makeText(HomeActivity.this, "Link clecked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse(getString(R.string.web_address)));
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void facebookBtn() {
 
-        ImageView facebook_link = (ImageView) findViewById(R.id.facebook_link);
+        ImageView facebook_link = (ImageView) findViewById(R.id.facebook_link1);
         facebook_link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,6 +133,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
+
+
 
         //-----------Hamburger-end------------
 
@@ -245,8 +271,24 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
 //          End OnlyCall Member Realm
             AlertDialog.Builder welcomeDialog = new AlertDialog.Builder(this);
-            welcomeDialog.setTitle(R.string.greeting_title)
+
+//            LayoutInflater inflater = this.getLayoutInflater();
+//            View dialogLayout = inflater.inflate(R.drawable.rounded_square_dialog, null);
+
+            String greetingTitleStr = getResources().getString(R.string.greeting_title);
+
+            String concatGreetingTitleStr = greetingTitleStr + " " + member.getName();
+
+            Log.d("greeting name", member.getName());
+
+            welcomeDialog.setTitle(concatGreetingTitleStr)
                     .setMessage(R.string.greeting_text)
+                    .setPositiveButton("เริ่มใช้งาน", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
                     .show();
 
 //            Toast.makeText(this,member.getName(),Toast.LENGTH_LONG).show();
