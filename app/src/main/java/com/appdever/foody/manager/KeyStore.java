@@ -19,4 +19,6 @@ public class KeyStore {
     public static final String ING_MAT_ID_SEND_KEY = "ING_MAT_ID_SEND_KEY";
     public static final String ING_MAT_TYPE_ID_SEND_KEY = "ING_MAT_TYPE_ID_SEND_KEY";
 
+    public static final String SIGNUP_TO_HOME_STATUS = "SIGNUP_TO_HOME_STATUS";
+
 }

@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.appdever.foody.database.Member;
+import com.appdever.foody.manager.KeyStore;
 import com.appdever.foody.manager.SharedPreference;
 
 import org.apache.http.HttpEntity;
@@ -156,6 +157,9 @@ public class Login2Activity extends AppCompatActivity {
         JSONObject c = null;
         try {
             c = new JSONObject(resultServer);
+
+            Log.d("LOGINSERVER", resultServer);
+
             strStatusID = c.getString("StatusID");
             strMemberID = c.getString("MemberID");
             strError = c.getString("Error");
@@ -193,6 +197,7 @@ public class Login2Activity extends AppCompatActivity {
                 member.setEmail(c.getString("Email"));
                 member.setPic(c.getString("Pic"));
 
+
                 realm.copyToRealmOrUpdate(member);
 //                realm.createOrUpdateObjectFromJson(Member.class,c);
                 realm.commitTransaction();
@@ -203,7 +208,7 @@ public class Login2Activity extends AppCompatActivity {
             }
 
             Intent intentObj = new Intent(Login2Activity.this,HomeActivity.class);
-            intentObj.putExtra("MemberID","");
+            intentObj.putExtra(KeyStore.SIGNUP_TO_HOME_STATUS,"fromLogin");
 
 //            sp = getSharedPreferences("Name_Status", Context.MODE_PRIVATE);
 //            editor = sp.edit();

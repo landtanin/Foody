@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 
+import com.appdever.foody.manager.KeyStore;
+import com.appdever.foody.manager.SharedPreference;
+
 /**
  * Created by arisak on 28/7/2559.
  */
@@ -23,9 +26,25 @@ public class Splash extends Activity {
 
         runnable = new Runnable() {
             public void run() {
-                Intent intent = new Intent(Splash.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+
+                SharedPreference sharedPreference = new SharedPreference(getApplicationContext());
+
+                if (sharedPreference.getStatus().equals("1")) {
+
+                    Intent intent = new Intent(Splash.this, HomeActivity.class);
+                    intent.putExtra(KeyStore.SIGNUP_TO_HOME_STATUS, "fromSplash");
+                    startActivity(intent);
+                    finish();
+
+                }
+                else{
+
+                    Intent intent = new Intent(Splash.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+
+                }
+
             }
         };
     }

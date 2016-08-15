@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.appdever.foody.HomePage.HomeFragment;
 import com.appdever.foody.addMenuPage.addMenuFragment;
 import com.appdever.foody.database.Member;
+import com.appdever.foody.manager.KeyStore;
 import com.appdever.foody.manager.SharedPreference;
 import com.appdever.foody.manager.SmartFragmentStatePagerAdapter;
 import com.appdever.foody.randomPage.RandomFragment;
@@ -39,18 +40,19 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     public ViewPager container;
     public TabLayout tabLayout;
-    public TextView txtPageName,txtProfileName,txtProfileEmail;
+    public TextView txtPageName, txtProfileName, txtProfileEmail;
     public DrawerLayout drawerLayout;
     public Toolbar toolbar;
-    public ImageView imgProfile,web_link1, web_link2;
+    public ImageView imgProfile, web_link1, web_link2;
     public ActionBarDrawerToggle actionBarDrawerToggle;
-    public Button btnLogin, btnRegister,btnLogout,btnEdit;
+    public Button btnLogin, btnRegister, btnLogout, btnEdit;
     public LinearLayout hbgBeforeLogin, hbgAfterLogin;
     public final int myHomeFragment = 0;
     public final int createMenuFragment = 1;
     public final int randomFragment = 2;
     public final int searchFragment = 3;
     public Member member;
+//    private String checkStatus = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +83,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         web_link2 = (ImageView) findViewById(R.id.web_link2);
-        web_link2.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        web_link2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
 //                Toast.makeText(HomeActivity.this, "Link clecked", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_VIEW);
@@ -93,8 +95,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         web_link1 = (ImageView) findViewById(R.id.web_link1);
-        web_link1.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        web_link1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
 //                Toast.makeText(HomeActivity.this, "Link clecked", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_VIEW);
@@ -135,12 +137,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
 
 
-
         //-----------Hamburger-end------------
 
         txtPageName = (TextView) findViewById(R.id.txtPageName);
         txtProfileEmail = (TextView) findViewById(R.id.txtProfileEmail);
-        txtProfileName  = (TextView) findViewById(R.id.txtProfileName);
+        txtProfileName = (TextView) findViewById(R.id.txtProfileName);
 
         container = (ViewPager) findViewById(R.id.container);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -153,7 +154,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         hbgBeforeLogin = (LinearLayout) findViewById(R.id.hbgBeforeLogin);
         hbgAfterLogin = (LinearLayout) findViewById(R.id.hbgAfterLogin);
 
-        imgProfile = (ImageView) findViewById(R.id.imgProfile) ;
+        imgProfile = (ImageView) findViewById(R.id.imgProfile);
 
         imgProfile.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
@@ -167,7 +168,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         container.setAdapter(menuPagerAdapter);
         container.setOffscreenPageLimit(4);
 
-//        container.setCurrentItem(getIntent().getExtras().getInt("page",0));
         tabLayout.setupWithViewPager(container);
         tabLayout.setClipToPadding(true);
 
@@ -261,8 +261,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     //            --------------- sharedPreference For CheckLogin Start------------
     public void CheckStatus() {
+
         SharedPreference sharedPreference = new SharedPreference(this);
-        if (sharedPreference.getStatus().equals("1")){
+
+        if (sharedPreference.getStatus().equals("1")) {
             hbgBeforeLogin.setVisibility(View.GONE);
             hbgAfterLogin.setVisibility(View.VISIBLE);
 
@@ -271,22 +273,30 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 //          End OnlyCall Member Realm
 
             // Greeting dialog
-            AlertDialog.Builder welcomeDialog = new AlertDialog.Builder(this);
 
-            String greetingTitleStr = getResources().getString(R.string.greeting_title);
-            String concatGreetingTitleStr = greetingTitleStr + " " + member.getName();
+            if ((getIntent().getExtras().getString(KeyStore.SIGNUP_TO_HOME_STATUS)).equals("fromSignUp")) {
 
-            Log.d("greeting name", member.getName());
+//                checkStatus = getIntent().getExtras().getString(KeyStore.SIGNUP_TO_HOME_STATUS);
 
-            welcomeDialog.setTitle(concatGreetingTitleStr)
-                    .setMessage(R.string.greeting_text)
-                    .setPositiveButton("เริ่มใช้งาน", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    })
-                    .show();
+                AlertDialog.Builder welcomeDialog = new AlertDialog.Builder(this);
+
+                String greetingTitleStr = getResources().getString(R.string.greeting_title);
+                String concatGreetingTitleStr = greetingTitleStr + " " + member.getName();
+
+//                    Log.d("greeting name", member.getName());
+
+                welcomeDialog.setTitle(concatGreetingTitleStr)
+                        .setMessage(R.string.greeting_text)
+                        .setPositiveButton("เริ่มใช้งาน", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+
+
             // End greeting dialog
 
             txtProfileName.setText(member.getName());
@@ -309,8 +319,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         // if user didn't login
-        else
-        {
+        else {
             hbgBeforeLogin.setVisibility(View.VISIBLE);
             hbgAfterLogin.setVisibility(View.GONE);
 
@@ -378,7 +387,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
     //    ----------------------------onBackPressed EnD----------------
-
 
 
     //-----------------------Hamburger-onPostCreate-start------------------------
@@ -513,7 +521,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 //
 //            return view;
 //        }
-
 
 
     }

@@ -24,6 +24,8 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.appdever.foody.database.Member;
+import com.appdever.foody.manager.KeyStore;
+import com.appdever.foody.manager.SharedPreference;
 import com.bumptech.glide.Glide;
 
 import org.apache.http.HttpEntity;
@@ -67,7 +69,7 @@ public class signupActivity extends AppCompatActivity {
 
     private File mCurrentPhoto;
 
-    public static String myUsername = null;
+    private String loginStatus = "fromSignUp";
 
 //    private ProgressBar spinner;
 
@@ -137,7 +139,7 @@ public class signupActivity extends AppCompatActivity {
                     loadingPage();
 //                spinner.setVisibility(View.VISIBLE);
                     final Handler handler = new Handler();
-                    Thread t = new Thread(new Runnable() {
+                    final Thread t = new Thread(new Runnable() {
                         @Override
                         public void run() {
 
@@ -156,8 +158,10 @@ public class signupActivity extends AppCompatActivity {
 //                                            Toast.makeText(signupActivity.this, "Saved successfully", Toast.LENGTH_SHORT).show();
 
                                             Intent objIntent = new Intent(signupActivity.this, HomeActivity.class);
-                                            objIntent.putExtra("userIntent", myUsername);
+                                            objIntent.putExtra(KeyStore.SIGNUP_TO_HOME_STATUS, loginStatus);
                                             startActivity(objIntent);
+
+//                                            loginStatus = false;
                                         } else {
                                             Toast.makeText(signupActivity.this, "Sign up error", Toast.LENGTH_SHORT).show();
                                         }
@@ -377,8 +381,6 @@ public class signupActivity extends AppCompatActivity {
     public boolean SaveData()
     {
 
-        myUsername = username.getText().toString();
-
         String url = "http://foodyth.azurewebsites.net/foody/saveADDData.php";
 
         List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -406,12 +408,44 @@ public class signupActivity extends AppCompatActivity {
 
         try {
             c = new JSONObject(resultServer);
+
+            Log.d("SIGNUPSERVER", resultServer);
+
             strStatusID = c.getString("StatusID");
             strError = c.getString("Error");
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+        // -----------request the info of the latest user---------------
+        String urlLatestUser = "http://foodyth.azurewebsites.net/foody/checkLogin.php";
+
+        List<NameValuePair> latestUserParams = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("strUser", username.getText().toString()));
+        params.add(new BasicNameValuePair("strPass", password.getText().toString()));
+
+        String latestUserResultServer = getHttpPost(urlLatestUser, params);
+
+        /*** Default Value ***/
+        String latestStrStatusID = "0";
+        String latestStrMemberID = "0";
+
+        JSONObject newUser = null;
+        try {
+            newUser = new JSONObject(latestUserResultServer);
+
+            Log.d("LOGINSERVER", resultServer);
+
+            latestStrStatusID = newUser.getString("StatusID");
+            latestStrMemberID = newUser.getString("MemberID");
+//            strError = c.getString("Error");
+
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        // ---------request latest user-----------------------------
 
         // Prepare Save Data
         if(strStatusID.equals("0"))
@@ -434,15 +468,22 @@ public class signupActivity extends AppCompatActivity {
                 Realm realm = Realm.getDefaultInstance();
                 realm.beginTransaction();
                 Member member = new Member();
-                member.setMemberID(c.getString("MemberID"));
-                member.setUserName(c.getString("Username"));
-                member.setName(c.getString("Name"));
-                member.setEmail(c.getString("Email"));
-                member.setPic(c.getString("Pic"));
+                member.setMemberID(newUser.getString("MemberID"));
+                member.setUserName(newUser.getString("Username"));
+                member.setName(newUser.getString("Name"));
+                member.setEmail(newUser.getString("Email"));
+                member.setPic(newUser.getString("Pic"));
 
                 realm.copyToRealmOrUpdate(member);
 //                realm.createOrUpdateObjectFromJson(Member.class,c);
+
+
+
                 realm.commitTransaction();
+
+                SharedPreference sharedPreference = new SharedPreference(this);
+                sharedPreference.setStatus(latestStrStatusID);
+
 
             } catch (Exception e) {
                 e.printStackTrace();
